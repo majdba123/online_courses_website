@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
+            $table->decimal('discount_percentage', 5, 2);
+            $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });
     }

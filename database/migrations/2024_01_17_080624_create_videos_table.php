@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-
+use App\Models\Courses;
 return new class extends Migration
 {
     /**
@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('videos', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('video_url');
+            $table->string('discription');
+            $table->time('time_of_video');
+            $table->foreignIdFor(Courses::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

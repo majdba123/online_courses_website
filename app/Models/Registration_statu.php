@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Registration_statu extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'courses_id',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function courses()
+    {
+        return $this->belongsTo(Courses::class,'courses_id');
+    }
 }
