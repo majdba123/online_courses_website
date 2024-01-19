@@ -25,6 +25,7 @@
 </head>
 
 <body class="with-welcome-text">
+
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
           <div class="me-3">
@@ -126,10 +127,8 @@
       </nav>
 
 
-      @yield('content')
-
-
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <div>
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="../index.html">
@@ -142,11 +141,10 @@
             <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
             <i class="menu-icon mdi mdi-card-text-outline"></i>
               <span class="menu-title">Courses</span>
-              <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{ route('add.doctor') }}">Add Doctor</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('doctor') }}">Add Doctor</a></li>
                 <li class="nav-item"> <a class="nav-link" href="../pages/ui-features/dropdowns.html">View Doctor</a></li>
                 <li class="nav-item"> <a class="nav-link" href="../pages/ui-features/dropdowns.html">Add Courses</a></li>
                 <li class="nav-item"> <a class="nav-link" href="../pages/ui-features/dropdowns.html"> view Courses</a></li>
@@ -160,7 +158,7 @@
               aria-controls="form-elements">
               <i class="menu-icon mdi mdi-card-text-outline"></i>
               <span class="menu-title">Discount</span>
-              <i class="menu-arrow"></i>
+
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
@@ -173,7 +171,6 @@
             <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
               <i class="menu-icon mdi mdi-card-text-outline"></i>
               <span class="menu-title">User</span>
-              <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="charts">
               <ul class="nav flex-column sub-menu">
@@ -229,9 +226,10 @@
             </a>
           </li>
         </ul>
-      </nav>
+        </div>
+    </nav>
 
-
+      @yield('content')
 
 
 
