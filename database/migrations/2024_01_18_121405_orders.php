@@ -17,7 +17,8 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignIdFor(Courses::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->string('price');
-            $table->string('status')->default('pendding');
+            $table->string('image');
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

@@ -17,6 +17,12 @@ return new class extends Migration
             $table->timestamp('expired_at')->nullable();
             $table->timestamps();
         });
+        DB::table('discounts')->insert([
+            [
+                'discount_percentage' => 0,
+                'expired_at' => null,
+            ]
+        ]);
     }
 
     /**

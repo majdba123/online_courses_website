@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('price');
             $table->string('discription');
             $table->time('time_of_course');
-            $table->foreignIdFor(Doctor::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignIdFor(Discount::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignIdFor(Doctor::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate()->nullable();
+            $table->foreignIdFor(Discount::class)->nullable()->constrained()->cascadeOnDelete()->cascadeOnUpdate()->default(1);
             $table->timestamps();
         });
     }

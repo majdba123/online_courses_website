@@ -12,6 +12,7 @@ class Order extends Model
         'user_id',
         'courses_id',
         'price',
+        'image',
         'status',
     ];
 

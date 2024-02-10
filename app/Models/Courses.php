@@ -44,8 +44,5 @@ class Courses extends Model
     {
         return $this->hasMany(Rating::class);
     }
-    public function Registration_statu()
-    {
-        return $this->hasMany(Registration_statu::class);
-    }
+
 }

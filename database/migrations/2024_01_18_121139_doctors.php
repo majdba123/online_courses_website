@@ -19,7 +19,16 @@ return new class extends Migration
             $table->string('university');
             $table->integer('age')->nullable();
         });
+        DB::table('doctors')->insert([
+            [
+                'name' => "none",
+                'spicification' => "none",
+                'university' => "none",
+                'age' => 0,
+            ]
+        ]);
     }
+
 
     /**
      * Reverse the migrations.

@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
+use App\Models\Discount;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -12,7 +12,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            $expiredDiscounts = Discount::where('expired_at', '=', now())->get();
+
+            foreach ($expiredDiscounts as $discount) {
+                $discount->delete();
+            }
+        })->daily();
     }
 
     /**
@@ -24,4 +30,5 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
 }

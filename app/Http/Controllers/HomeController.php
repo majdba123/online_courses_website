@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
+use App\Models\Benefits;
+use App\Models\Rating;
+use App\Models\Courses;
+use App\Models\QFA;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,11 +15,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Show the application dashboard.
      *
@@ -23,6 +22,48 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $course=Courses::all();
+        $benefit=Benefits::all();
+        $rate=Rating::all();
+        $qfa=QFA::all();
+        $i=0;
+        return view('web.homepage',compact('course','benefit','rate','qfa','i'));
+    }
+    public function user()
+    {
+        $user=User::all();
+        $i=0;
+        return view('admin.user.index',compact('user','i'));
+    }
+    public function delete($id)
+    {
+        $user=User::where('id','=',$id)->delete();
+        return redirect()->back()->with(['success'=>'delete user done']);
+    }
+    public function upuser($id)
+    {
+        $user=User::find($id);
+        if($user)
+        {
+            if($user->status == 1) // use double equals sign for comparison
+            {
+                $user->status=0;
+            }elseif($user->status == 0) // use double equals sign for comparison
+            {
+                $user->status=1;
+            }
+            $user->save();
+        }
+        return redirect()->back();
+    }
+    public function search(Request $request )
+    {
+        $validator = Validator::make($request->all(), [
+            'quiry' => 'required',
+         ]);
+         $search = $request->input('quiry');
+         $user=User::where('name', 'like', "%$search%")->get();
+         $i=0 ;
+         return view('admin.user.index',compact('user','i'));
     }
 }
