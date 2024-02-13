@@ -13,7 +13,7 @@ class BenefitsController extends Controller
      */
     public function index()
     {
-        $benefits = Benefits::all();
+        $benefits = Benefits::paginate(4);
         return view('admin.benefit.show', compact('benefits'));
     }
 

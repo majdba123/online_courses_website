@@ -22,16 +22,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $course=Courses::all();
-        $benefit=Benefits::all();
-        $rate=Rating::all();
-        $qfa=QFA::all();
+        $course=Courses::paginate(4);
+        $benefit=Benefits::paginate(4);
+        $rate=Rating::paginate(4);
+        $qfa=QFA::paginate(4);
         $i=0;
         return view('web.homepage',compact('course','benefit','rate','qfa','i'));
     }
     public function user()
     {
-        $user=User::all();
+        $user=User::paginate(4);
         $i=0;
         return view('admin.user.index',compact('user','i'));
     }
@@ -62,7 +62,7 @@ class HomeController extends Controller
             'quiry' => 'required',
          ]);
          $search = $request->input('quiry');
-         $user=User::where('name', 'like', "%$search%")->get();
+         $user=User::where('name', 'like', "%$search%")->paginate(4);
          $i=0 ;
          return view('admin.user.index',compact('user','i'));
     }

@@ -15,15 +15,15 @@ class CoursesController extends Controller
     public function index()
     {
         $i=0 ;
-        $courses=Courses::all();
-        $doctor=Doctor::all();
-        $discount=Discount::all();
+        $courses=Courses::paginate(4);
+        $doctor=Doctor::paginate(4);
+        $discount=Discount::paginate(4);
         return view('admin.courses.show',compact('doctor','discount','courses','i'));
     }
     public function index2()
     {
         $i=0 ;
-        $courses = Courses::with('video')->get();
+        $courses = Courses::with('video')->paginate(4);
         return view('web.courses.index',compact('courses','i'));
     }
     public function search(Request $request )
@@ -32,17 +32,17 @@ class CoursesController extends Controller
             'quiry' => 'required',
          ]);
          $search = $request->input('quiry');
-         $courses = Courses::where('name', 'like', "%$search%")->get();
+         $courses = Courses::where('name', 'like', "%$search%")->paginate(4);
          $i=0 ;
-         $doctor=Doctor::all();
-         $discount=Discount::all();
+         $doctor=Doctor::paginate(4);
+         $discount=Discount::paginate(4);
          return view('admin.courses.show',compact('courses','i','doctor','discount'));
     }
     public function edit($id)
     {
         $courses=Courses::findOrfail($id);
-        $doctor=Doctor::all();
-        $discount=Discount::all();
+        $doctor=Doctor::paginate(4);
+        $discount=Discount::paginate(4);
         return view('admin.courses.edit',compact('doctor','discount','courses'));
     }
     public function store(Request $request)

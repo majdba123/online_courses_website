@@ -13,7 +13,7 @@ class QFAController extends Controller
      */
     public function index()
     {
-        $qfa=QFA::all();
+        $qfa=QFA::paginate(4);
         $i=0;
         return view('admin.qfa.show',compact('qfa','i'));
     }
@@ -27,7 +27,7 @@ class QFAController extends Controller
             'quiry' => 'required',
          ]);
          $search = $request->input('quiry');
-         $qfa=QFA::where('quastion', 'like', "%$search%")->get();
+         $qfa=QFA::where('quastion', 'like', "%$search%")->paginate(4);
          $i=0 ;
          return view('admin.qfa.show',compact('qfa','i'));
     }

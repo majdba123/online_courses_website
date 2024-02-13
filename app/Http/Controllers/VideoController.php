@@ -17,15 +17,15 @@ class VideoController extends Controller
 {
     public function index()
     {
-        $video=Video::all();
-        $courses = Courses::all();
+        $video=Video::paginate(4);
+        $courses = Courses::paginate(4);
         $i=0;
         return view ('admin.video.show',compact('video','courses','i'));
     }
     public function index2($id)
     {
-        $rating=Rating::where('courses_id', $id)->get();
-        $video = Video::where('courses_id', $id)->get();
+        $rating=Rating::where('courses_id', $id)->paginate(4);
+        $video = Video::where('courses_id', $id)->paginate(4);
         $i=0;
         $id_course=$id;
         return view('web.videos.index',compact('video','rating','i','id_course'));
@@ -34,7 +34,7 @@ class VideoController extends Controller
     public function edit($id)
     {
         $video=Video::findOrfail($id);
-        $courses=Courses::all();
+        $courses=Courses::paginate(4);
         return view('admin.video.edit',compact('video','courses'));
     }
     public function search(Request $request )
@@ -43,7 +43,7 @@ class VideoController extends Controller
             'quiry' => 'required',
          ]);
          $search = $request->input('quiry');
-         $video=Video::where('name', 'like', "%$search%")->get();
+         $video=Video::where('name', 'like', "%$search%")->paginate(4);
          $courses=Courses::all();
          $i=0 ;
          return view ('admin.video.show',compact('video','courses','i'));

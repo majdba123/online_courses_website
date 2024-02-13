@@ -11,8 +11,8 @@ class RatingController extends Controller
 {
     public function index()
     {
-        $rating=Rating::all();
-        $courses=Courses::all();
+        $rating=Rating::paginate(4);
+        $courses=Courses::paginate(4);
         $user=User::all();
         $i=0;
         return view('admin.rating.show',compact('rating','courses','user','i'));
@@ -26,9 +26,9 @@ class RatingController extends Controller
          $userr=User::where('name', 'like', "%$search%")->first();
          if($userr)
          {
-            $rating=Rating::where('user_id', 'like', "%$userr->id%")->get();
-            $courses=Courses::all();
-            $user=User::all();
+            $rating=Rating::where('user_id', 'like', "%$userr->id%")->paginate(4);
+            $courses=Courses::paginate(4);
+            $user=User::paginate(4);
             $i=0 ;
             return view('admin.rating.show',compact('rating','courses','user','i'));
         }

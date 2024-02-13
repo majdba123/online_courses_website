@@ -34,6 +34,10 @@
                 </p>
             </div>
         @endforeach
+
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="container mt-4">{{ $achievement->onEachSide(2)->links() }}</div>
     </div>
     <div class="Achievements">
             <div class="contactus">

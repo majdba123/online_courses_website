@@ -12,10 +12,10 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $order=Order::all();
+        $order=Order::paginate(4);
         $i=0;
-        $courses=Courses::all();
-        $user=User::all();
+        $courses=Courses::paginate(4);
+        $user=User::paginate(4);
 
         return view('admin.order.show',compact('order','i','courses','user'));
     }

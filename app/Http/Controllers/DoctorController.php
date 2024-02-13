@@ -9,7 +9,7 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctor=Doctor::all();
+        $doctor=Doctor::paginate(4);
         $i=0 ;
         return view('admin.doctor.show',compact('doctor','i'));
     }
@@ -20,7 +20,7 @@ class DoctorController extends Controller
             'quiry' => 'required',
          ]);
          $search = $request->input('quiry');
-         $doctor = Doctor::where('name', 'like', "%$search%")->get();
+         $doctor = Doctor::where('name', 'like', "%$search%")->paginate(4);
          $i=0 ;
          return view('admin.doctor.show',compact('doctor','i'));
     }
