@@ -81,7 +81,7 @@
         background-color: #eeeeee;
         justify-content: space-between;
         align-items: center;
-        padding: 0 160px;
+        padding: 0 130px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         padding-top: 40px;
@@ -103,7 +103,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 160px;
+        padding: 0 130px;
         display: grid;
         padding-top: 40px;
         padding-bottom: 40px;
@@ -112,7 +112,7 @@
         background-color: #eeeeee;
         justify-content: space-between;
         align-items: center;
-        padding: 0 160px;
+        padding: 0 130px;
         display: grid;
         grid-template-columns: 1.9fr 1fr;
         padding-top: 40px;

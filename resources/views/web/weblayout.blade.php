@@ -1,10 +1,7 @@
 <html>
 
 <head>
-    <link
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-        rel="stylesheet"
-    />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
 
     <link href="https://db.onlinewebfonts.com/c/dee436f274c410c23fc3de43367ef1ae?family=Janna+LT" rel="stylesheet" />
     <link href="https://db.onlinewebfonts.com/c/dee436f274c410c23fc3de43367ef1ae?family=Janna+LT" rel="stylesheet" />
@@ -12,10 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
-    <link
-        rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
-    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -44,54 +38,53 @@
             <ul>
                 <!-- Authentication Links -->
                 @guest
-                    @if (Route::has('login'))
-                        <li class="navbar">
-                            <a class="Login" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                    @endif
+                @if (Route::has('login'))
+                <li class="navbar">
+                    <a class="Login" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                @endif
 
-                    @if (Route::has('register'))
-                        <li class="navbar">
-                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
+                @if (Route::has('register'))
+                <li class="navbar">
+                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                </li>
+                @endif
                 @else
-                    <li class="navbar">
-                        <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                <li class="navbar">
+                    <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
                 @endguest
             </ul>
         </div>
     </header>
     @if (session('success'))
-        <div class="container mt-4">
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                {{ session('success') }}
-            </div>
-
+    <div class="container mt-4">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            {{ session('success') }}
         </div>
+
+    </div>
     @endif
     @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+            <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
@@ -165,78 +158,78 @@
     @font-face {
         font-family: "Janna LT";
         src: url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.eot");
-        src: url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.eot?#iefix")
-            format("embedded-opentype"),
-          url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.woff2")
-            format("woff2"),
-          url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.woff")
-            format("woff"),
-          url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.ttf")
-            format("truetype"),
-          url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.svg#Janna LT")
-            format("svg");
-      }
+        src: url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.eot?#iefix") format("embedded-opentype"),
+            url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.woff2") format("woff2"),
+            url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.woff") format("woff"),
+            url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.ttf") format("truetype"),
+            url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.svg#Janna LT") format("svg");
+    }
 
-      * {
+    * {
         font-family: Janna LT;
-      }
-      /*header*/
-      .youtube {
+    }
+
+    /*header*/
+    .youtube {
         text-align: center;
         background-color: #00aeef;
         padding: 10px 0px 11px 0px;
         margin: 10px 30px 10px 30px;
         border-radius: 10px;
-      }
-      .youtube a {
+    }
+
+    .youtube a {
         text-decoration: none;
         background-color: #00aeef;
         color: white;
-      }
-      header {
+    }
+
+    header {
         background-color: #eeeeee;
-      }
-      .Header {
+    }
+
+    .Header {
         background-color: #eeeeee;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0 160px;
-      }
-      .Header .LoginOrRegester,
-      .Header .LoginOrRegester1 {
-        list-style-type: none;
-        text-align: right;
-        display: inline-block;
-        padding: 10px 15px;
-      }
+        padding: 0 80px;
+    }
 
-      .Header .navbar a,
-      .Header .LoginOrRegester a {
+
+    .Header .navbar a,
+    .Header .LoginOrRegester a {
         flex-direction: row;
         text-decoration: none;
         color: black;
         padding: 10 15px;
-      }
-      .Header .navbar {
+        font-size: 10px;
+    }
+
+    .Header .navbar {
         list-style-type: none;
         text-align: left;
         display: inline-block;
-      }
+    }
 
-      .Header .navbar a:hover {
+    .Header .navbar a:hover {
         list-style-type: none;
         display: inline-block;
         background-color: rgb(176, 168, 168);
-        border-radius: 15px;
-      }
-      .Login {
+        border-radius: 10px;
+        padding: 10 15px;
+
+
+    }
+
+    .Login {
         background-color: #00aeef;
         border-radius: 10px;
         color: white !important;
-      }
-      /*footer*/
-      .footer {
+    }
+
+    /*footer*/
+    .footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -244,13 +237,15 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         padding-top: 80px;
-      }
-      .footerdesc {
+    }
+
+    .footerdesc {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-      }
-      a {
+    }
+
+    a {
         text-decoration: none;
         color: black;
-      }
-    </style>
+    }
+</style>

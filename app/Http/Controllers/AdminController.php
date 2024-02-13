@@ -9,7 +9,7 @@ use App\Models\Order;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
-class DashboardController extends Controller
+class AdminController extends Controller
 {
     public function index()
     {
