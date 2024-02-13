@@ -10,8 +10,8 @@ class InquireController extends Controller
 {
     public function index()
     {
-        $inquire=inquire::all();
-        $user=User::all();
+        $inquire=inquire::paginate(4);
+        $user=User::paginate(4);
         $i=0;
         return view('admin.inquire.show',compact('inquire','user','i'));
 
@@ -50,8 +50,8 @@ class InquireController extends Controller
          $userr=User::where('name', 'like', "%$search%")->first();
          if($userr)
          {
-            $inquire=inquir::where('user_id', 'like', "%$userr->id%")->get();
-            $user=User::all();
+            $inquire=inquir::where('user_id', 'like', "%$userr->id%")->paginate(4);
+            $user=User::paginate(4);
             $i=0 ;
             return view('admin.inquire.show',compact('inquire','user','i'));
          }else{

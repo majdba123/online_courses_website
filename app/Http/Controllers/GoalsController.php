@@ -13,7 +13,7 @@ class GoalsController extends Controller
      */
     public function index()
     {
-        $goal=Goals::all();
+        $goal=Goals::paginate(4);
         $i=0;
         return view('admin.goal.show',compact('goal','i'));
     }

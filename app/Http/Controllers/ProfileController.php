@@ -17,10 +17,10 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $courseIds = Order::where('user_id', $user->id)->where('status', 1)->pluck('courses_id');
-        $courses = Courses::whereIn('id', $courseIds)->get();
+        $courses = Courses::whereIn('id', $courseIds)-paginate(4);
         $cou = Favorite::where('user_id', $user->id)->pluck('courses_id');
-        $couu = Courses::whereIn('id', $cou)->get();
-        $order = Order::where('user_id', $user->id)->get();
+        $couu = Courses::whereIn('id', $cou)->paginate(4);
+        $order = Order::where('user_id', $user->id)->paginate(4);
         $i=0;
         $m=0;
         return view('web.profile.index',compact('user','courses','i','couu','order','m'));
@@ -76,7 +76,7 @@ class ProfileController extends Controller
     public function history()
     {
         $user = Auth::user();
-        $order = Order::where('user_id', $user->id)->get();
+        $order = Order::where('user_id', $user->id)->paginate(4);
         return view('web.profile.history',compact('order'));
     }
     public function update1(Request $request, $id): RedirectResponse

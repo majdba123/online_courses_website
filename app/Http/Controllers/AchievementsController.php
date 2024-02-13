@@ -13,7 +13,7 @@ class AchievementsController extends Controller
      */
     public function index()
     {
-        $achievement = Achievements::all();
+        $achievement = Achievements::paginate(4);
         $i = 0;
         return view('admin.achievement.show', compact('achievement', 'i'));
     }

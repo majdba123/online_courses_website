@@ -29,8 +29,8 @@ class WebController extends Controller
     }
     public function about()
     {
-        $goal=Goals::all();
-        $achievement=Achievements::all();
+        $goal=Goals::paginate(4);
+        $achievement=Achievements::latest()->paginate(4);
         return view('web.about.index' , compact('achievement' , 'goal'));
     }
 

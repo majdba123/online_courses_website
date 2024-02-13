@@ -11,7 +11,7 @@ class DiscountController extends Controller
 {
     public function index()
     {
-        $discount=Discount::all();
+        $discount=Discount::paginate(4);
         $i=0;
         return view('admin.discount.show',compact('discount','i'));
     }
@@ -26,7 +26,7 @@ class DiscountController extends Controller
             'quiry' => 'required',
          ]);
          $search = $request->input('quiry');
-         $discount = Discount::where('discount_percentage', 'like', "%$search%")->get();
+         $discount = Discount::where('discount_percentage', 'like', "%$search%")->paginate(4);
          $i=0 ;
          return view('admin.discount.show',compact('discount','i'));
     }

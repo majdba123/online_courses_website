@@ -14,7 +14,7 @@ class AdminController extends Controller
     public function index()
     {
         $webs = Web::findOrFail(1);
-        $courses = Courses::all();
+        $courses = Courses::paginate(4);
         $userCount = User::count();
         $userRegister = Order::where('status', 1)->count();
         return view('admin.dashboard', compact('userCount', 'webs', 'userRegister', 'courses'));
