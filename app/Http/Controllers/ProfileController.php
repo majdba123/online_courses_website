@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Validator;
 use App\Models\Order;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Courses;
+use Illuminate\Http\RedirectResponse;
 use App\Models\Favorite;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,14 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('web.profile.index',compact('user'));
+        $courseIds = Order::where('user_id', $user->id)->where('status', 1)->pluck('courses_id');
+        $courses = Courses::whereIn('id', $courseIds)->get();
+        $cou = Favorite::where('user_id', $user->id)->pluck('courses_id');
+        $couu = Courses::whereIn('id', $cou)->get();
+        $order = Order::where('user_id', $user->id)->get();
+        $i=0;
+        $m=0;
+        return view('web.profile.index',compact('user','courses','i','couu','order','m'));
     }
     public function edit($id)
     {
@@ -27,11 +36,10 @@ class ProfileController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'sometimes|string|max:255',
             'email' => 'sometimes|email|max:255',
-            'password' => 's sometimes|min:8|max:255',
-            'phone' => 's sometimes|numeric|digits:10',
-            'address' => 's sometimes|string|max:65535',
+            'phone' => 'sometimes|numeric|digits:10',
+            'address' => 'sometimes|string|max:65535',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'age' => 's sometimes|integer|min:1|max:120',
+            'age' => 'sometimes|integer|min:1|max:120',
          ]);
          if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
@@ -46,9 +54,6 @@ class ProfileController extends Controller
         if ($request->input('email')) {
             $user->email = $request->input('email');
         }
-        if ($request->input('password')) {
-            $user->password = $request->input('password');
-        }
         if ($request->input('address')) {
             $user->address = $request->input('address');
         }
@@ -57,7 +62,7 @@ class ProfileController extends Controller
         }
         $imageName = null;
         if ($request->hasFile('image')) {
-            $imageName = time().'.'.$request->file('imge')->getClientOriginalExtension();
+            $imageName = time().'.'.$request->file('image')->getClientOriginalExtension();
             $request->image->move(public_path('imageprfile'), $imageName);
             $user->image = $imageName;
         }
@@ -67,24 +72,37 @@ class ProfileController extends Controller
          $user->save();
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }
-    public function course()
-    {
-        $user = Auth::user();
-        $courseIds = Order::where('user_id', $user->id)->where('status', 1)->pluck('courses_id');
-        $courses = Courses::whereIn('id', $courseIds)->get();
-        return view('web.profile.couesrs',compact('courses'));
-    }
+
     public function history()
     {
         $user = Auth::user();
         $order = Order::where('user_id', $user->id)->get();
         return view('web.profile.history',compact('order'));
     }
-    public function favourite()
+    public function update1(Request $request, $id): RedirectResponse
     {
-        $user = Auth::user();
-        $courseIds = Favorite::where('user_id', $user->id)->pluck('courses_id');
-        $courses = Courses::whereIn('id', $courseIds)->get();
-        return view('web.profile.favourite',compact('courses'));
+        $user = User::findOrFail($id);
+
+        $validatedData = Validator::make($request->all(), [
+            'current_password' => ['required', function ($attribute, $value, $fail) {
+                $user = Auth::user();
+                if (!Hash::check($value, $user->password)) {
+                    $fail(__('The current password is incorrect.'));
+                }
+            }],
+            'new_password' => ['required', 'min:8', 'confirmed'],
+        ]);
+
+        if ($validatedData->fails()) {
+            return redirect()->back()
+                ->withErrors($validatedData)
+                ->withInput();
+        }
+
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->route('profile.index')->with('success', 'Password updated successfully!');
     }
+
 }

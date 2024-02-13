@@ -23,8 +23,9 @@
           <div class="cell">
             <div class="row"><p>First Name</p></div>
             <div class="row">
-              <input type="text" name="name" placeholder="Enter First Name"  />
+              <input type="text"   name="name" placeholder="Enter First Name"  />
             </div>
+            <br>
             <div class="row"><p>Email</p></div>
             <div class="row">
               <input
@@ -34,6 +35,7 @@
                 placeholder="Enter Your Email"
               />
             </div>
+            <br>
           </div>
         </div>
         <div>
@@ -53,27 +55,130 @@
             rows="10"
           ></textarea>
         </div>
-        <button type="submit">submit</button>
+        <div class="submet">
+            <button type="submit">submit</button>
+        </div>
     </form>
       </div>
       <div class="add">
         <div class="email">
-          <logo>LOGO</logo>
-          <p>support@skillbridge.com</p>
+          <logo><img src="{{ asset('logo.jpg') }}" alt="" width="40px" /></logo>
+          <p>{{ DB::table('webs')->where('id', 1)->value('gmail') }}</p>
         </div>
         <div class="phone">
-          <logo>LOGO</logo>
-          <p>+91 00000 00000</p>
-        </div>
-        <div class="GPS">
-          <logo>LOGO</logo>
-          <p>Some Where in the World</p>
+          <logo><img src="{{ asset('logo.jpg') }}" alt="" width="40px" /></logo>
+          <p>{{ DB::table('webs')->where('id', 1)->value('phone') }}</p>
         </div>
         <div class="socialmedia">
-          <logo>LOGO</logo>
-          <p>Social Profiles</p>
+          <logo><img src="{{ asset('logo.jpg') }}" alt="" width="40px" /></logo>
+          <div>
+            <a href="{{ DB::table('webs')->where('id', 1)->value('facebook') }}"> facebook</a>
+            <br>
+            <br>
+            <a href="{{ DB::table('webs')->where('id', 1)->value('linkedin') }}"> linkedin</a>
+        </div>
         </div>
       </div>
     </div>
   </form>
 @endsection
+<style>
+    .contact {
+        background-color: #eeeeee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 160px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-top: 40px;
+      }
+      .contactus {
+        padding-left: 40px;
+        padding-top: 40px;
+      }
+      .contactdescription p {
+        font-size: 16px;
+        padding-top: 40px;
+      }
+      .contactussubmet {
+        background-color: #eeeeee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 160px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        padding-top: 80px;
+      }
+      .communication {
+        margin-bottom: 150px;
+      }
+      .table {
+        display: table;
+      }
+      .row {
+        display: table-row;
+      }
+      .cell {
+        display: table-cell;
+      }
+      input[type="text"],
+      input[type="email"] {
+        padding: 7px;
+        font-size: 16px;
+        border: none;
+        width: 360px;
+        border-radius: 5px;
+        text-align: left;
+      }
+      #inputsubject {
+        padding: 7px;
+        font-size: 16px;
+        border: none;
+        width: 720px;
+        border-radius: 5px;
+        text-align: left;
+      }
+      input::placeholder {
+        text-align: top;
+      }
+      #inputmessage {
+        padding: 7px;
+        font-size: 16px;
+        border: none;
+        width: 720px;
+        border-radius: 5px;
+        text-align: left;
+        height: 160px;
+      }
+      .row p {
+        padding-bottom: 15px;
+        padding-top: 15px;
+      }
+      .add {
+        text-align: center;
+      }
+      .email,
+      .phone,
+      .socialmedia,
+      .GPS {
+        padding-top: 60px;
+        padding-bottom: 20px;
+        margin: 40px;
+      }
+      .submet {
+        text-align: center;
+        padding-right: 100px;
+        padding-top: 40PX;
+
+      }
+
+      .submet a {
+        background-color: #00aeef;
+        border-radius: 10px;
+        color: white ;
+        text-decoration: none;
+        padding: 10px;
+      }
+</style>

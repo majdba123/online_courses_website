@@ -4,7 +4,7 @@
         <div class="contactus">
             <h1>About EZM</h1>
         </div>
-        <div class="contactdescription">
+        <div class="contactus">
             <p>
                 Welcome to our platform, where we are passionate about empowering
                 individuals to master the world of design and development. We offer a
@@ -26,7 +26,7 @@
     </div>
     <div class="contact">
         @foreach ($achievement as $achievements)
-            <div  class="contactus">
+            <div  class="contactdescription">
                 <logo>LOGO</logo>
                 <h3>{{ $achievements->title }}</h3>
                 <p>
@@ -35,8 +35,7 @@
             </div>
         @endforeach
     </div>
-
-            <div class="Achievements">
+    <div class="Achievements">
             <div class="contactus">
                 <h1>Our Goals</h1>
                 <p>
@@ -50,7 +49,7 @@
         </div>
         <div class="contact">
             @foreach ($goal as $goals)
-                <div class="contactus">
+                <div class="contactdescription">
                     <logo>LOGO</logo>
                     <h3>{{ $goals->title }}</h3>
                     <p>
@@ -69,9 +68,66 @@
                 design and development.
               </p>
             </div>
-            <div class="contactdescription">
+            <div class="contactus">
               <a href="{{ route('register') }}">Join Now</a>
             </div>
+            <br>
+            <br>
 
         </div>
     @endsection
+<style>
+    .contact {
+        background-color: #eeeeee;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 160px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-top: 40px;
+        gap: 35px;
+      }
+      .contactus {
+        padding-left: 40px;
+        padding-top: 40px;
+      }
+      .contactdescription {
+        background-color: white;
+        padding-left: 40px;
+        gap: 20px;
+        font-size: 16px;
+        padding-top: 40px;
+      }
+      .Achievements {
+        background-color: #eeeeee;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 160px;
+        display: grid;
+        padding-top: 40px;
+        padding-bottom: 40px;
+      }
+      .Together {
+        background-color: #eeeeee;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 160px;
+        display: grid;
+        grid-template-columns: 1.9fr 1fr;
+        padding-top: 40px;
+      }
+      h1 span {
+        color: #00aeef;
+      }
+      .contactus a {
+        text-decoration: none;
+        background-color: #00aeef;
+        color: white;
+        border-radius: 5px;
+        font-size: 15px;
+        padding: 10px;
+        margin-left: 100px;
+      }
+
+</style>

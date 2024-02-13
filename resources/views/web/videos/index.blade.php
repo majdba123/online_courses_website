@@ -53,13 +53,107 @@
     <div class="courses">
     @foreach ( $video as $videos )
       <div class="advantages">
-        <a href="{{ route('generate_url' , $videos->id ) }}">
           <h1>{{ ++$i }}</h1>
-          <h4>{{ $videos->name }}</h4>
+          <a href="{{ route('generate_url' , $videos->id ) }}">
+            <h4>{{ $videos->name }}</h4>
+            </a>
           <h5>{!! preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank">$1</a>', $videos->discription) !!}</h5>
-        </a>
+
       </div>
     @endforeach
     </div>
   </div>
 @endsection
+
+
+<style>
+    .card {
+        background-color: white;
+      }
+
+      .form-color {
+        background-color: #fafafa;
+      }
+
+      .form-control {
+        height: 48px;
+        border-radius: 25px;
+      }
+
+      .form-control:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #35b69f;
+        outline: 0;
+        box-shadow: none;
+        text-indent: 10px;
+      }
+
+      .c-badge {
+        background-color: #35b69f;
+        color: white;
+        height: 20px;
+        font-size: 11px;
+        width: 92px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 2px;
+      }
+
+      .comment-text {
+        font-size: 13px;
+      }
+
+      .wish {
+        color: #35b69f;
+      }
+
+      .user-feed {
+        font-size: 14px;
+        margin-top: 12px;
+      }
+      a {
+        text-decoration: none;
+        color: black;
+      }
+      .background {
+        background-color: #eeeeee;
+        justify-content: space-between;
+        align-items: center;
+        padding: 50px 200px 40px 200px;
+      }
+      .contact {
+        background-color: #eeeeee;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .contactus {
+        padding-left: 40px;
+        padding-top: 40px;
+      }
+      .contactdescription {
+        font-size: 16px;
+        padding-top: 40px;
+      }
+      .advantages {
+        text-align: end;
+        padding-top: 10px;
+        margin: 30px;
+        background-color: white;
+        border-radius: 5px;
+        padding: 20px;
+      }
+      .advantages h4,
+      .advantages h5 {
+        text-align: left !important;
+      }
+      .courses {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(355px, 1fr));
+        grid-gap: 20px;
+      }
+
+</style>

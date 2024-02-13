@@ -119,9 +119,13 @@ class VideoController extends Controller
             abort(404);
         }
         $type = File::mimeType($path);
+        $file = File::get($path);
         $response = Response::make(file_get_contents($path), 200);
         $response->header("Content-Type", $type);
+        $response->header("Accept-Ranges", "bytes");
         $response->header("Content-Disposition", "inline; filename=" . basename($path));
+        $response->header("Content-Length", strlen($file));
         return $response;
+
     }
 }

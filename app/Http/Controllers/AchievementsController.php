@@ -13,27 +13,25 @@ class AchievementsController extends Controller
      */
     public function index()
     {
-        $achievement=Achievements::all();
-        $i=0;
-        return view('admin.achievement.show',compact('achievement','i'));
+        $achievement = Achievements::all();
+        $i = 0;
+        return view('admin.achievement.show', compact('achievement', 'i'));
     }
-    public function search(Request $request )
+
+    public function search(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'quiry' => 'required',
-         ]);
-         $search = $request->input('quiry');
-         $achievement=Achievements::where('achievement', 'like', "%$search%")->get();
-         $i=0 ;
-         return view('admin.achievement.show',compact('achievement','i'));
+            'quiry' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $search = $request->input('quiry');
+        $achievement = Achievements::where('achievement', 'like', "%$search%")->get();
+        $i = 0;
+        return view('admin.achievement.show', compact('achievement', 'i'));
     }
 
     /**
@@ -42,20 +40,23 @@ class AchievementsController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|max:255',
-            'achievement' => 'required|string|max:65535'
-         ]);
-         if ($validator->fails()) {
+            'title' => 'required|string|max:255',
+            'achievement' => 'required|string|max:65535',
+        ]);
+
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $web_id=1;
+
+        $web_id = 1;
         $achievement = new Achievements([
             'title' => $request->input('title'),
-            'achievement'  => $request->input('achievement'),
+            'achievement' => $request->input('achievement'),
             'web_id' => $web_id,
         ]);
+
         $achievement->save();
-        return redirect()->back()->with(['success'=>'add achievement done']);
+        return redirect()->back()->with(['success' => 'add achievement done']);
     }
 
     /**
@@ -71,31 +72,36 @@ class AchievementsController extends Controller
      */
     public function edit($id)
     {
-        $achievement=Achievements::findOrfail($id);
-        return view('admin.achievement.edit',compact('achievement'));
+        $achievement = Achievements::findOrFail($id);
+        return view('admin.achievement.edit', compact('achievement'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required',
-            'achievement' => 'required',
-         ]);
-         if ($validator->fails()) {
+            'title' => 'required|string|max:255',
+            'achievement' => 'required|string|max:65535',
+        ]);
+
+        if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $achievement=Achievements::find($id);
+
+        $achievement = Achievements::find($id);
+
         if ($request->input('title')) {
             $achievement->title = $request->input('title');
         }
+
         if ($request->input('achievement')) {
             $achievement->achievement = $request->input('achievement');
         }
-         $achievement->save();
-         return redirect()->back()->with(['success'=>'updtae achievement done']);
+
+        $achievement->save();
+        return redirect()->back()->with(['success' => 'updtae achievement done']);
     }
 
     /**
@@ -103,7 +109,7 @@ class AchievementsController extends Controller
      */
     public function delete($id)
     {
-        $achievement=Achievements::where('id','=',$id)->delete();
-        return redirect()->back()->with(['success'=>'delete Achievements done']);
+        $achievement = Achievements::where('id', '=', $id)->delete();
+        return redirect()->back()->with(['success' => 'delete Achievements done']);
     }
 }

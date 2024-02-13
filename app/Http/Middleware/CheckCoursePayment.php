@@ -23,7 +23,9 @@ class CheckCoursePayment
             // Redirect the user to an error page or show a message
             return $next($request);
 
-        }else {
+        }elseif(auth()->check() && $order && $order->status != 1) {
+            return redirect()->back();
+        }else{
             return redirect()->route('order.place', ['id' => $courseId]);
         }
 

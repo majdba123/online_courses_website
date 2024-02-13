@@ -15,10 +15,7 @@ class PreventDownload
      */
     public function handle($request, Closure $next)
     {
-        if (!Session::has('majd')) {
-            // Session does not exist, redirect or abort as needed
-            abort(404);
-        }
+
         return $next($request);
     }
 }

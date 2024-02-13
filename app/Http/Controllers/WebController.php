@@ -18,6 +18,11 @@ class WebController extends Controller
         $request->session()->forget('majd');
         return response()->json(['message' => 'Session forgotten']);
     }
+    public function createsession(Request $request)
+    {
+        #$request->session()->forget('majd');
+        return 2;
+    }
     public function index()
     {
         //

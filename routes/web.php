@@ -31,9 +31,14 @@ use App\Http\Controllers\UrlGeneratorController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+route::get('/test',function()
+{
+    return view('web.Home (2)');
+});
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('forget-session', [WebController::class, 'forgetSession'])->name('forget-session');
+Route::post('create-session', [WebController::class, 'createsession'])->name('create-session');
 
 Auth::routes([
     'verify'=> true
@@ -145,6 +150,7 @@ Route::group(['prefix' => 'profile', 'middleware' => [ 'auth','verified','CheckU
     Route::get('/', [ProfileController::class,'index'])->name('profile.index');
     Route::get('edit_profile/{id}', [ProfileController::class,'edit'])->name('profile.edit');
     Route::put('update_profile/{id}', [ProfileController::class,'update'])->name('profile.update');
+    Route::put('update_profile1/{id}', [ProfileController::class,'update1'])->name('profile.update1');
     Route::get('my_courses', [ProfileController::class,'course'])->name('profile.course');
     Route::get('/my_order_history', [ProfileController::class,'history'])->name('profile.history');
     Route::get('/my_favourite', [ProfileController::class,'favourite'])->name('profile.favourite');

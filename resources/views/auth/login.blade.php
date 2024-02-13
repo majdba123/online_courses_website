@@ -9,7 +9,7 @@
             imperdiet et. Cras eu sit dignissim lorem nibh et. Ac habitasse in
             velit fringilla feugiat senectus in
         </p>
-        <div class="comment">
+        <div class="commentt">
             <p>
             The web design course pronided a solid foundation for me. The
             instructors were knowledgeable and supportive, and the interactive
@@ -59,3 +59,73 @@
     </div>
 
 @endsection
+<style>
+    .bodypage {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 150px 200px 10px 200px;
+        background-color: #eeeeee;
+
+      }
+      .Loginbody {
+        background-color: white;
+        padding: 30px;
+        border-radius: 5px;
+      }
+      .bodypage h1 {
+        text-align: center;
+        margin: auto;
+      }
+      .bodypage h4 {
+        text-align: center;
+        margin: auto;
+        font-weight: 300;
+        padding-bottom: 20px;
+      }
+      .tableoflogin .nameoflogin {
+        text-align: right;
+        padding-right: 7px;
+      }
+      .remember {
+        text-align: right !important;
+        padding-right: 7px;
+      }
+      input[type="email"],
+      input[type="text"],
+      input[type="password"] {
+        padding: 7px;
+        font-size: 16px;
+        border: none;
+        width: 360px;
+        border-radius: 5px;
+        text-align: right;
+      }
+      input[type="button"] {
+        padding: 7px;
+        font-size: 16px;
+        border: none;
+        width: 360px;
+        border-radius: 5px;
+        background-color: #00aeef;
+        color: white;
+      }
+      .password a {
+        text-decoration: none;
+        color: black;
+      }
+      .Or {
+        text-align: center;
+      }
+      .descreption {
+        margin-right: 150px;
+        padding-bottom: 70px;
+      }
+      .descreption p {
+        font-size: 15px;
+      }
+      .comment {
+        padding-top: 50px;
+        padding-left: 50px;
+      }
+</style>
