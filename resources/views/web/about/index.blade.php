@@ -92,7 +92,7 @@
         gap: 35px;
 
     }
-
+ 
     .contactus {
         padding-left: 40px;
         padding-top: 40px;
