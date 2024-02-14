@@ -8,7 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Star Admin2</title>
+    <title>Dashboard</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('Admin/src/assets/vendors/feather/feather.css') }}" />
     <link
@@ -94,13 +94,17 @@
   </head>
 
   <body class="with-welcome-text">
+
     <div class="container-scroller">
+
       <nav
         class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row"
       >
+
         <div
           class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start"
         >
+
           <div class="me-3">
             <button
               class="navbar-toggler navbar-toggler align-self-center"
@@ -112,7 +116,7 @@
           </div>
           <div>
             <a class="navbar-brand brand-logo" href="../index.html">
-              <img src="../assets/images/logo.svg" alt="logo" />
+                <img src="{{ asset('logo.jpg') }}" alt="" width="40px" />
             </a>
             <a class="navbar-brand brand-logo-mini" href="../index.html">
               <img src="../assets/images/logo-mini.svg" alt="logo" />
@@ -130,41 +134,6 @@
               </h3>
             </li>
           </ul>
-          <ul class="navbar-nav ms-auto">
-                <!-- Authentication Links -->
-                @guest
-                    @if (Route::has('login'))
-                        <li class="navbar">
-                            <a   class="Login" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                    @endif
-
-                    @if (Route::has('register'))
-                        <li class="navbar">
-                            <a  href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                    @endif
-                @else
-                    <li class="navbar">
-                        <a  href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
-                        </a>
-
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
-                        </div>
-                    </li>
-                @endguest
-            </ul>
-
 
               </div>
             </li>
@@ -178,15 +147,6 @@
           </button>
         </div>
       </nav>
-      @if ($errors->any())
-      <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
-        @endif
 
       <div class="container-fluid page-body-wrapper">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
@@ -370,16 +330,23 @@
           </ul>
         </nav>
 
-        <div class="container mt-4">
-            @if(session('success'))
-                <div class="alert alert-success">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                  {{ session('success') }}
-                </div>
-            @endif
-        </div>
-            @yield('content')
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+          @if(session('success'))
+          <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+          {{ session('success') }}
+          </div>
+          @endif
 
+            @yield('content')
 
     </div>
 

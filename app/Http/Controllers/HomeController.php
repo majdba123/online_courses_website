@@ -7,6 +7,7 @@ use App\Models\Rating;
 use App\Models\Courses;
 use App\Models\QFA;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
@@ -22,10 +23,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $course=Courses::paginate(4);
-        $benefit=Benefits::paginate(4);
-        $rate=Rating::paginate(4);
-        $qfa=QFA::paginate(4);
+        $course = Cache::remember('coursesss', 60, function () {
+            return Courses::paginate(4);
+        });
+        $benefit = Cache::remember('benefitttt', 60, function () {
+            return Benefits::paginate(4);
+        });
+        $qfa = Cache::remember('qfa', 60, function () {
+            return QFA::paginate(4);
+        });
+        $rate = Cache::remember('rate', 60, function () {
+            return Rating::paginate(4);
+        });
         $i=0;
         return view('web.homepage',compact('course','benefit','rate','qfa','i'));
     }

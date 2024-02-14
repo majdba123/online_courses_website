@@ -6,14 +6,6 @@
     @method('PUT')
     <div class="modal-header">
       <h4 class="modal-title">Goals</h4>
-      <button
-        type="button"
-        class="close"
-        data-dismiss="modal"
-        aria-hidden="true"
-      >
-        &times;
-      </button>
     </div>
     <div class="modal-body">
         <div class="form-group">
@@ -27,12 +19,8 @@
         <textarea name="golas" class="form-control" value="{{ $goal->golas }}" required></textarea>
       </div>
     <div class="modal-footer">
-      <input
-        type="button"
-        class="btn btn-default"
-        data-dismiss="modal"
-        value="Cancel"
-      />
+        <button type="button" class="btn btn-default" onclick="location.href='{{ route('goal.index') }}'">Cancel</button>
+
       <input type="submit" class="btn btn-success" value="Update" />
     </div>
   </form>

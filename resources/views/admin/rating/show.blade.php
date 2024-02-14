@@ -9,13 +9,6 @@
             <div class="row">
               <div class="col-sm-6">
 
-                <a
-                  href="#addEmployeeModal"
-                  class="btn btn-success"
-                  data-toggle="modal"
-                  ><i class="material-icons">&#xE147;</i>
-                  <span>ADD Rate</span></a
-                >
               </div>
               <div class="col-sm-4">
                 <div class="search-box">
@@ -28,7 +21,8 @@
                       class="form-control"
                       placeholder="Search&hellip;"
                     />
-                    <button type="submit">search</button>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                   </div>
               </div>

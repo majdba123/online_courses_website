@@ -8,7 +8,6 @@
           <div class="table-title">
             <div class="row">
               <div class="col-sm-6">
-
                 <a
                   href="#addEmployeeModal"
                   class="btn btn-success"
@@ -28,7 +27,8 @@
                       class="form-control"
                       placeholder="Search&hellip;"
                     />
-                    <button type="submit">search</button>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                   </div>
               </div>

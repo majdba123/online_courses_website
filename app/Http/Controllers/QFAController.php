@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\QFA;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Validator;
 
 class QFAController extends Controller
@@ -13,7 +14,9 @@ class QFAController extends Controller
      */
     public function index()
     {
-        $qfa=QFA::paginate(4);
+        $qfa = Cache::remember('qfa', 60, function () {
+            return QFA::paginate(4);
+        });
         $i=0;
         return view('admin.qfa.show',compact('qfa','i'));
     }
@@ -23,6 +26,7 @@ class QFAController extends Controller
      */
     public function search(Request $request )
     {
+        Cache::forget('qfa');
         $validator = Validator::make($request->all(), [
             'quiry' => 'required',
          ]);
@@ -51,6 +55,7 @@ class QFAController extends Controller
             'web_id'    => $web_id,
         ]);
         $qfa->save();
+        Cache::forget('qfa');
         return redirect()->back()->with(['success'=>'add QFA done']);
     }
 
@@ -92,6 +97,8 @@ class QFAController extends Controller
             $qfa->answee = $request->input('answee');
         }
          $qfa->save();
+         Cache::forget('qfa');
+
          return redirect()->back()->with(['success'=>'updtae QFA done']);
     }
 
@@ -101,6 +108,8 @@ class QFAController extends Controller
     public function delete($id)
     {
         $qfa=QFA::where('id','=',$id)->delete();
+        Cache::forget('qfa');
+
         return redirect()->back()->with(['success'=>'delete QFA done']);
     }
 }

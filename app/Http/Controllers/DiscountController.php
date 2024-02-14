@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use App\Models\Courses;
 use Validator;
@@ -11,7 +11,9 @@ class DiscountController extends Controller
 {
     public function index()
     {
-        $discount=Discount::paginate(4);
+        $discount = Cache::remember('discount', 60, function () {
+            return Discount::paginate(4);
+        });
         $i=0;
         return view('admin.discount.show',compact('discount','i'));
     }
@@ -22,6 +24,7 @@ class DiscountController extends Controller
     }
     public function search(Request $request )
     {
+        Cache::forget('discount');
         $validator = Validator::make($request->all(), [
             'quiry' => 'required',
          ]);
@@ -39,7 +42,9 @@ class DiscountController extends Controller
          if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
          $discount=Discount::create($request->all());
+         Cache::forget('discount');
          return redirect()->back()->with(['success'=>'Add Discount done']);
     }
     public function update(Request $request,$id)
@@ -59,12 +64,14 @@ class DiscountController extends Controller
             $discount->expired_at = $request->input('expired_at');
         }
          $discount->save();
+         Cache::forget('discount');
          return redirect()->back()->with(['success'=>'Updtae Discount done']);
     }
 
     public function delete($id)
     {
         $discount= Discount::where('id','=',$id)->delete();
+        Cache::forget('discount');
         return redirect()->back()->with(['success'=>'delete Discount done']);
     }
 

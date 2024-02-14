@@ -7,6 +7,7 @@ use Validator;
 use App\Models\Order;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Courses;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\RedirectResponse;
 use App\Models\Favorite;
 use Illuminate\Http\Request;

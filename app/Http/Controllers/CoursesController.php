@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use App\Models\Courses;
 use App\Models\Doctor;
@@ -14,20 +14,29 @@ class CoursesController extends Controller
 {
     public function index()
     {
+        $courses = Cache::remember('courses', 60, function () {
+            return Courses::paginate(4);
+        });
         $i=0 ;
-        $courses=Courses::paginate(4);
-        $doctor=Doctor::paginate(4);
-        $discount=Discount::paginate(4);
+        $doctor = Cache::remember('doctorr', 60, function () {
+            return Doctor::paginate(4);
+        });
+        $discount = Cache::remember('discountt', 60, function () {
+            return Discount::paginate(4);
+        });
         return view('admin.courses.show',compact('doctor','discount','courses','i'));
     }
     public function index2()
     {
         $i=0 ;
-        $courses = Courses::with('video')->paginate(4);
+        $courses = Cache::remember('courses1', 60, function () {
+            return Courses::with('video')->paginate(4);
+        });
         return view('web.courses.index',compact('courses','i'));
     }
     public function search(Request $request )
     {
+        Cache::forget('courses');
         $validator = Validator::make($request->all(), [
             'quiry' => 'required',
          ]);
@@ -67,6 +76,7 @@ class CoursesController extends Controller
             'discount_id'=> $request->input('discount_id')
         ]);
         $courses->save();
+        Cache::forget('courses');
          return redirect()->back()->with(['success'=>'add COURSES done']);
     }
 
@@ -103,12 +113,14 @@ class CoursesController extends Controller
             $courses->discount_id = $request->input('discount_id');
         }
          $courses->save();
+         Cache::forget('courses');
          return redirect()->back()->with(['success'=>'updtae  COURSES or done']);
     }
 
     public function delete($id)
     {
         $courses=Courses::where('id','=',$id)->delete();
+        Cache::forget('courses');
         return redirect()->back()->with(['success'=>'delete courses done']);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Cache;
 use App\Models\Web;
 use App\Models\Achievements;
 use App\Models\Goals;
@@ -29,8 +29,13 @@ class WebController extends Controller
     }
     public function about()
     {
-        $goal=Goals::paginate(4);
-        $achievement=Achievements::latest()->paginate(4);
+        $goal = Cache::remember('goal', 60, function () {
+            return Goals::paginate(4);
+        });
+        $achievement = Cache::remember('achievement', 60, function () {
+            return Achievements::paginate(4);
+        });
+
         return view('web.about.index' , compact('achievement' , 'goal'));
     }
 

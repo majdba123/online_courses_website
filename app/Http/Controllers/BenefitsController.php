@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Benefits;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\Cache;
 
 class BenefitsController extends Controller
 {
@@ -13,25 +14,26 @@ class BenefitsController extends Controller
      */
     public function index()
     {
-        $benefits = Benefits::paginate(4);
-        return view('admin.benefit.show', compact('benefits'));
+        $benefits = Cache::remember('benefits', 60, function () {
+            return Benefits::paginate(4);
+        });
+        $i=0;
+        return view('admin.benefit.show', compact('benefits','i'));
     }
 
     public function search(Request $request)
     {
+        Cache::forget('benefits');
         $validator = Validator::make($request->all(), [
             'quiry' => 'required|string',
         ]);
-
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
         $search = $request->input('quiry');
         $benefits = Benefits::where('benefits', 'like', "%$search%")->get();
         return view('admin.benefit.show', compact('benefits'));
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -53,6 +55,7 @@ class BenefitsController extends Controller
             'web_id' => $web_id,
         ]);
 
+        Cache::forget('benefits');
         return redirect()->back()->with(['success' => 'add benefit done']);
     }
 
@@ -98,6 +101,7 @@ class BenefitsController extends Controller
         }
 
         $benefit->save();
+        Cache::forget('benefits');
         return redirect()->back()->with(['success' => 'update benefit done']);
     }
 
@@ -108,6 +112,7 @@ class BenefitsController extends Controller
     {
         $benefit = Benefits::findOrFail($id);
         $benefit->delete();
+        Cache::forget('benefits');
         return redirect()->back()->with(['success' => 'delete Benefits done']);
     }
 }

@@ -27,7 +27,7 @@
 <div class="contact">
     @foreach ($achievement as $achievements)
     <div class="contactdescription">
-        <logo>LOGO</logo>
+        <logo><img src="{{ asset('logo.jpg') }}" alt="" width="40px" /></logo>
         <h3>{{ $achievements->title }}</h3>
         <p>
             {{ $achievements->achievement }}
@@ -37,6 +37,7 @@
 
 </div>
 <div class="d-flex justify-content-center">
+     {!! $achievement->links() !!}
 </div>
 <div class="Achievements">
     <div class="contactus">
@@ -53,7 +54,7 @@
 <div class="contact">
     @foreach ($goal as $goals)
     <div class="contactdescription">
-        <logo>LOGO</logo>
+        <logo><img src="{{ asset('logo.jpg') }}" alt="" width="40px" /></logo>
         <h3>{{ $goals->title }}</h3>
         <p>
             {{ $goals->golas }}

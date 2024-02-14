@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Cache;
 use App\Models\Goals;
 use Illuminate\Http\Request;
 use Validator;
@@ -13,7 +13,9 @@ class GoalsController extends Controller
      */
     public function index()
     {
-        $goal=Goals::paginate(4);
+        $goal = Cache::remember('goal', 60, function () {
+            return Goals::paginate(4);
+        });
         $i=0;
         return view('admin.goal.show',compact('goal','i'));
     }
@@ -45,6 +47,7 @@ class GoalsController extends Controller
             'web_id' => $web_id,
         ]);
         $goal->save();
+        Cache::forget('goal');
         return redirect()->back()->with(['success'=>'add goal done']);
     }
 
@@ -55,6 +58,7 @@ class GoalsController extends Controller
     {
         //
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -84,15 +88,19 @@ class GoalsController extends Controller
             $goal->golas = $request->input('golas');
         }
          $goal->save();
+         Cache::forget('goal');
+
          return redirect()->back()->with(['success'=>'updtae Goals done']);
     }
+
     public function search(Request $request )
     {
+        Cache::forget('goal');
         $validator = Validator::make($request->all(), [
             'quiry' => 'required',
          ]);
          $search = $request->input('quiry');
-         $goal=Goals::where('golas', 'like', "%$search%")->get();
+         $goal=Goals::where('title', 'like', "%$search%")->paginate(4);
          $i=0 ;
          return view('admin.goal.show',compact('goal','i'));
     }
@@ -103,6 +111,7 @@ class GoalsController extends Controller
     public function delete($id)
     {
         $goal=Goals::where('id','=',$id)->delete();
+        Cache::forget('goal');
         return redirect()->back()->with(['success'=>'delete Goals done']);
     }
 }

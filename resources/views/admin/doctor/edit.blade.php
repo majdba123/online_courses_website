@@ -8,14 +8,6 @@
           @method('PUT')
           <div class="modal-header">
             <h4 class="modal-title">Doctor</h4>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-hidden="true"
-            >
-              &times;
-            </button>
           </div>
           <div class="modal-body">
             <div class="form-group">
@@ -36,12 +28,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <input
-              type="button"
-              class="btn btn-default"
-              data-dismiss="modal"
-              value="Cancel"
-            />
+            <button type="button" class="btn btn-default" onclick="location.href='{{ route('index.doctor') }}'">Cancel</button>
             <input type="submit" class="btn btn-success" value="update" />
           </div>
         </form>

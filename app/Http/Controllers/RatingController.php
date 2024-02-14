@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Courses;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Rating;
 use App\Models\User;
 use Validator;
@@ -11,14 +12,22 @@ class RatingController extends Controller
 {
     public function index()
     {
-        $rating=Rating::paginate(4);
-        $courses=Courses::paginate(4);
-        $user=User::all();
+        $rating = Cache::remember('rating', 60, function () {
+            return Rating::paginate(4);
+        });
+        $courses = Cache::remember('courses', 60, function () {
+            return Courses::paginate(4);
+        });
+        $user = Cache::remember('user', 60, function () {
+            return User::paginate(4);
+        });
+
         $i=0;
         return view('admin.rating.show',compact('rating','courses','user','i'));
     }
     public function search(Request $request )
     {
+        Cache::forget('rating');
         $validator = Validator::make($request->all(), [
             'quiry' => 'required',
          ]);
@@ -51,6 +60,7 @@ class RatingController extends Controller
         $review->comment = $request->input('comment');
         $review->user_id = $user;
         $review->save();
+        Cache::forget('rating');
         return redirect()->back()->with('success', 'Review added successfully.');
     }
     public function update(Request $request, $id)
@@ -72,6 +82,7 @@ class RatingController extends Controller
         }
         $review->user_id = $user;
         $review->save();
+        Cache::forget('rating');
         return redirect()->back()->with(['success' => 'Review updated successfully.']);
     }
     public function destroy($id)
@@ -81,6 +92,7 @@ class RatingController extends Controller
             return redirect()->back()->withErrors(['error' => 'Review not found.']);
         }
         $review->delete();
+        Cache::forget('rating');
         return redirect()->back()->with(['success' => 'Review deleted successfully.']);
     }
 }

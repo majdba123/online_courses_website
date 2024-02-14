@@ -26,7 +26,8 @@
                       class="form-control"
                       placeholder="Search&hellip;"
                     />
-                    <button type="submit">search</button>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                   </div>
               </div>

@@ -5,6 +5,7 @@ use Validator;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Courses;
 use Illuminate\Http\Request;
 
@@ -12,15 +13,22 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $order=Order::paginate(4);
+        $order = Cache::remember('order', 60, function () {
+            return Order::paginate(4);
+        });
+        $courses = Cache::remember('courses', 60, function () {
+            return Courses::paginate(4);
+        });
+        $user = Cache::remember('user', 60, function () {
+            return User::paginate(4);
+        });
         $i=0;
-        $courses=Courses::paginate(4);
-        $user=User::paginate(4);
 
         return view('admin.order.show',compact('order','i','courses','user'));
     }
     public function search(Request $request )
     {
+        Cache::forget('order');
         $validator = Validator::make($request->all(), [
             'quiry' => 'required',
          ]);
@@ -40,6 +48,7 @@ class OrderController extends Controller
     public function delete($id)
     {
         $order=Order::where('id','=',$id)->delete();
+        Cache::forget('order');
         return redirect()->back()->with(['success'=>'delete order done']);
     }
 
@@ -56,6 +65,7 @@ class OrderController extends Controller
                 $order->status= 1;
             }
             $order->save();
+            Cache::forget('order');
         }
         return redirect()->back();
     }
@@ -86,6 +96,7 @@ class OrderController extends Controller
             'price' =>$courses->price,
         ]);
         $order->save();
+        Cache::forget('order');
         return redirect()->back()->with('success','your order has placed');
     }
 

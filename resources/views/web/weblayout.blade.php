@@ -2,12 +2,9 @@
 
 <head>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-<<<<<<< HEAD
-=======
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
->>>>>>> c415fac2b2cd72a2a54e96b0c8308ae268e0354a
 
     <link href="https://db.onlinewebfonts.com/c/dee436f274c410c23fc3de43367ef1ae?family=Janna+LT" rel="stylesheet" />
     <link href="https://db.onlinewebfonts.com/c/dee436f274c410c23fc3de43367ef1ae?family=Janna+LT" rel="stylesheet" />
@@ -255,8 +252,6 @@
         color: black;
     }
 </style>
-<<<<<<< HEAD
-=======
 
 
 
@@ -269,4 +264,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
->>>>>>> c415fac2b2cd72a2a54e96b0c8308ae268e0354a

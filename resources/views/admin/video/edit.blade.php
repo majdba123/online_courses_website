@@ -6,14 +6,6 @@
     @method('PUT')
     <div class="modal-header">
       <h4 class="modal-title">Videos</h4>
-      <button
-        type="button"
-        class="close"
-        data-dismiss="modal"
-        aria-hidden="true"
-      >
-        &times;
-      </button>
     </div>
     <div class="modal-body">
       <div class="form-group">
@@ -24,10 +16,7 @@
         <label>discription</label>
         <input type="text" name="discription" class="form-control"  value="{{ $video->discription }}"  />
       </div>
-      <div class="form-group">
-        <label>time_of_video</label>
-        <input type="text" name="time_of_video" class="form-control" value="{{ $video->time_of_video }}"  />
-      </div>
+
       <div class="form-group">
         <label>video_Path</label>
         <input type="text" name="video_url"   value="{{ $video->video_url }}">
@@ -42,12 +31,8 @@
             </select>
         </div>
     <div class="modal-footer">
-      <input
-        type="button"
-        class="btn btn-default"
-        data-dismiss="modal"
-        value="Cancel"
-      />
+        <button type="button" class="btn btn-default" onclick="location.href='{{ route('index.video') }}'">Cancel</button>
+
       <input type="submit" class="btn btn-success" value="Update" />
     </div>
   </form>

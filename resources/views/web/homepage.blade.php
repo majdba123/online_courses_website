@@ -11,7 +11,7 @@
         <div class="browserr"><a class="browser" href="{{ route('courses') }}">تصفح الدورات</a></div>
     </div>
     <div class="video">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/B_HR2R3xsnQ?si=HpTAtNKAw8aLS_2K"
+        <iframe width="560" height="315" src="{{ DB::table('webs')->where('id', 1)->value('introduction') }}"
             title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>

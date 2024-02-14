@@ -6,15 +6,20 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 class InquireController extends Controller
 {
     public function index()
     {
-        $inquire=inquire::paginate(4);
-        $user=User::paginate(4);
+        $inquire = Cache::remember('inquire', 60, function () {
+            return inquire::paginate(4);
+        });
+        $user = Cache::remember('user', 60, function () {
+            return User::paginate(4);
+        });
+
         $i=0;
         return view('admin.inquire.show',compact('inquire','user','i'));
-
         return view('admin.inquire.index',compact('inquire'));
     }
     public function index_web()
@@ -39,10 +44,12 @@ class InquireController extends Controller
             'discription' => $request->get('discription'),
             ]);
             $inquire->save();
+            Cache::forget('inquire');
          return redirect()->back()->with(['success'=>'your inquire done']);
     }
     public function search(Request $request )
     {
+        Cache::forget('inquire');
         $validator = Validator::make($request->all(), [
             'quiry' => 'required',
          ]);
@@ -50,7 +57,7 @@ class InquireController extends Controller
          $userr=User::where('name', 'like', "%$search%")->first();
          if($userr)
          {
-            $inquire=inquir::where('user_id', 'like', "%$userr->id%")->paginate(4);
+            $inquire=inquire::where('user_id', 'like', "%$userr->id%")->paginate(4);
             $user=User::paginate(4);
             $i=0 ;
             return view('admin.inquire.show',compact('inquire','user','i'));
@@ -61,6 +68,7 @@ class InquireController extends Controller
     public function delete($id)
     {
         $inquire=inquire::where('id','=',$id)->delete();
+        Cache::forget('inquire');
         return redirect()->back()->with(['success'=>'delete inquire done']);
     }
 

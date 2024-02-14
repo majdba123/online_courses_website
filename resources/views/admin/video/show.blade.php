@@ -28,7 +28,8 @@
                       class="form-control"
                       placeholder="Search&hellip;"
                     />
-                    <button type="submit">search</button>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                   </div>
               </div>
@@ -41,7 +42,6 @@
                 <th>Name <i class="fa fa-sort"></i></th>
                 <th>video_url</th>
                 <th>discription <i class="fa fa-sort"></i></th>
-                <th>time_of_video</th>
                 <th>courses_id</th>
                 <th>Actions</th>
               </tr>
@@ -56,7 +56,6 @@
                 <td>
                     {!! preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank">$1</a>', $videos->discription) !!}
                 </td>
-                <td>{{ $videos->time_of_video }}</td>
                 <td>{{ $videos->courses->name }}</td>
                 <td>
                     <a href="{{ route('edit.video' , $videos->id) }}"  class="edit">
@@ -105,10 +104,6 @@
               <div class="form-group">
                 <label>discription</label>
                 <textarea name="discription" class="form-control" required></textarea>
-              </div>
-              <div class="form-group">
-                <label>minute of video </label>
-                <input type="number" name="time_of_video" class="form-control" required />
               </div>
               <div class="form-group">
                 <label>video_Path</label>

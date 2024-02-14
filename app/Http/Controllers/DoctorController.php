@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Doctor;
+use Illuminate\Support\Facades\Cache;
 use Validator;
 use Illuminate\Http\Request;
 
@@ -9,13 +10,16 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctor=Doctor::paginate(4);
+        $doctor = Cache::remember('doctor', 60, function () {
+            return Doctor::paginate(4);
+        });
         $i=0 ;
         return view('admin.doctor.show',compact('doctor','i'));
     }
 
     public function search(Request $request )
     {
+        Cache::forget('doctor');
         $validator = Validator::make($request->all(), [
             'quiry' => 'required',
          ]);
@@ -42,7 +46,9 @@ class DoctorController extends Controller
          if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
          $doctor=Doctor::create($request->all());
+         Cache::forget('doctor');
          return redirect()->back()->with(['success'=>'add doctor done']);
     }
 
@@ -72,12 +78,14 @@ class DoctorController extends Controller
             $doctor->age = $request->input('age');
         }
          $doctor->save();
+         Cache::forget('doctor');
          return redirect()->back()->with(['success'=>'updtae doctor done']);
     }
 
     public function delete($id)
     {
         $doctor= Doctor::where('id','=',$id)->delete();
+        Cache::forget('doctor');
         return redirect()->back()->with(['success'=>'delete doctor done']);
     }
 

@@ -53,7 +53,6 @@ class VideoController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'discription' => ['sometimes', 'required', 'string', 'max:65535'],
-            'time_of_video' => ['required', 'integer', 'min:1', 'max:25', 'regex:/^[0-9]+$/'],
             'video_url'=>'required|mimes:mp4,mov,ogg|max:1000000000',
             'courses_id' => ['required', 'integer', 'min:1'],
          ]);
@@ -66,7 +65,7 @@ class VideoController extends Controller
         $video = new Video([
             'name' => $request->input('name'),
             'discription' => $request->input('discription'),
-            'time_of_video'=> $request->input('time_of_video'),
+            'time_of_video'=> "0",
             'video_url'=>$video_name,
             'courses_id'=> $request->input('courses_id')
         ]);
@@ -81,7 +80,6 @@ class VideoController extends Controller
             'name' => 'sometimes',
             'video_url' => 'sometimes',
             'discription' => 'sometimes',
-            'time_of_video' => 'sometimes',
             'courses_id' => 'sometimes',
 
          ]);
@@ -99,7 +97,7 @@ class VideoController extends Controller
             $video->discription = $request->input('discription');
         }
         if ($request->input('time_of_video')) {
-            $video->time_of_video = $request->input('time_of_video');
+            $video->time_of_video = "0";
         }
         if ($request->input('courses_id')) {
             $video->courses_id = $request->input('courses_id');

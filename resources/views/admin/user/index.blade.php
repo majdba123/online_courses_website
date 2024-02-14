@@ -7,7 +7,6 @@
         <div class="table-wrapper">
           <div class="table-title">
             <div class="row">
-              <div class="col-sm-6">
               <div class="col-sm-4">
                 <div class="search-box">
                     <i class="material-icons">&#xE8B6;</i>
@@ -19,7 +18,8 @@
                       class="form-control"
                       placeholder="Search&hellip;"
                     />
-                    <button type="submit">search</button>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Search</button>
                     </form>
                   </div>
               </div>

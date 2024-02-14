@@ -73,7 +73,14 @@
                 </div>
             </div>
             @if (session('course'))
-                <p>{{ session('course') }}</p>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Search Quiry</div>
+                    <div class="card-body">
+                        {{ session('course') }}
+                    </div>
+                </div>
+            </div>
             @endif
         </div>
         </div>

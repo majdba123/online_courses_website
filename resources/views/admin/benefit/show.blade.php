@@ -8,7 +8,6 @@
           <div class="table-title">
             <div class="row">
               <div class="col-sm-6">
-
                 <a
                   href="#addEmployeeModal"
                   class="btn btn-success"
@@ -17,6 +16,7 @@
                   <span>ADD benefit</span></a
                 >
               </div>
+              <div class="col-sm-4">
               <div class="search-box">
                 <i class="material-icons">&#xE8B6;</i>
                 <form action="{{ route('search.benefit') }}" method="get">
@@ -27,7 +27,8 @@
                   class="form-control"
                   placeholder="Search&hellip;"
                 />
-                <button type="submit">search</button>
+                <br>
+                <button type="submit" class="btn btn-primary">Search</button>
                 </form>
               </div>
               </div>
@@ -44,7 +45,7 @@
             </thead>
             <tbody>
 
-            @foreach ( $benefit as $benefits)
+            @foreach ( $benefits as $benefits)
             <tr>
                 <td>{{ ++$i }}</td>
                 <td>{{ $benefits->title }}</td>
