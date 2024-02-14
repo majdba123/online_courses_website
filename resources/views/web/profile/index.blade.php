@@ -171,8 +171,6 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="text-center"></th>
-
                                     <th>Order </th>
                                     <th> username </th>
                                     <th>course name</th>
@@ -184,7 +182,7 @@
                             <tbody class="table-body">
                                 @foreach ($order as $orders )
                                 <tr class="cell-1">
-                                    <td class="text-center">{{ ++$m }}</td>
+                                    <td class="text-center">{{ $orders->id }}</td>
                                     <td>{{$orders->user->name }}</td>
                                     <td><a href="{{ route('video' , $orders->courses) }}">{{ $orders->courses->name
                                             }}</a></td>
