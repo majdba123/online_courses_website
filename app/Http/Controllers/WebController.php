@@ -29,12 +29,8 @@ class WebController extends Controller
     }
     public function about()
     {
-        $goal = Cache::remember('goal', 60, function () {
-            return Goals::paginate(4);
-        });
-        $achievement = Cache::remember('achievement', 60, function () {
-            return Achievements::paginate(4);
-        });
+        $goal = Goals::paginate(4);
+        $achievement = Achievements::paginate(4);
 
         return view('web.about.index' , compact('achievement' , 'goal'));
     }

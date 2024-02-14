@@ -14,24 +14,16 @@ class CoursesController extends Controller
 {
     public function index()
     {
-        $courses = Cache::remember('courses', 60, function () {
-            return Courses::paginate(4);
-        });
+        $courses =Courses::paginate(4);
         $i=0 ;
-        $doctor = Cache::remember('doctorr', 60, function () {
-            return Doctor::paginate(4);
-        });
-        $discount = Cache::remember('discountt', 60, function () {
-            return Discount::paginate(4);
-        });
+        $doctor =Doctor::all();
+        $discount = Discount::all();
         return view('admin.courses.show',compact('doctor','discount','courses','i'));
     }
     public function index2()
     {
         $i=0 ;
-        $courses = Cache::remember('courses1', 60, function () {
-            return Courses::with('video')->paginate(4);
-        });
+        $courses = Courses::with('video')->latest()->paginate(4);
         return view('web.courses.index',compact('courses','i'));
     }
     public function search(Request $request )

@@ -17,15 +17,15 @@ class VideoController extends Controller
 {
     public function index()
     {
-        $video=Video::paginate(4);
-        $courses = Courses::paginate(4);
+        $video=Video::paginate(5);
+        $courses = Courses::paginate(6);
         $i=0;
         return view ('admin.video.show',compact('video','courses','i'));
     }
     public function index2($id)
     {
-        $rating=Rating::where('courses_id', $id)->paginate(4);
-        $video = Video::where('courses_id', $id)->paginate(4);
+        $rating=Rating::where('courses_id', $id)->paginate(5);
+        $video = Video::where('courses_id', $id)->paginate(10);
         $i=0;
         $id_course=$id;
         return view('web.videos.index',compact('video','rating','i','id_course'));

@@ -45,17 +45,17 @@
             </thead>
             <tbody>
 
-            @foreach ( $benefits as $benefits)
+            @foreach ( $benefits as $benefitss)
             <tr>
-                <td>{{ ++$i }}</td>
-                <td>{{ $benefits->title }}</td>
-                <td>{{ $benefits->benefits }}</td>
+                <td>{{ $benefitss->id }}</td>
+                <td>{{ $benefitss->title }}</td>
+                <td>{{ $benefitss->benefits }}</td>
                 <td>
-                    <a href="{{ route('benefit.edit' , $benefits->id) }}"  class="edit">
+                    <a href="{{ route('benefit.edit' , $benefitss->id) }}"  class="edit">
                         <i class="material-icons" data-toggle="tooltip" title="Edit"> &#xE254; </i>
                     </a>
 
-                    <form action="{{ route('benefit.delete',$benefits->id)}}" method="post">
+                    <form action="{{ route('benefit.delete',$benefitss->id)}}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger"><i class="material-icons" data-toggle="tooltip" title="Delete" >&#xE872;</i></button>
@@ -66,6 +66,11 @@
             @endforeach
             </tbody>
           </table>
+          <div>
+            <div class="d-flex justify-content-center">
+                {!! $benefits->links() !!}
+             </div>
+          </div>
         </div>
       </div>
     </div>

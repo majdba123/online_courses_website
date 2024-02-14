@@ -32,6 +32,9 @@
         </div>
         @endforeach
     </div>
+    <div class="d-flex justify-content-center">
+        {!! $benefit->links() !!}
+     </div>
     <div class="advantages">
         <h1>الدورات</h1>
         <h6>:اتطلع على مكتبتنا الواسعة من الدورات الطبية المميزة</h6>
@@ -70,6 +73,10 @@
         </div>
         @endforeach
     </div>
+    <div class="d-flex justify-content-center">
+        {!! $rate->links() !!}
+     </div>
+     <br>
     <div class="question">
         <div class="allquestion">
             <div class="container">
@@ -95,7 +102,7 @@
             <h5>هل لديك المزيد من الأسئلة؟ <a href="{{ route('contact.index') }}"> تواصل معنا</a></h5>
         </div>
     </div>
-
+    <br>
 </div>
 
 @endsection

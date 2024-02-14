@@ -48,7 +48,7 @@
 
             @foreach ( $achievement as $achievements)
             <tr>
-                <td>{{ ++$i }}</td>
+                <td>{{ $achievements->id }}</td>
                 <td>{{ $achievements->title }}</td>
                 <td>{{ $achievements->achievement }}</td>
                 <td>
@@ -67,8 +67,14 @@
             @endforeach
             </tbody>
           </table>
+          <div>
+            <div class="d-flex justify-content-center">
+                {!! $achievement->links() !!}
+             </div>
+          </div>
         </div>
       </div>
+
     </div>
 
 

@@ -11,9 +11,7 @@ class DiscountController extends Controller
 {
     public function index()
     {
-        $discount = Cache::remember('discount', 60, function () {
-            return Discount::paginate(4);
-        });
+        $discount = Discount::paginate(10);
         $i=0;
         return view('admin.discount.show',compact('discount','i'));
     }

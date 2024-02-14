@@ -66,6 +66,11 @@
             @endforeach
             </tbody>
           </table>
+          <div>
+            <div class="d-flex justify-content-center">
+                {!! $goal->links() !!}
+             </div>
+          </div>
         </div>
       </div>
     </div>
