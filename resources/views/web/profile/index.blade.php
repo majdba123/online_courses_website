@@ -17,41 +17,53 @@
                 @csrf
                 @method('PUT')
                 <div class="contactussubmetq">
-                    <div class="table">
-                        <div class="cell">
-                            <div class="row">
-                                <p>الكنية</p>
-                            </div>
-                            <div class="row">
-                                <input type="text" value="{{ $user->address }}" name="address" class="qaws"
-                                    placeholder="Enter Your Address" />
-                            </div>
-                            <div class="row">
-                                <p>البريد الالكتروني</p>
-                            </div>
-                            <div class="row">
-                                <input type="email" value="{{ $user->email }}" name="email" id="" class="qaws"
-                                    placeholder="أدخل بريدك الالكتروني" />
+                    <div class="hyhy">
+                        <div class="tablex">
+                            <div class="imagew"><img class="imgprofile" src="../../profile.jpg" alt="dssd"> </div>
+                            <div class="buttons">
+                                <div class="remove"><button class="remo">Remove</button></div>
+                                <div class="remove"><button class="remo">Update</button></div>
+
                             </div>
                         </div>
-                        <div class="cell">
-                            <div class="row">
-                                <p>الأسم الأول</p>
-                            </div>
-                            <div class="row">
-                                <input type="text" value="{{ $user->name }}" name="name" placeholder="أدخل الأسم "
-                                    class="qaws" />
-                            </div>
-                            <div class="row">
-                                <p>رقم الجوال</p>
-                            </div>
-                            <div class="row">
 
-                                <input type="text" value="{{ $user->phone }}" name="phone" placeholder="أدخل رقم الجوال"
-                                    class="qaws" />
+                        <div class="tablex">
+                            <div class="cell">
+                                <div class="row">
+                                    <p class="azaz">الكنية</p>
+                                </div>
+                                <div class="row">
+                                    <div class=qwerqwer> <input type="text" value="{{ $user->address }}" name="address"
+                                            class="qaws" placeholder="Enter Your Address" /></div>
+                                </div>
+                                <div class="row">
+                                    <p class="azaz">البريد الالكتروني</p>
+                                </div>
+                                <div class="row">
+                                    <div class=qwerqwer> <input type="email" value="{{ $user->email }}" name="email"
+                                            id="" class="qaws" placeholder="أدخل بريدك الالكتروني" /></div>
+                                </div>
+                            </div>
+                            <div class="cell">
+                                <div class="row">
+                                    <p class="azaz">الأسم الأول</p>
+                                </div>
+                                <div class="row">
+                                    <div class=qwerqwer> <input type="text" value="{{ $user->name }}" name="name"
+                                            placeholder="أدخل الأسم " class="qaws" /></div>
+                                </div>
+                                <div class="row">
+                                    <p class="azaz">رقم الجوال</p>
+                                </div>
+                                <div class="row">
+
+                                    <div class=qwerqwer> <input type="text" value="{{ $user->phone }}" name="phone"
+                                            placeholder="أدخل رقم الجوال" class="qaws" /></div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <div class="submet">
                     <button class="asas">حفظ التعديلات</button>
@@ -137,22 +149,24 @@
                 <div class="table">
                     <div class="cell">
                         <div class="row">
-                            <p>كلمة المرور الجديدة</p>
+                            <p class="azaz">كلمة المرور الجديدة</p>
                         </div>
                         <div class="row">
-                            <input type="password" name="new_password" class="qaws" />
+                            <div class=qwerqwer> <input type="password" name="new_password" class="qaws" /></div>
                         </div>
                     </div>
                     <div class="cell">
                         <div class="row">
-                            <p>كلمة المرور الحالية</p>
+                            <p class="azaz">كلمة المرور الحالية</p>
                         </div>
                         <div class="row">
-                            <input type="password" name="current_password" class="qaws" />
+                            <div class=qwerqwer> <input type="password" name="current_password" class="qaws" />
+                            </div>
                         </div>
                         <div class="row">
-                            <p>نأكيد كلمة المرور</p>
-                            <input type="password" name="new_password_confirmation" class="qaws" />
+                            <p class="azaz">نأكيد كلمة المرور</p>
+                            <div class=qwerqwer> <input type="password" name="new_password_confirmation" class="qaws" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -230,8 +244,34 @@
 </script>
 <style lang="">
     /*_______________________body_________________________*/
+    .azaz {
+        background-color: white !important;
+    }
 
+    .buttons {
+        display: flex;
 
+        text-align: center !important;
+        align-items: center !important;
+        padding: 30px;
+        padding-left:55px;
+    }
+    .remove{
+        padding:10px;
+    }
+
+    .qwerqwer {
+        text-align: right !important;
+        align-items: right !important;
+        background-color: white !important;
+    }
+    .remo {
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+        background-color: #00aeef;
+        color: white;
+    }
     .backgroundq {
         background-color: #eeeeee;
         justify-content: space-between;
@@ -246,9 +286,19 @@
         border-radius: 5px;
     }
 
+    .imagew {
+        text-align: center !important;
+        align-items: center !important;
+        padding-top: 20px;
+    }
+
     .headerr {
         display: flex;
         justify-content: space-between;
+    }
+
+    .imgprofile {
+        width: 100px;
     }
 
     #button1,
@@ -276,18 +326,17 @@
     }
 
     .contactussubmetq {
-        align-items: center;
-        display: grid;
-        text-align: center;
+        align-items: right;
+        text-align: right;
         padding: 30px;
+
+
     }
 
-    .table {
-        display: table;
-    }
 
-    .cell {
-        display: table-cell;
+    .row {
+        text-align: right !important;
+        align-items: right !important;
     }
 
     .qaws {
@@ -327,7 +376,6 @@
 
     .contact {
         align-items: center;
-        display: grid;
         grid-template-columns: 1fr 1fr;
     }
 
@@ -339,6 +387,13 @@
     .contactdescription {
         font-size: 16px;
         padding-top: 40px;
+    }
+
+    .hyhy {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+
     }
 
     .advantages {
@@ -374,6 +429,7 @@
 
     .container {
         margin-top: 5rem;
+
     }
 
     .d-flex {

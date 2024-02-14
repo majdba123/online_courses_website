@@ -36,9 +36,7 @@
     @endforeach
 
 </div>
-<div class="d-flex justify-content-center">
-     {!! $achievement->links() !!}
-</div>
+
 <div class="Achievements">
     <div class="contactus">
         <h1>Our Goals</h1>
@@ -62,9 +60,7 @@
     </div>
     @endforeach
 </div>
-<div class="d-flex justify-content-center">
-    {!! $goal->links() !!}
-</div>
+
 <div class="Together">
     <div class="contactus">
         <h1>
@@ -95,10 +91,9 @@
         gap: 35px;
 
     }
- 
+
     .contactus {
-        padding-left: 40px;
-        padding-top: 40px;
+        font-size:15px;
 
     }
 

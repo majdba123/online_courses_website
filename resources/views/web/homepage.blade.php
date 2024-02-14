@@ -34,7 +34,7 @@
     </div>
     <div class="d-flex justify-content-center">
         {!! $benefit->links() !!}
-     </div>
+    </div>
     <div class="advantages">
         <h1>الدورات</h1>
         <h6>:اتطلع على مكتبتنا الواسعة من الدورات الطبية المميزة</h6>
@@ -42,7 +42,10 @@
     <div class="card-containe">
         @foreach ( $course as $courses )
         <div class="card">
-            <h1 class="number"> {{ $courses->name }}</h1>
+            <div class="truew">
+                <button class="Favorite">Add To Favorite</button>
+                <h1 class="number"> {{ $courses->name }}</h1>
+            </div>
             <h2 class="number"> Doctor : {{ $courses->doctor->name }}</h2>
             <h2 class="number"> Price :{{ $courses->price }}</h2>
             <p class="number">
@@ -75,8 +78,8 @@
     </div>
     <div class="d-flex justify-content-center">
         {!! $rate->links() !!}
-     </div>
-     <br>
+    </div>
+    <br>
     <div class="question">
         <div class="allquestion">
             <div class="container">
@@ -107,6 +110,22 @@
 
 @endsection
 <style>
+    .all{
+        text-align:center;
+    }
+    .Favorite {
+        font-size: 12px;
+        border: none;
+        border-radius: 5px;
+        background-color: #00aeef;
+        color: white;
+    }
+
+    .truew {
+        display: flex;
+        justify-content: space-between;
+    }
+
     .background {
         background-color: #eeeeee;
 
@@ -161,7 +180,7 @@
     }
 
     .card {
-        background-color: white;
+        background-color: white !important;
         padding: 20px;
         text-align: right;
         border-radius: 5px;
@@ -271,6 +290,7 @@
     }
 
     .accordion button {
+        background-color: white !important;
         position: relative;
         display: block;
         text-align: left;

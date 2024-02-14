@@ -19,9 +19,12 @@
     <div class="courses">
         @foreach ($courses as $coursess )
         <div class="advantages">
-            <a href="{{ route('video', $coursess->id ) }}" class="url">
-                <h1>{{$coursess->name }}</h1>
-            </a>
+            <div class="truew">
+                <button class="Favorite">Add To Favorite</button>
+                <a href="{{ route('video', $coursess->id ) }}" class="url">
+                    <h1>{{$coursess->name }}</h1>
+                </a>
+            </div>
             <h4>
                 {{ $coursess -> discription }}
             </h4>
@@ -46,10 +49,23 @@
     </div>
     <div class="d-flex justify-content-center">
         {!! $courses->links() !!}
-     </div>
+    </div>
 </div>
 @endsection
 <style>
+    .Favorite {
+        font-size: 12px;
+        border: none;
+        border-radius: 5px;
+        background-color: #00aeef;
+        color: white;
+    }
+
+    .truew {
+        display: flex;
+        justify-content: space-between;
+    }
+
     .background {
         background-color: #eeeeee;
         justify-content: space-between;
@@ -95,10 +111,11 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(184px, 1fr));
         grid-gap: 20px;
+        background-color:white !important;
     }
 
     .card {
-        background-color: white;
+        background-color: white !important;
         padding-right: 10px;
         text-align: right;
         border-radius: 5px;

@@ -39,7 +39,7 @@
                     <br>
                 </div>
             </div>
-            <div>
+            <div class="www">
                 <p>Subject</p>
                 <input type="text" name="subject" placeholder="Enter Your Subject" id="inputsubject" />
                 <p>Message</p>
@@ -103,13 +103,15 @@
         grid-template-columns: 2fr 1fr;
         padding-top: 80px;
         background-color: #eeeeee;
+        padding-bottom: 80px;
+
     }
 
     .communication {
         background-color: white;
         padding: 40px;
-        padding-top: 100px;
-        padding-bottom: 100px;
+        padding-top: 83px;
+        padding-bottom: 84px;
     }
 
     .table {
@@ -118,6 +120,16 @@
 
     .row {
         display: table-row;
+    }
+
+    .row p {
+        background-color: white !important;
+        font-size: 14px
+    }
+
+    .www p {
+        background-color: white !important;
+        font-size: 14px
     }
 
     .cell {
@@ -132,6 +144,7 @@
         width: 260px;
         border-radius: 5px;
         text-align: left;
+        background-color: white;
     }
 
     #inputsubject {
@@ -146,13 +159,19 @@
     input::placeholder {
         background-color: #eeeeee;
         border-radius: 10px;
-        font-size: 10px
+        font-size: 14px;
+        padding: 10px;
+
     }
 
     #inputmessage::placeholder {
         background-color: #eeeeee;
         border-radius: 10px;
-        font-size: 10px
+        font-size: 14px;
+        padding: 40px;
+        text-align: left;
+
+
     }
 
     #inputmessage {
@@ -202,5 +221,4 @@
         background-color: #00aeef;
     }
 
-    .submet {}
 </style>

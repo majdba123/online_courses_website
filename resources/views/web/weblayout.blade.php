@@ -74,25 +74,31 @@
             </ul>
         </div>
     </header>
-    @if (session('success'))
-    <div class="container mt-4">
+    <div class="conta">
+        @if (session('success'))
+
         <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            <button type="button" onclick="showcontents(1)" class="close" data-dismiss="alert"
+                aria-hidden="true">x</button>
             {{ session('success') }}
         </div>
+        @endif
 
     </div>
-    @endif
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+
+    <div class="conta">
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        @yield('content')
     </div>
-    @endif
-    @yield('content')
 
     <footer>
         <div class="footer">
@@ -128,10 +134,11 @@
                         </a>
                     </div>
                     <div>
-                        <a href="{{ DB::table('webs')->where('id', 1)->value('facebook') }}"> facebook</a>
-                        <br>
-                        <br>
-                        <a href="{{ DB::table('webs')->where('id', 1)->value('linkedin') }}"> linkedin</a>
+                        <a href="{{ DB::table('webs')->where('id', 1)->value('facebook') }}"> <img class="facebook"
+                                src="../../facebook.png" alt=""></a>
+
+                        <a href="{{ DB::table('webs')->where('id', 1)->value('linkedin') }}"> <img class="facebook"
+                                src="../../linkedin.png" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -172,6 +179,12 @@
         font-family: Janna LT;
     }
 
+    .facebook {
+        width: 30px;
+        border-radius: 10px;
+        margin: 10px;
+    }
+
     /*header*/
     .youtube {
         text-align: center;
@@ -179,6 +192,11 @@
         padding: 10px 0px 11px 0px;
         margin: 10px 30px 10px 30px;
         border-radius: 10px;
+    }
+
+    .conta {
+        background-color: #eeeeee;
+        padding: 30px;
     }
 
     .youtube a {
