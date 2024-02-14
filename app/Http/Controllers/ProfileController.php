@@ -18,10 +18,10 @@ class ProfileController extends Controller
     {
         $user = Auth::user();
         $courseIds = Order::where('user_id', $user->id)->where('status', 1)->pluck('courses_id');
-        $courses = Courses::whereIn('id', $courseIds)->paginate(4);
+        $courses = Courses::whereIn('id', $courseIds)->get();
         $cou = Favorite::where('user_id', $user->id)->pluck('courses_id');
-        $couu = Courses::whereIn('id', $cou)->paginate(4);
-        $order = Order::where('user_id', $user->id)->paginate(4);
+        $couu = Courses::whereIn('id', $cou)->get();
+        $order = Order::where('user_id', $user->id)->get();
         $i=0;
         $m=0;
         return view('web.profile.index',compact('user','courses','i','couu','order','m'));

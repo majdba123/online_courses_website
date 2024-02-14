@@ -24,17 +24,11 @@ class HomeController extends Controller
     public function index()
     {
         $course = Cache::remember('coursesss', 60, function () {
-            return Courses::paginate(4);
+            return Courses::paginate(6);
         });
-        $benefit = Cache::remember('benefitttt', 60, function () {
-            return Benefits::paginate(4);
-        });
-        $qfa = Cache::remember('qfa', 60, function () {
-            return QFA::paginate(4);
-        });
-        $rate = Cache::remember('rate', 60, function () {
-            return Rating::paginate(4);
-        });
+        $benefit =Benefits::paginate(10);
+        $qfa = QFA::latest()->paginate(10);
+        $rate =Rating::latest()->paginate(6);
         $i=0;
         return view('web.homepage',compact('course','benefit','rate','qfa','i'));
     }

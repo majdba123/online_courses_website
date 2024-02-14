@@ -14,9 +14,7 @@ class AchievementsController extends Controller
      */
     public function index()
     {
-        $achievement = Cache::remember('achievements', 60, function () {
-            return Achievements::paginate(4);
-        });
+        $achievement = Achievements::paginate(3);
         $i = 0;
         return view('admin.achievement.show', compact('achievement', 'i'));
     }

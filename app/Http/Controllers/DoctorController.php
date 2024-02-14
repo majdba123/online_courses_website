@@ -10,9 +10,7 @@ class DoctorController extends Controller
 {
     public function index()
     {
-        $doctor = Cache::remember('doctor', 60, function () {
-            return Doctor::paginate(4);
-        });
+        $doctor =Doctor::paginate(10);
         $i=0 ;
         return view('admin.doctor.show',compact('doctor','i'));
     }

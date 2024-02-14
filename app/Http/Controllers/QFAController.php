@@ -14,9 +14,7 @@ class QFAController extends Controller
      */
     public function index()
     {
-        $qfa = Cache::remember('qfa', 60, function () {
-            return QFA::paginate(4);
-        });
+        $qfa = QFA::paginate(10);
         $i=0;
         return view('admin.qfa.show',compact('qfa','i'));
     }

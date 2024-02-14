@@ -43,8 +43,10 @@
             </div>
         </div>
         @endforeach
-
     </div>
+    <div class="d-flex justify-content-center">
+        {!! $courses->links() !!}
+     </div>
 </div>
 @endsection
 <style>

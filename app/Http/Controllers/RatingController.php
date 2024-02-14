@@ -12,9 +12,7 @@ class RatingController extends Controller
 {
     public function index()
     {
-        $rating = Cache::remember('rating', 60, function () {
-            return Rating::paginate(4);
-        });
+        $rating = Rating::paginate(10);
         $courses = Cache::remember('courses', 60, function () {
             return Courses::paginate(4);
         });

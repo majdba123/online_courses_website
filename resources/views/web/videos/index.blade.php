@@ -62,7 +62,11 @@
       </div>
     @endforeach
     </div>
+    <div class="d-flex justify-content-center">
+        {!! $video->links() !!}
+     </div>
   </div>
+
 @endsection
 
 

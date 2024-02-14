@@ -14,9 +14,7 @@ class BenefitsController extends Controller
      */
     public function index()
     {
-        $benefits = Cache::remember('benefits', 60, function () {
-            return Benefits::paginate(4);
-        });
+        $benefits =Benefits::paginate(4);
         $i=0;
         return view('admin.benefit.show', compact('benefits','i'));
     }

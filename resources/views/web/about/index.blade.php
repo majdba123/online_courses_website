@@ -62,6 +62,9 @@
     </div>
     @endforeach
 </div>
+<div class="d-flex justify-content-center">
+    {!! $goal->links() !!}
+</div>
 <div class="Together">
     <div class="contactus">
         <h1>

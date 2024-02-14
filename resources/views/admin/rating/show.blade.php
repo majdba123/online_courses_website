@@ -58,6 +58,11 @@
             @endforeach
             </tbody>
           </table>
+          <div>
+            <div class="d-flex justify-content-center">
+                {!! $rating->links() !!}
+             </div>
+          </div>
         </div>
       </div>
     </div>

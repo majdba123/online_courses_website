@@ -13,9 +13,7 @@ class GoalsController extends Controller
      */
     public function index()
     {
-        $goal = Cache::remember('goal', 60, function () {
-            return Goals::paginate(4);
-        });
+        $goal = Goals::paginate(10);
         $i=0;
         return view('admin.goal.show',compact('goal','i'));
     }
