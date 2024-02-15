@@ -51,7 +51,7 @@ class CoursesController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
-            'discription' => 'required|text|max:65535',
+            'discription' => 'required|string|max:65535',
             'time_of_course' => 'required|string|max:255',
             'doctor_id' => 'sometimes|required|exists:doctors,id',
             'discount_id' => 'sometimes|required|exists:discounts,id',

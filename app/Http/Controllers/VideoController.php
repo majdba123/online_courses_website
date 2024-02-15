@@ -52,7 +52,7 @@ class VideoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
-            'discription' => ['sometimes', 'required', 'text', 'max:65535'],
+            'discription' => ['sometimes', 'required', 'string', 'max:65535'],
             'video_url'=>'required|mimes:mp4,mov,ogg|max:1000000000',
             'courses_id' => ['required'],
          ]);
