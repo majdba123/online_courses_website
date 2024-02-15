@@ -53,7 +53,7 @@
         background-color: #eeeeee;
         justify-content: space-between;
         align-items: center;
-        padding: 200px 200px 40px 200px;
+        padding: 0px 200px 40px 200px;
     }
 
     image-preview {

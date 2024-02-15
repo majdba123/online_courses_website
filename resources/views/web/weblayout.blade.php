@@ -74,9 +74,17 @@
             </ul>
         </div>
     </header>
-    <div class="conta">
-        @if (session('success'))
+    <script>
+        function showcontents(num) {
+            var conta1 = document.getElementById("conta");
 
+            if (num === 1) {
+                conta.style.display = "none";
+            }
+        }
+    </script>
+    <div class="conta" id="conta">
+        @if (session('success'))
         <div class="alert alert-success">
             <button type="button" onclick="showcontents(1)" class="close" data-dismiss="alert"
                 aria-hidden="true">x</button>
@@ -205,6 +213,10 @@
         color: white;
     }
 
+    .navbar img {
+        border-radius: 10px;
+    }
+
     header {
         background-color: #eeeeee;
     }
@@ -224,7 +236,7 @@
         text-decoration: none;
         color: black;
         padding: 10 15px;
-        font-size: 10px;
+        font-size: 15px;
     }
 
     .Header .navbar {
@@ -258,6 +270,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         padding-top: 80px;
+        font-size: 15px;
     }
 
     .footerdesc {
