@@ -19,13 +19,10 @@
                 <div class="contactussubmetq">
                     <div class="hyhy">
                         <div class="tablex">
-                            <div class="imagew"><img class="imgprofile" src="../../profile.jpg" alt="../../profile.jpg">
+                            <div class="imagew"><img id="image-preview" class="imgprofile" src="../../profile.jpg"
+                                    alt="../../profile.jpg">
                             </div>
-                            <div class="buttons">
-                                <div class="remove"><button class="remo">Remove</button></div>
-                                <div class="remove"><button class="remo">Update</button></div>
 
-                            </div>
                         </div>
 
                         <div class="tablex">
@@ -60,6 +57,26 @@
 
                                     <div class=qwerqwer> <input type="text" value="{{ $user->phone }}" name="phone"
                                             placeholder="أدخل رقم الجوال" class="qaws" /></div>
+                                </div>
+                      
+                                <div class="row">
+
+
+
+                                    <input type="file" id="file-input">
+
+                                    <script>
+                                        document.getElementById('file-input').onchange = function (e) {
+                                            var reader = new FileReader();
+                                            reader.onload = function () {
+                                                var preview = document.getElementById('image-preview');
+                                                preview.src = reader.result;
+                                            }
+                                            reader.readAsDataURL(e.target.files[0]);
+                                        }
+                                    </script>
+
+
                                 </div>
                             </div>
                         </div>
@@ -249,18 +266,8 @@
         background-color: white !important;
     }
 
-    .buttons {
-        display: flex;
 
-        text-align: center !important;
-        align-items: center !important;
-        padding: 30px;
-        padding-left: 55px;
-    }
 
-    .remove {
-        padding: 10px;
-    }
 
     .qwerqwer {
         text-align: right !important;
@@ -268,13 +275,7 @@
         background-color: white !important;
     }
 
-    .remo {
-        font-size: 14px;
-        border: none;
-        border-radius: 5px;
-        background-color: #00aeef;
-        color: white;
-    }
+
 
     .backgroundq {
         background-color: #eeeeee;
@@ -294,7 +295,10 @@
         text-align: center !important;
         align-items: center !important;
         padding-top: 20px;
+
     }
+    .imagew img{        border-radius: 100%;
+}
 
     .headerr {
         display: flex;
@@ -303,6 +307,7 @@
 
     .imgprofile {
         width: 100px;
+        height:100px;
     }
 
     #button1,
