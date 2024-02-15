@@ -40,3 +40,26 @@
     </style>
 
 </style>
+
+
+<script>
+    document.addEventListener('keyup', (e) => {
+        if (e.code === 'PrintScreen' || e.altKey ) {
+            // User has pressed the Alt key, the Print Screen key, or the F12 key
+            navigator.clipboard.writeText('').then(() => {
+                console.log('User ');
+            }).catch((error) => {
+                console.error('Failed : ', error);
+            });
+            location.reload(); // Refresh the page
+        }
+    });
+
+
+        document.addEventListener('keydown', (e) => {
+            if (e.keyCode === 123) {
+                // User has pressed the F12 key
+                e.preventDefault();
+            }
+        });
+    </script>
