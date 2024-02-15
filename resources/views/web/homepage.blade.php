@@ -43,7 +43,11 @@
         @foreach ( $course as $courses )
         <div class="card">
             <div class="truew">
-                <button class="Favorite">Add To Favorite</button>
+                <form method="post" action="{{ route('store.fff' , $courses->id )}}">
+                    @csrf
+                    @method('POST')
+                  <button type="submit" class="Favorite">Add To Favorite</button>
+                </form>
                 <h1 class="number"> {{ $courses->name }}</h1>
             </div>
             <h2 class="number"> Doctor : {{ $courses->doctor->name }}</h2>

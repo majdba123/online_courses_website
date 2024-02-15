@@ -18,5 +18,12 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call(CoursesTableSeeder::class);
+        $this->call(AchievementsTableSeeder::class);
+        $this->call(BenefitsTableSeeder::class);
+        $this->call(GoalsTableSeeder::class);
+        $this->call(RatingTableSeeder::class);
+        $this->call(QFATableSeeder::class);
+
     }
 }

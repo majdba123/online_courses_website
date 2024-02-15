@@ -136,7 +136,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => [ 'AdminMiddleware']], fu
 
 /** CONTACT US */
 Route::get('contact_us', [InquireController::class,'index_web'])->name('contact.index');
-Route::post('contact_store', [InquireController::class,'store'])->name('store.contact');
+Route::post('contact_store', [InquireController::class,'store'])->name('store.contact')->middleware('auth');
 /**ABOUT _AS */
 Route::get('about_as', [WebController::class,'about'])->name('about.index');
 

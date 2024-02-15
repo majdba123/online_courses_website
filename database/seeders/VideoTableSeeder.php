@@ -4,14 +4,16 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\video;
 
-class InquireSeeder extends Seeder
+
+class VideoTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
-    public function run()
+    public function run(): void
     {
-        Inquire::factory(50)->create();
+        video::factory()->count(10)->create();
     }
 }
