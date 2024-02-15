@@ -24,7 +24,7 @@
         <!-- Card 1 -->
         @foreach ($benefit as $benefits )
         <div class="card">
-            <h1 class="number">{{ ++$i }}</h1>
+            <h1 class="number">{{ ($benefit->currentPage() - 1) * $benefit->perPage() + $loop->iteration }}</h1>
             <h3 class="number">{{$benefits->title}}</h3>
             <p class="number">
                 {{$benefits->benefits}}
