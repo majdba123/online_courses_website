@@ -16,68 +16,68 @@
         </div>
     </div>
 
-</div>
-<div class="courses">
-    @foreach ( $video as $videos )
-    <div class="advantages">
-        <h1>{{ ++$i }}</h1>
-        <a href="{{ route('generate_url' , $videos->id ) }}">
-            <h4>{{ $videos->name }}</h4>
-        </a>
-        <h5>{!! preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank">$1</a>', $videos->discription) !!}
-        </h5>
+    <div class="courses">
+        @foreach ( $video as $videos )
+        <div class="advantages">
+            <h1>{{ ++$i }}</h1>
+            <a href="{{ route('generate_url' , $videos->id ) }}">
+                <h4>{{ $videos->name }}</h4>
+            </a>
+            <h5>{!! preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank">$1</a>', $videos->discription)
+                !!}
+            </h5>
 
+        </div>
+        @endforeach
     </div>
-    @endforeach
-</div>
-<div class="d-flex justify-content-center">
-    {!! $video->links() !!}
-</div>
-<div class="container mt-5 mb-5">
-    <div class="row height d-flex justify-content-center align-items-center">
-        <div>
-            <div class="card">
-                <div class="p-3">
-                    <h5>Ratting</h5>
-                </div>
-                <div class="mt-3 d-flex flex-row align-items-center p-3 form-color">
-                    <form action="{{route('store.rate' , $id_course)}}" method="post">
-                        @csrf
-                        @method('POST')
-                        <input type="text" class="comments"name="comment" class="form-control" placeholder="Enter your comment..." />
-                        <button type="submit">send</button>
-                    </form>
-                </div>
-                <div class="mt-2">
-                    @foreach ( $rating as $ratings )
-                    <div class="d-flex flex-row p-3">
-                    @php
-                        $x=$ratings->user->image
-                    @endphp
-                    <img src="{{ asset('imageprfile/'. $x) }}" width="40" height="40" class="rounded-circle mr-3"/>
-                        @php
-                        $x=$ratings->user->image
-                    @endphp
-                    <img src="{{ asset('imageprfile/'. $x) }}" width="40" height="40" class="rounded-circle mr-3"/>
-                        <div class="w-100">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex flex-row align-items-center">
-                                    <span class="namepersone">{{ $ratings->user->name }}</span>
-                                </div>
-                            </div>
-                            <p class="text-justify comment-text mb-0">
-                                {{ $ratings->comment }}
-                            </p>
-                        </div>
+    <div class="d-flex justify-content-center">
+        {!! $video->links() !!}
+    </div>
+    <div class="container mt-5 mb-5">
+        <div class="row height d-flex justify-content-center align-items-center">
+            <div>
+                <div class="card">
+                    <div class="p-3">
+                        <h5>Ratting</h5>
                     </div>
-                    @endforeach
+                    <div class="mt-3 d-flex flex-row align-items-center p-3 form-color">
+                        <form action="{{route('store.rate' , $id_course)}}" method="post">
+                            @csrf
+                            @method('POST')
+                            <input type="text" class="comments" name="comment" class="form-control"
+                                placeholder="Enter your comment..." />
+                            <button type="submit">send</button>
+                        </form>
+                    </div>
+                    <div class="mt-2">
+                        @foreach ( $rating as $ratings )
+                        <div class="d-flex flex-row p-3">
+
+                            @php
+                            $x=$ratings->user->image
+                            @endphp
+                            <img src="{{ asset('imageprfile/'. $x) }}" width="40" height="40"
+                                class="rounded-circle mr-3" />
+                            <div class="w-100">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <span class="namepersone">{{ $ratings->user->name }}</span>
+                                    </div>
+                                </div>
+                                <p class="text-justify comment-text mb-0">
+                                    {{ $ratings->comment }}
+                                </p>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
+    @endsection
 
+</div>
 
 <style>
     .container {
@@ -107,8 +107,8 @@
         border: none;
         padding: 9px 80px !important;
         background-color: #00aeef;
-        font-size:14px !important;
-        margin-left:20px !important;
+        font-size: 14px !important;
+        margin-left: 20px !important;
     }
 
     .comment-text {
@@ -118,9 +118,11 @@
     .card {
         background-color: white;
     }
-    .namepersone{
-        font-size:20px;
+
+    .namepersone {
+        font-size: 20px;
     }
+
     .form-color {
         background-color: #fafafa;
     }
@@ -174,7 +176,7 @@
         background-color: #eeeeee;
         justify-content: space-between;
         align-items: center;
-        padding: 50px 200px 40px 200px;
+        padding: 0px 200px 40px 200px;
     }
 
     .contact {
@@ -216,11 +218,12 @@
         grid-template-columns: repeat(auto-fit, minmax(355px, 1fr));
         grid-gap: 20px;
     }
-    .comments{
-        border:none;
+
+    .comments {
+        border: none;
         padding: 7px;
         font-size: 16px;
-        width:1000px;
+        width: 750px;
         border-radius: 5px;
         text-align: left;
     }

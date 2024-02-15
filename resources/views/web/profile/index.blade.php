@@ -58,13 +58,11 @@
                                     <div class=qwerqwer> <input type="text" value="{{ $user->phone }}" name="phone"
                                             placeholder="أدخل رقم الجوال" class="qaws" /></div>
                                 </div>
-                      
                                 <div class="row">
-
-
-
+                                    <p class="azaz"> الصورة الشخصية </p>
+                                </div>
+                                <div class="row">
                                     <input type="file" id="file-input">
-
                                     <script>
                                         document.getElementById('file-input').onchange = function (e) {
                                             var reader = new FileReader();
@@ -266,8 +264,12 @@
         background-color: white !important;
     }
 
-
-
+    #file-input {
+        color: transparent;
+        display: inline-block;
+        padding: 10px 20px;
+        margin-left: 110px;
+    }
 
     .qwerqwer {
         text-align: right !important;
@@ -297,8 +299,10 @@
         padding-top: 20px;
 
     }
-    .imagew img{        border-radius: 100%;
-}
+
+    .imagew img {
+        border-radius: 100%;
+    }
 
     .headerr {
         display: flex;
@@ -307,7 +311,7 @@
 
     .imgprofile {
         width: 100px;
-        height:100px;
+        height: 100px;
     }
 
     #button1,
@@ -425,7 +429,7 @@
     }
 
     .card {
-        background-color: white;
+        background-color: white !important;
         padding-right: 10px;
         text-align: right;
         border-radius: 5px;
