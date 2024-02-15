@@ -82,7 +82,6 @@
         padding: 0 100px;
         display: grid;
         grid-template-columns: 1fr 1fr;
-        padding-top: 40px;
     }
 
     .contactus {

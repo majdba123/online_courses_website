@@ -1,9 +1,11 @@
 @extends('admin.admin_layout')
 
 @section('content')
+
 <form action= "{{ route('update.Admin', $web->id) }}" method="POST" >
     @csrf
     @method('PUT')
+
     <div class="modal-header">
       <h4 class="modal-title">web</h4>
     </div>

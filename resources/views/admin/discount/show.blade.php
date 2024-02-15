@@ -2,7 +2,23 @@
 
 
 @section('content')
+
     <div class="container-xl">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+        @if(session('success'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+            {{ session('success') }}
+        </div>
+        @endif
       <div class="table-responsive">
         <div class="table-wrapper">
           <div class="table-title">
@@ -17,9 +33,10 @@
                 >
               </div>
               <div class="col-sm-4">
+              <form action="{{ route('search.Discount') }}" method="get">
+
                 <div class="search-box">
                   <i class="material-icons">&#xE8B6;</i>
-                  <form action="{{ route('search.Discount') }}" method="get">
                     @csrf
                   <input
                     type="text"
@@ -28,9 +45,10 @@
                     placeholder="Search&hellip;"
                   />
                   <br>
-                  <button type="submit" class="btn btn-primary">Search</button>
-                  </form>
+
                 </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+                  </form>
               </div>
             </div>
           </div>
