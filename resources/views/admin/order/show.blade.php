@@ -54,7 +54,9 @@
 
                     @foreach ( $order as $orders)
                     <tr>
-                        <td>{{ ++$i }}</td>
+                        <td>
+                            {{ ($order->currentPage() - 1) * $order->perPage() + $loop->iteration }}
+                        </td>
                         <td>{{ $orders->user->name }}</td>
                         <td>{{ $orders->courses->name }}</td>
                         <td><a href={{ asset('Order_file/'.$orders->image) }}><img

@@ -32,10 +32,6 @@ use App\Http\Controllers\UrlGeneratorController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-route::get('/test',function()
-{
-    return view('web.Home (2)');
-});
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('forget-session', [WebController::class, 'forgetSession'])->name('forget-session');
@@ -174,7 +170,7 @@ Route::group(['prefix' => 'video', 'middleware' => ['auth','CheckCoursePayment',
 Route::get('/order/place/{id}', [OrderController::class,'index2'])->name('order.place')->middleware(['verified','auth']);
 Route::post('/order/place/{id}', [OrderController::class,'store'])->name('order.store')->middleware(['verified','auth']);
 
-Route::get('/generate_url/{id}',[UrlGeneratorController::class, 'generateUrl'])->name('generate_url')->middleware(['auth']);
+Route::get('/generate_url/{id}',[UrlGeneratorController::class, 'generateUrl'])->name('generate_url')->middleware(['auth','CheckUserStatus']);
 Route::get('/expired_url',[UrlGeneratorController::class, 'checkUrlExpiration'])->middleware(['auth']);
 
 

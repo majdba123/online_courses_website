@@ -53,7 +53,9 @@
 
                     @foreach ( $user as $users)
                     <tr>
-                        <td>{{ ++$i }}</td>
+                        <td>
+                            {{ ($user->currentPage() - 1) * $user->perPage() + $loop->iteration }}
+                        </td>
                         <td>{{ $users->name }}</td>
                         <td>{{ $users->email }}</td>
                         <td>{{ $users->type_user }}</td>

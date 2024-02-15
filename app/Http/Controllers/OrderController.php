@@ -13,7 +13,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $order = Order::paginate(10);
+        $order = Order::latest()->paginate(10);
         $courses = Cache::remember('courses', 60, function () {
             return Courses::paginate(4);
         });

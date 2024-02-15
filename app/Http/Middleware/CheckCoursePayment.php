@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Models\User;
+use App\Models\User;
 use App\Models\Order;
 class CheckCoursePayment
 {

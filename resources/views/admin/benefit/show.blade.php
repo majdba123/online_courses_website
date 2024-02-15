@@ -55,7 +55,9 @@
 
                     @foreach ( $benefits as $benefitss)
                     <tr>
-                        <td>{{ ++$i}}</td>
+                        <td>
+                            {{ ($benefits->currentPage() - 1) * $benefits->perPage() + $loop->iteration }}
+                        </td>
                         <td>{{ $benefitss->title }}</td>
                         <td>{{ $benefitss->benefits }}</td>
                         <td>

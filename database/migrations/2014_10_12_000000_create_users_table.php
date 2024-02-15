@@ -16,10 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->integer('type_user')->default(0);
             $table->string('image')->default('profile.jpg');
-            $table->string('address')->nullable();
+            $table->string('address')->nullable()->default('Syria');
             $table->integer('age')->nullable();
             $table->integer('status')->default(1);
-            $table->bigInteger('phone')->nullable();
+            $table->string('phone')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

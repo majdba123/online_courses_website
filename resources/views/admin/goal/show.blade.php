@@ -4,21 +4,6 @@
 @section('content')
 
     <div class="container-xl">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-        @if(session('success'))
-        <div class="alert alert-success">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-            {{ session('success') }}
-        </div>
-        @endif
       <div class="table-responsive">
         <div class="table-wrapper">
           <div class="table-title">
@@ -65,7 +50,9 @@
 
             @foreach ( $goal as $goals)
             <tr>
-                <td>{{ ++$i }}</td>
+                <td>
+                    {{ ($goal->currentPage() - 1) * $goal->perPage() + $loop->iteration }}
+                </td>
                 <td>{{ $goals->title }}</td>
                 <td>{{ $goals->golas }}</td>
                 <td>

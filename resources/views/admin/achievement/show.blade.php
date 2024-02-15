@@ -57,7 +57,9 @@
 
                     @foreach ( $achievement as $achievements)
                     <tr>
-                        <td>{{ ++$i }}</td>
+                        <td>
+                            {{ ($achievement->currentPage() - 1) * $achievement->perPage() + $loop->iteration }}
+                        </td>
                         <td>{{ $achievements->title }}</td>
                         <td>{{ $achievements->achievement }}</td>
                         <td>

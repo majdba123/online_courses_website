@@ -11,7 +11,7 @@ class DiscountController extends Controller
 {
     public function index()
     {
-        $discount = Discount::paginate(10);
+        $discount = Discount::latest()->paginate(10);
         $i=0;
         return view('admin.discount.show',compact('discount','i'));
     }

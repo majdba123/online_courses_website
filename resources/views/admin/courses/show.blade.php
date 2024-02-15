@@ -61,7 +61,7 @@
 
                     @foreach ( $courses as $coursess)
                     <tr>
-                        <td>{{ ++$i }}</td>
+                        <td>{{ ($courses->currentPage() - 1) * $courses->perPage() + $loop->iteration }}</td>
                         <td>{{ $coursess->name }}</td>
                         <td>{{ $coursess->price }}</td>
                         <td>

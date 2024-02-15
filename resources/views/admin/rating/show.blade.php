@@ -40,7 +40,9 @@
 
                     @foreach ( $rating as $ratings)
                     <tr>
-                        <td>{{ ++$i }}</td>
+                        <td>
+                            {{ ($rating->currentPage() - 1) * $rating->perPage() + $loop->iteration }}
+                        </td>
                         <td>{{ $ratings->user->name }}</td>
                         <td>{{ $ratings->courses->name }}</td>
                         <td>{{ $ratings->comment }}</td>

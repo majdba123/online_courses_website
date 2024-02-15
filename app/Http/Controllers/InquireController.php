@@ -11,7 +11,7 @@ class InquireController extends Controller
 {
     public function index()
     {
-        $inquire = inquire::paginate(10);
+        $inquire = inquire::latest()->paginate(10);
         $user = Cache::remember('user', 60, function () {
             return User::paginate(4);
         });

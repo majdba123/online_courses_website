@@ -19,14 +19,13 @@
     <div class="courses">
         @foreach ( $video as $videos )
         <div class="advantages">
-            <h1>{{ ++$i }}</h1>
+            <h1>{{ ($video->currentPage() - 1) * $video->perPage() + $loop->iteration }}</h1>
             <a href="{{ route('generate_url' , $videos->id ) }}">
                 <h4>{{ $videos->name }}</h4>
             </a>
             <h5>{!! preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank">$1</a>', $videos->discription)
                 !!}
             </h5>
-
         </div>
         @endforeach
     </div>

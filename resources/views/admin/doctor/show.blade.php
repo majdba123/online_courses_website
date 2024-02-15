@@ -59,7 +59,9 @@
 
                     @foreach ( $doctor as $doctors)
                     <tr>
-                        <td>{{ ++$i }}</td>
+                        <td>
+                            {{ ($doctor->currentPage() - 1) * $doctor->perPage() + $loop->iteration }}
+                        </td>
                         <td>{{ $doctors->name }}</td>
                         <td>{{ $doctors->spicification }}</td>
                         <td>{{ $doctors->university }}</td>

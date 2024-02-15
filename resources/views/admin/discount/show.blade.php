@@ -65,7 +65,9 @@
 
             @foreach ( $discount as $discounts)
             <tr>
-                <td>{{ ++$i }}</td>
+                <td>
+                    {{ ($discount->currentPage() - 1) * $discount->perPage() + $loop->iteration }}
+                </td>
                 <td>{{ $discounts->discount_percentage }}</td>
                 <td>{{ $discounts->expired_at }}</td>
                 <td>

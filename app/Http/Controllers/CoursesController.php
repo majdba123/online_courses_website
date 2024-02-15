@@ -14,7 +14,7 @@ class CoursesController extends Controller
 {
     public function index()
     {
-        $courses =Courses::paginate(4);
+        $courses =Courses::latest()->paginate(4);
         $i=0 ;
         $doctor =Doctor::all();
         $discount = Discount::all();

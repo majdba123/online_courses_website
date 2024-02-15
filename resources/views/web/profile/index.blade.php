@@ -19,16 +19,15 @@
                 <div class="contactussubmetq">
                     <div class="hyhy">
                         <div class="tablex">
-                            <div class="imagew"><img id="image-preview" class="imgprofile" src="../../profile.jpg"
-                                    alt="../../profile.jpg">
+                            <div class="imagew">
+                                <a href={{ asset('imageprfile/'.$user->image) }}><img id="image-preview" class="imgprofile" src="{{ asset('imageprfile/'.$user->image) }}" alt="not found"></a>
                             </div>
-
                         </div>
 
                         <div class="tablex">
                             <div class="cell">
                                 <div class="row">
-                                    <p class="azaz">الكنية</p>
+                                    <p class="azaz">العنوان </p>
                                 </div>
                                 <div class="row">
                                     <div class=qwerqwer> <input type="text" value="{{ $user->address }}" name="address"
@@ -62,19 +61,7 @@
                                     <p class="azaz"> الصورة الشخصية </p>
                                 </div>
                                 <div class="row">
-                                    <input type="file" id="file-input">
-                                    <script>
-                                        document.getElementById('file-input').onchange = function (e) {
-                                            var reader = new FileReader();
-                                            reader.onload = function () {
-                                                var preview = document.getElementById('image-preview');
-                                                preview.src = reader.result;
-                                            }
-                                            reader.readAsDataURL(e.target.files[0]);
-                                        }
-                                    </script>
-
-
+                                    <input type="file" id="file-input" name="image">
                                 </div>
                             </div>
                         </div>
@@ -82,7 +69,7 @@
 
                 </div>
                 <div class="submet">
-                    <button class="asas">حفظ التعديلات</button>
+                    <button class="asas" type="submit">حفظ التعديلات</button>
                 </div>
         </div>
         </form>
@@ -212,7 +199,7 @@
                             <tbody class="table-body">
                                 @foreach ($order as $orders )
                                 <tr class="cell-1">
-                                    <td class="text-center">{{ $orders->id }}</td>
+                                    <td class="text-center">{{ $loop->iteration }}</td>
                                     <td>{{$orders->user->name }}</td>
                                     <td><a href="{{ route('video' , $orders->courses) }}">{{ $orders->courses->name
                                             }}</a></td>

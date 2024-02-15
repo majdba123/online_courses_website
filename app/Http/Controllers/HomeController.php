@@ -28,13 +28,13 @@ class HomeController extends Controller
         });
         $benefit =Benefits::paginate(10);
         $qfa = QFA::latest()->paginate(10);
-        $rate =Rating::latest()->paginate(6);
+        $rate =Rating::latest()->paginate(9);
         $i=0;
         return view('web.homepage',compact('course','benefit','rate','qfa','i'));
     }
     public function user()
     {
-        $user=User::paginate(4);
+        $user=User::latest()->paginate(4);
         $i=0;
         return view('admin.user.index',compact('user','i'));
     }

@@ -58,7 +58,9 @@
 
             @foreach ( $inquire as $inquires)
             <tr>
-                <td>{{ ++$i }}</td>
+                <td>
+                    {{ ($inquire->currentPage() - 1) * $inquire->perPage() + $loop->iteration }}
+                </td>
                 <td>{{ $inquires->user->name }}</td>
                 <td>{{ $inquires->subject }}</td>
                 <td>{{$inquires->email}}</td>

@@ -29,15 +29,19 @@
                     <h1>{{$coursess->name }}</h1>
                 </a>
             </div>
+            <h1>   {{$coursess->time_of_course }} : الوقت </h1>
+            <br>
+            <h1>Discrption</h1>
             <h4>
                 {{ $coursess -> discription }}
             </h4>
             <h3>{{ $coursess->doctor->name }} : الدكتور</h3>
+            <br>
             <h3>: المحتويات</h3>
             <div class="card-container">
                 @foreach ( $coursess->video as $videoas )
                 <div class="card">
-                    <h1 class="number">{{ ++$i }}</h1>
+                    <h1 class="number">{{ $loop->iteration }}</h1>
                     <a href="{{ route('generate_url' , $videoas->id ) }}" class="url">
                         <h3 class="number">{{ $videoas->name }}</h3>
                     </a>
