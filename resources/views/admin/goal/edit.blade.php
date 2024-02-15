@@ -1,7 +1,12 @@
 @extends('admin.admin_layout')
 
 @section('content')
-@if ($errors->any())
+<div class="modal-content">
+
+<form action= "{{ route('goal.update' ,$goal->id )}}" method="POST" >
+    @csrf
+    @method('PUT')
+    @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -16,9 +21,6 @@
             {{ session('success') }}
         </div>
         @endif
-<form action= "{{ route('goal.update' ,$goal->id )}}" method="POST" >
-    @csrf
-    @method('PUT')
     <div class="modal-header">
       <h4 class="modal-title">Goals</h4>
     </div>
