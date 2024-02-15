@@ -55,6 +55,10 @@
                         $x=$ratings->user->image
                     @endphp
                     <img src="{{ asset('imageprfile/'. $x) }}" width="40" height="40" class="rounded-circle mr-3"/>
+                        @php
+                        $x=$ratings->user->image
+                    @endphp
+                    <img src="{{ asset('imageprfile/'. $x) }}" width="40" height="40" class="rounded-circle mr-3"/>
                         <div class="w-100">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex flex-row align-items-center">

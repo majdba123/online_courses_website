@@ -174,11 +174,11 @@ Route::group(['prefix' => 'video', 'middleware' => ['auth','CheckCoursePayment',
 Route::get('/order/place/{id}', [OrderController::class,'index2'])->name('order.place')->middleware(['verified','auth']);
 Route::post('/order/place/{id}', [OrderController::class,'store'])->name('order.store')->middleware(['verified','auth']);
 
-Route::get('/generate_url/{id}',[UrlGeneratorController::class, 'generateUrl'])->name('generate_url')->middleware(['CheckVideoPayment','auth']);
-Route::get('/expired_url',[UrlGeneratorController::class, 'checkUrlExpiration'])->middleware(['CheckVideoPayment','auth']);
+Route::get('/generate_url/{id}',[UrlGeneratorController::class, 'generateUrl'])->name('generate_url')->middleware(['auth']);
+Route::get('/expired_url',[UrlGeneratorController::class, 'checkUrlExpiration'])->middleware(['auth']);
 
 
-Route::get('videos/{videoName}', [VideoController::class,'show2'])->name('videos.show2')->middleware(['CheckVideoPayment','auth']);
+Route::get('videos/{videoName}', [VideoController::class,'show2'])->name('videos.show2')->middleware(['auth']);
 
 /**GMAIL SIGN_IN */
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
