@@ -15,6 +15,7 @@
             </p>
         </div>
     </div>
+
 </div>
 <div class="courses">
     @foreach ( $video as $videos )
@@ -50,6 +51,10 @@
                 <div class="mt-2">
                     @foreach ( $rating as $ratings )
                     <div class="d-flex flex-row p-3">
+                    @php
+                        $x=$ratings->user->image
+                    @endphp
+                    <img src="{{ asset('imageprfile/'. $x) }}" width="40" height="40" class="rounded-circle mr-3"/>
                         @php
                         $x=$ratings->user->image
                     @endphp

@@ -3,9 +3,9 @@
 <div class="backgroundq">
     <div class="containerq">
         <div class="headerr">
-            <button id="button1" onclick="showcontents(3)">المفضلة</button>
-            <button id="button2" onclick="showcontents(2)">الدورات</button><button id="button3"
-                onclick="showcontents(1)">حسابك الشخصي</button>
+            <button id="button1" onclick="showcontentss(3)">المفضلة</button>
+            <button id="button2" onclick="showcontentss(2)">الدورات</button>
+            <button id="button3" onclick="showcontentss(1)">حسابك الشخصي</button>
         </div>
     </div>
     <div class="containeq">
@@ -19,7 +19,8 @@
                 <div class="contactussubmetq">
                     <div class="hyhy">
                         <div class="tablex">
-                            <div class="imagew"><img class="imgprofile" src="../../profile.jpg" alt="../../profile.jpg"> </div>
+                            <div class="imagew"><img class="imgprofile" src="../../profile.jpg" alt="../../profile.jpg">
+                            </div>
                             <div class="buttons">
                                 <div class="remove"><button class="remo">Remove</button></div>
                                 <div class="remove"><button class="remo">Update</button></div>
@@ -222,7 +223,7 @@
 
 
 <script>
-    function showcontents(num) {
+    function showcontentss(num) {
         var contents1 = document.getElementById("contacts1");
         var contents2 = document.getElementById("contacts2");
         var contents3 = document.getElementById("contacts3");
@@ -254,10 +255,11 @@
         text-align: center !important;
         align-items: center !important;
         padding: 30px;
-        padding-left:55px;
+        padding-left: 55px;
     }
-    .remove{
-        padding:10px;
+
+    .remove {
+        padding: 10px;
     }
 
     .qwerqwer {
@@ -265,6 +267,7 @@
         align-items: right !important;
         background-color: white !important;
     }
+
     .remo {
         font-size: 14px;
         border: none;
@@ -272,6 +275,7 @@
         background-color: #00aeef;
         color: white;
     }
+
     .backgroundq {
         background-color: #eeeeee;
         justify-content: space-between;
