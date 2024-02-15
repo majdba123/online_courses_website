@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('benefits');
             $table->string('title');
-            $table->foreignIdFor(Web::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate()->defult(1);
+            $table->foreignIdFor(Web::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

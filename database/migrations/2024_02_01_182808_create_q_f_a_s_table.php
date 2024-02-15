@@ -13,10 +13,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('q_f_a_s', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->string('quastion');
             $table->string('answee');
-            $table->foreignIdFor(Web::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate()->defult(1);
+            $table->foreignIdFor(Web::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }

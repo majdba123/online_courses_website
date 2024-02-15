@@ -15,49 +15,6 @@
             </p>
         </div>
     </div>
-<<<<<<< Updated upstream
-
-=======
-    <div class="container mt-5 mb-5">
-      <div class="row height d-flex justify-content-center align-items-center">
-        <div>
-          <div class="card">
-            <div class="p-3">
-              <h5>Ratting</h5>
-            </div>
-            <div class="mt-3 d-flex flex-row align-items-center p-3 form-color">
-                <form action="{{route('store.rate' , $id_course)}}" method="post">
-                    @csrf
-                    @method('POST')
-                    <input type="text" name="comment" class="form-control" placeholder="Enter your comment..."/>
-                    <button type="submit">send</button>
-                </form>
-            </div>
-            <div class="mt-2">
-            @foreach ( $rating as $ratings )
-                <div class="d-flex flex-row p-3">
-                    @php
-                        $x=$ratings->user->image
-                    @endphp
-                    <img src="{{ asset('imageprfile/'. $x) }}" width="40" height="40" class="rounded-circle mr-3"/>
-                    <div class="w-100">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="d-flex flex-row align-items-center">
-                                 <span class="mr-2">{{ $ratings->user->name }}</span>
-                            </div>
-                        </div>
-                        <p class="text-justify comment-text mb-0">
-                            {{ $ratings->comment }}
-                        </p>
-                    </div>
-                </div>
-            @endforeach
-            </div>
-            </div>
-        </div>
-        </div>
-      </div>
->>>>>>> Stashed changes
 </div>
 <div class="courses">
     @foreach ( $video as $videos )
@@ -93,7 +50,10 @@
                 <div class="mt-2">
                     @foreach ( $rating as $ratings )
                     <div class="d-flex flex-row p-3">
-                        <img src="https://i.imgur.com/zQZSWrt.jpg" width="40" height="40" class="rounded-circle mr-3" />
+                        @php
+                        $x=$ratings->user->image
+                    @endphp
+                    <img src="{{ asset('imageprfile/'. $x) }}" width="40" height="40" class="rounded-circle mr-3"/>
                         <div class="w-100">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex flex-row align-items-center">
