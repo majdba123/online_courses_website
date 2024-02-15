@@ -29,7 +29,7 @@
       </div>
       <div class="form-group">
         <label>discription</label>
-        <input type="text" name="discription" class="form-control"  value="{{ $video->discription }}"  />
+        <textarea name="description" maxlength="65535"  value="{{ $video->discription }}" class="form-control"></textarea>
       </div>
 
       <div class="form-group">

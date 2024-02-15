@@ -54,7 +54,7 @@ class VideoController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'discription' => ['sometimes', 'required', 'string', 'max:65535'],
             'video_url'=>'required|mimes:mp4,mov,ogg|max:1000000000',
-            'courses_id' => ['required', 'integer', 'min:1'],
+            'courses_id' => ['required'],
          ]);
          if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();

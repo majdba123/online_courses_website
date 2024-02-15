@@ -19,7 +19,7 @@
                 <div class="contactussubmetq">
                     <div class="hyhy">
                         <div class="tablex">
-                            <div class="imagew"><img class="imgprofile" src="../../profile.jpg" alt="dssd"> </div>
+                            <div class="imagew"><img class="imgprofile" src="../../profile.jpg" alt="../../profile.jpg"> </div>
                             <div class="buttons">
                                 <div class="remove"><button class="remo">Remove</button></div>
                                 <div class="remove"><button class="remo">Update</button></div>

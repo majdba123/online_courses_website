@@ -34,10 +34,12 @@
                 </h4>
             </h3>
             <h2></h2>
-            <h3>
-                Discount:
-                <h4>{{ $courses->discount->discount_percentage }}</h4>
-            </h3>
+            @if ($courses->discount->discount_percentage != 0)
+                  <h4>Price after discount: {{ $courses->price - ($courses->price * $courses->discount->discount_percentage / 100) }} </h4>
+            @else
+                 <h4> No discount available </h4>
+            @endif
+
             <h2></h2>
             <h3>send a copy of the transfer via Al-Haram Company:</h3>
             <input type="file" class="form-control" id="exampleFormControlInput1" name="imge">

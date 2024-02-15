@@ -12,6 +12,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\BenefitsController;
 use App\Http\Controllers\QFAController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\AchievementsController;
 use App\Http\Controllers\OrderController;
@@ -43,7 +44,6 @@ Route::post('create-session', [WebController::class, 'createsession'])->name('cr
 Auth::routes([
     'verify'=> true
 ]);
-#Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['verified','CheckUserStatus']);
 
 /**admin */
 Route::group(['prefix' => 'dashboard', 'middleware' => [ 'AdminMiddleware']], function ()
@@ -145,7 +145,7 @@ Route::post('contact_store', [InquireController::class,'store'])->name('store.co
 Route::get('about_as', [WebController::class,'about'])->name('about.index');
 
 /** profile_user */
-Route::group(['prefix' => 'profile', 'middleware' => [ 'auth','verified','CheckUserStatus']], function ()
+Route::group(['prefix' => 'profile', 'middleware' => [ 'auth','verified']], function ()
 {
     Route::get('/', [ProfileController::class,'index'])->name('profile.index');
     Route::get('edit_profile/{id}', [ProfileController::class,'edit'])->name('profile.edit');
@@ -158,55 +158,29 @@ Route::group(['prefix' => 'profile', 'middleware' => [ 'auth','verified','CheckU
 
 /**Courses */
 Route::get('courses_section', [CoursesController::class,'index2'])->name('courses');
+Route::post('courses_favourite_add/{id}', [FavoriteController::class,'store'])->name('store.fff')->middleware('auth');
+
 
 /**rating courses */
-Route::post('rate_store/{id}', [RatingController::class,'store'])->name('store.rate');
+Route::post('rate_store/{id}', [RatingController::class,'store'])->name('store.rate')->middleware(['CheckCoursePayment','auth']);
 
 /**video */
-Route::group(['prefix' => 'video', 'middleware' => ['CheckCoursePayment']], function ()
+Route::group(['prefix' => 'video', 'middleware' => ['auth','CheckCoursePayment','verified']], function ()
 {
     Route::get('video_section/{id}', [VideoController::class,'index2'])->name('video');
 });
 
 /**Order_Place */
-Route::get('/order/place/{id}', [OrderController::class,'index2'])->name('order.place');
-Route::post('/order/place/{id}', [OrderController::class,'store'])->name('order.store');
+Route::get('/order/place/{id}', [OrderController::class,'index2'])->name('order.place')->middleware(['verified','auth']);
+Route::post('/order/place/{id}', [OrderController::class,'store'])->name('order.store')->middleware(['verified','auth']);
+
+Route::get('/generate_url/{id}',[UrlGeneratorController::class, 'generateUrl'])->name('generate_url')->middleware(['CheckVideoPayment','auth']);
+Route::get('/expired_url',[UrlGeneratorController::class, 'checkUrlExpiration'])->middleware(['CheckVideoPayment','auth']);
 
 
-
-
-
-
-
-Route::get('/generate_url/{id}',[UrlGeneratorController::class, 'generateUrl'])->name('generate_url')->middleware('CheckVideoPayment');
-Route::get('/expired_url',[UrlGeneratorController::class, 'checkUrlExpiration']);
-
-
-Route::get('videos/{videoName}', [VideoController::class,'show2'])->name('videos.show2')->middleware('preventDownload');
-
-
-
-
-
-
-
-
-
-
-
-
+Route::get('videos/{videoName}', [VideoController::class,'show2'])->name('videos.show2')->middleware(['CheckVideoPayment','auth']);
 
 /**GMAIL SIGN_IN */
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallback'])->name('google.callback');
 
-
-
-#Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware(['verified','CheckUserStatus']);
-
-#Route::post('store_rate', [RatingController::class,'store'])->name('rate.store');
-/*Route::group(['prefix' => 'home', 'middleware' => [ 'auth']], function ()
-{
-
-});
-*/

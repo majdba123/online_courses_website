@@ -53,8 +53,8 @@ class CoursesController extends Controller
             'price' => 'required|numeric|min:0',
             'discription' => 'required|string|max:65535',
             'time_of_course' => 'required|string|max:255',
-            'doctor_id' => 'sometimes|required|integer|exists:doctors,id',
-            'discount_id' => 'sometimes|required|integer|exists:discounts,id',
+            'doctor_id' => 'sometimes|required|exists:doctors,id',
+            'discount_id' => 'sometimes|required|exists:discounts,id',
          ]);
          if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();

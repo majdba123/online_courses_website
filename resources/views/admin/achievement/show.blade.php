@@ -63,7 +63,7 @@
 
             @foreach ( $achievement as $achievements)
             <tr>
-                <td>{{ $achievements->id }}</td>
+                <td>{{ ++$i }}</td>
                 <td>{{ $achievements->title }}</td>
                 <td>{{ $achievements->achievement }}</td>
                 <td>
