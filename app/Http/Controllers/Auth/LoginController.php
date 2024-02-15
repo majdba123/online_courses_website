@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request as IlluminateRequest;
 class LoginController extends Controller
 {
     /*
@@ -32,6 +32,17 @@ class LoginController extends Controller
      *
      * @return void
      */
+    protected function authenticated(IlluminateRequest $request, $user)
+    {
+        if ($user->status == 1) {
+            return redirect()->intended($this->redirectPath());
+        } else {
+            $this->guard()->logout();
+            return redirect()->back()
+                ->withInput($request->only($this->username(), 'remember'))
+                ->withErrors(['active' => 'Your account is blocked.']);
+        }
+    }
     public function __construct()
     {
         $this->middleware('guest')->except('logout');

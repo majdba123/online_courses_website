@@ -20,7 +20,11 @@
         @foreach ($courses as $coursess )
         <div class="advantages">
             <div class="truew">
-                <button class="Favorite">Add To Favorite</button>
+                <form method="post" action="{{ route('store.fff' , $coursess->id )}}">
+                    @csrf
+                    @method('POST')
+                  <button type="submit" class="Favorite">Add To Favorite</button>
+                </form>
                 <a href="{{ route('video', $coursess->id ) }}" class="url">
                     <h1>{{$coursess->name }}</h1>
                 </a>

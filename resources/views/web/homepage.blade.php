@@ -69,7 +69,10 @@
             </p>
             <div class="contai">
                 <div class="comment">
-                    <img src="{{ asset('logo.jpg') }}" alt="" width="40px" />
+                @php
+                    $x=$rates->user->image
+                @endphp
+                <img src="{{ asset('imageprfile/'. $x) }}" width="40" height="40" class="rounded-circle mr-3"/>
                 </div>
                 <div class="comment">{{ $rates->user->name }} </div>
             </div>

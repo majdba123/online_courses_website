@@ -24,6 +24,7 @@ class CheckCoursePayment
             return $next($request);
 
         }elseif(auth()->check() && $order && $order->status != 1) {
+            session()->flash('success', 'Your order is in process.');
             return redirect()->back();
         }else{
             return redirect()->route('order.place', ['id' => $courseId]);

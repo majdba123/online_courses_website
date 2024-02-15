@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('goals', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('golas');
+            $table->text('golas');
             $table->foreignIdFor(Web::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate()->defult(1);
             $table->timestamps();
         });

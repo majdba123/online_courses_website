@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->integer('type_user')->default(0);
-            $table->string('image')->nullable();
+            $table->string('image')->default('profile.jpg');
             $table->string('address')->nullable();
             $table->integer('age')->nullable();
             $table->integer('status')->default(1);
@@ -29,6 +29,7 @@ return new class extends Migration
         });
         DB::table('users')->insert([
             [
+                'id' => Str::uuid(),
                 'name' => 'robert',
                 'type_user' => 1,
                 'status' => 1,

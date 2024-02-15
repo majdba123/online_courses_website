@@ -47,7 +47,7 @@
 
             @foreach ( $benefits as $benefitss)
             <tr>
-                <td>{{ $benefitss->id }}</td>
+                <td>{{ ++$i}}</td>
                 <td>{{ $benefitss->title }}</td>
                 <td>{{ $benefitss->benefits }}</td>
                 <td>

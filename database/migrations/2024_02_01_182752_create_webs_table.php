@@ -13,23 +13,23 @@ return new class extends Migration
     {
         Schema::create('webs', function (Blueprint $table) {
             $table->id();
-            $table->string('introduction')->default('http://127.0.0.1:8000 ');
-            $table->string('youtube')->default('http://127.0.0.1:8000 ');
-            $table->string('facebook')->default('http://127.0.0.1:8000');
-            $table->string('linkedin')->default('http://127.0.0.1:8000 ');
-            $table->string('phone')->default('099999999 ');
-            $table->string('gmail')->default('http://127.0.0.1:8000 ');
+            $table->string('introduction');
+            $table->string('youtube');
+            $table->string('facebook');
+            $table->string('linkedin');
+            $table->string('phone');
+            $table->string('gmail');
 
             $table->timestamps();
         });
         DB::table('webs')->insert([
             [
-                'introduction' => 'http://127.0.0.1:8000',
-                'youtube' => 'http://127.0.0.1:8000',
-                'facebook' => 'http://127.0.0.1:8000',
-                'linkedin' => 'http://127.0.0.1:8000',
-                'phone' => '099999999',
-                'gmail' => 'http://127.0.0.1:8000',
+                'introduction' => 'https://www.youtube.com/embed/5Xog8d_2um4?si=0VbO5AewN7kZ3EAU',
+                'youtube' => 'https://www.youtube.com/',
+                'facebook' => 'https://www.facebook.com/',
+                'linkedin' => 'https://www.linkedin.com/',
+                'phone' => '0935027218',
+                'gmail' => 'majebayer@gmail.com',
             ]
         ]);
     }

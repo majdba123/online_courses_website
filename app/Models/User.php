@@ -5,7 +5,10 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
+
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 
@@ -29,6 +32,8 @@ class User extends Authenticatable  implements MustVerifyEmail
         'phone',
         'age'
     ];
+    protected $keyType = 'string'; // Set the key type to UUID
+    public $incrementing = false; // Disable auto-incrementing
 
     /**
      * The attributes that should be hidden for serialization.
@@ -64,6 +69,13 @@ class User extends Authenticatable  implements MustVerifyEmail
     public function rating()
     {
         return $this->hasMany(Rating::class);
+    }
+    public static function boot() {
+        parent::boot();
+        // Auto generate UUID when creating data User
+        static::creating(function ($model) {
+            $model->id = Str::uuid();
+        });
     }
 
 }

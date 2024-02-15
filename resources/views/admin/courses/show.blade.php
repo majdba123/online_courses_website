@@ -114,7 +114,7 @@
               </div>
               <div class="form-group">
                 <label>discription</label>
-                <textarea name="discription" class="form-control" required></textarea>
+                <textarea name="discription" class="form-control" maxlength="65535" required></textarea>
               </div>
               <div class="form-group">
                 <label>Hour 0f course</label>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('benefits', function (Blueprint $table) {
             $table->id();
-            $table->string('benefits');
+            $table->text('benefits');
             $table->string('title');
             $table->foreignIdFor(Web::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate()->defult(1);
             $table->timestamps();
