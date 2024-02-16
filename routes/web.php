@@ -33,7 +33,7 @@ use App\Http\Controllers\UrlGeneratorController;
 |
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('limit.requests.per.minute');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('forget-session', [WebController::class, 'forgetSession'])->name('forget-session');
 Route::post('create-session', [WebController::class, 'createsession'])->name('create-session');
 

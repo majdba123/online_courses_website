@@ -14,6 +14,7 @@ class RateLimitMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+
     public function handle(Request $request, Closure $next)
     {
         $limit = 50; // Requests per minute
