@@ -138,6 +138,16 @@
         background-color: #eeeeee;
     }
 
+    button[type="submit"] {
+        padding: 7px;
+        font-size: 16px;
+        border: none;
+        width: 360px;
+        border-radius: 5px;
+        background-color: #00aeef;
+        color: white;
+    }
+
     .aaa {
         padding: 7px;
         font-size: 16px;
