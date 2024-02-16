@@ -137,7 +137,7 @@
         text-align: right;
     }
 
-    input[type="button"] {
+    button[type="submit"] {
         padding: 7px;
         font-size: 16px;
         border: none;
