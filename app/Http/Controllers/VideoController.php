@@ -18,7 +18,7 @@ class VideoController extends Controller
     public function index()
     {
         $video=Video::latest()->paginate(5);
-        $courses = Courses::paginate(4);
+        $courses = Courses::all();
         $i=0;
         return view ('admin.video.show',compact('video','courses','i'));
     }

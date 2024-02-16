@@ -17,7 +17,7 @@ class RateLimitMiddleware
 
     public function handle(Request $request, Closure $next)
     {
-        $limit = 50; // Requests per minute
+        $limit = 10; // Requests per minute
         $decayMinutes = 1; // Reset in 1 minute
         $key = $request->user()
             ? $request->user()->id . ':' . $request->ip()
