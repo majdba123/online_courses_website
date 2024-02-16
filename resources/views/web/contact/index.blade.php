@@ -90,7 +90,7 @@
     }
 
     .contactdescription p {
-        font-size: 10px;
+        font-size: 15px;
         padding-top: 40px;
     }
 
@@ -109,7 +109,7 @@
     .communication {
         background-color: white;
         padding: 40px;
-        padding-top: 83px;
+        padding-top: 66px;
         padding-bottom: 84px;
     }
 
@@ -140,7 +140,7 @@
         padding: 7px;
         font-size: 16px;
         border: none;
-        width: 260px;
+        width: 360px;
         border-radius: 5px;
         text-align: left;
         background-color: white;
@@ -150,7 +150,7 @@
         padding: 7px;
         font-size: 16px;
         border: none;
-        width: 420px;
+        width: 720px;
         border-radius: 5px;
         text-align: left;
     }
@@ -177,7 +177,7 @@
         padding: 7px;
         font-size: 16px;
         border: none;
-        width: 420px;
+        width: 720px;
         border-radius: 5px;
         text-align: left;
         height: 120px;
@@ -215,9 +215,29 @@
     button[type="submit"] {
         text-align: center;
         border-radius: 10px;
-        padding: 10px;
+        padding: 5.5px 140px;
+        font-size:15px;
+
         border: none;
         background-color: #00aeef;
+    }
+    @media screen and (max-width: 500px) {
+        h1 {
+            font-size: 20px;
+        }
+
+       .contact, .contactussubmet {            margin: 0px;
+
+
+            padding: 0px;
+            display: block;
+
+        }
+
+        .descreption {
+            padding: 0px;
+        }
+        #inputmessage,#inputsubject{width: 340px;}
     }
 
 </style>

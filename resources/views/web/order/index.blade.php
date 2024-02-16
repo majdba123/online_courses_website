@@ -11,22 +11,15 @@
                 Name Course:
                 <h4>{{ $courses->name }}</h4>
             </h3>
-            <h2></h2>
             <h3>
                 Price:
                 <h4>{{ $courses->price }}</h4>
             </h3>
-            <h2></h2>
             <h3>
                 Doctor:
                 <h4>{{ $courses->doctor->name }}</h4>
             </h3>
-            <h2></h2>
-            <h3>
-                Number_Of_Video:
-                <h4>2</h4>
-            </h3>
-            <h2></h2>
+
             <h3>
                 Discrption:
                 <h4>
@@ -55,7 +48,7 @@
         background-color: #eeeeee;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 200px 40px 200px;
+        padding: 0px 500px 40px 500px;
     }
 
     image-preview {
@@ -71,23 +64,4 @@
         padding: 20px;
     }
 
-    .advantages h4 {
-        display: inline;
-    }
-
-    h3,
-    h4 {
-        display: inline;
-    }
-
-    .asas {
-        margin: 30px;
-        margin-left: 80px;
-        padding: 7px;
-        font-size: 16px;
-        width: 200px;
-        border-radius: 40px;
-        background-color: #00aeef;
-        color: white;
-    }
 </style>

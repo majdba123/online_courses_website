@@ -169,4 +169,25 @@
         padding-top: 50px;
         padding-left: 50px;
     }
+
+    @media screen and (max-width: 500px) {
+        h1 {
+            font-size: 20px;
+        }
+
+        .bodypage {
+            padding: 0px;
+            display: block;
+
+        }
+
+        .descreption {
+            padding: 0px;
+            margin: 0px;
+        }
+
+
+
+
+    }
 </style>

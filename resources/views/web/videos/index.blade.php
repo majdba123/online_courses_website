@@ -175,7 +175,7 @@
         background-color: #eeeeee;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 200px 40px 200px;
+        padding: 50px 200px 40px 200px;
     }
 
     .contact {
@@ -225,5 +225,25 @@
         width: 750px;
         border-radius: 5px;
         text-align: left;
+    }
+    .hidden {
+        display: none !important;
+    }
+    @media screen and (max-width: 500px) {
+        h1 {
+            font-size: 20px;
+        }
+
+        .contact,.background {
+            padding: 0px;
+            margin:0px;
+        }
+
+       .contact  {
+            display: block;
+        }
+        .comments{width: 300px;}
+
+
     }
 </style>

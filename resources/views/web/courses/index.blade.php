@@ -23,18 +23,18 @@
                 <form method="post" action="{{ route('store.fff' , $coursess->id )}}">
                     @csrf
                     @method('POST')
-                  <button type="submit" class="Favorite">Add To Favorite</button>
+                    <button type="submit" class="Favorite">Add To Favorite</button>
                 </form>
                 <a href="{{ route('video', $coursess->id ) }}" class="url">
                     <h1>{{$coursess->name }}</h1>
                 </a>
             </div>
-            <h1>   {{$coursess->time_of_course }} : الوقت </h1>
+            <h3> {{$coursess->time_of_course }} : الوقت </h3>
             <br>
-            <h1>Discrption</h1>
-            <h4>
+            <h3> : الوصف </h3>
+            <h5>
                 {{ $coursess -> discription }}
-            </h4>
+            </h5>
             <h3>{{ $coursess->doctor->name }} : الدكتور</h3>
             <br>
             <h3>: المحتويات</h3>
@@ -61,6 +61,10 @@
 </div>
 @endsection
 <style>
+    .hidden {
+        display: none !important;
+    }
+
     .Favorite {
         font-size: 12px;
         border: none;
@@ -78,7 +82,7 @@
         background-color: #eeeeee;
         justify-content: space-between;
         align-items: center;
-        padding: 0px 150px 40px 150px;
+        padding: 50px 150px 40px 150px;
     }
 
     .contactdescription p {
@@ -119,7 +123,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(184px, 1fr));
         grid-gap: 20px;
-        background-color:white !important;
+        background-color: white !important;
     }
 
     .card {
@@ -132,5 +136,22 @@
 
     .number {
         background-color: white;
+    }
+
+    @media screen and (max-width: 500px) {
+        h1 {
+            font-size: 20px;
+        }
+
+        .background {
+            padding: 0px;
+        }
+
+        .contact {
+            display: block;
+            padding: 20px;
+        }
+
+
     }
 </style>

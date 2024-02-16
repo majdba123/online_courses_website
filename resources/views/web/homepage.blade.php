@@ -11,8 +11,8 @@
         <div class="browserr"><a class="browser" href="{{ route('courses') }}">تصفح الدورات</a></div>
     </div>
     <div class="video">
-        <iframe width="560" height="315" src="{{ DB::table('webs')->where('id', 1)->value('introduction') }}"
-            title="YouTube video player" frameborder="0"
+        <iframe src="{{ DB::table('webs')->where('id', 1)->value('introduction') }}" title="YouTube video player"
+            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
     </div>
@@ -46,13 +46,13 @@
                 <form method="post" action="{{ route('store.fff' , $courses->id )}}">
                     @csrf
                     @method('POST')
-                  <button type="submit" class="Favorite">Add To Favorite</button>
+                    <button type="submit" class="Favorite">Add To Favorite</button>
                 </form>
                 <h1 class="number"> {{ $courses->name }}</h1>
             </div>
             <h2 class="number"> Doctor : {{ $courses->doctor->name }}</h2>
             <h2 class="number"> Price :{{ $courses->price }}</h2>
-            <p class="number">
+            <p class="number dis">
                 {{ $courses->discription }}
             </p>
             <div class="getit"><a href="{{ route('video' , $courses->id ) }}">Get it Now</a></div>
@@ -68,27 +68,31 @@
     <div class="card-containe">
         @foreach ( $rate as $rates )
         <div class="card">
-            <p class="number">
+            <p class="number dis">
                 {{ $rates->comment }}
             </p>
             <div class="contai">
-                <div class="comment">
-                @php
+                <div class="comment ">
+                    @php
                     $x=$rates->user->image
-                @endphp
-                <img src="{{ asset('imageprfile/'. $x) }}" width="40" height="40" class="rounded-circle mr-3"/>
+                    @endphp
+                    <img src="{{ asset('imageprfile/'. $x) }}" width="40" height="40" class="rounded-circle mr-3" />
                 </div>
                 <div class="comment">{{ $rates->user->name }} </div>
             </div>
         </div>
         @endforeach
     </div>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center w-100 ">
         {!! $rate->links() !!}
     </div>
     <br>
-    <div class="question">
-        <div class="allquestion">
+    <div class="question" dir="rtl">
+        <div class="all">
+            <h1>الأسئلة الشائعة</h1>
+            <h5>هل لديك المزيد من الأسئلة؟ <a href="{{ route('contact.index') }}"> تواصل معنا</a></h5>
+        </div>
+        <div class="allquestion" dir="ltr">
             <div class="container">
                 <div class="accordion">
                     @foreach($qfa as $qfas)
@@ -107,19 +111,20 @@
                 </div>
             </div>
         </div>
-        <div class="all">
-            <h1>الأسئلة الشائعة</h1>
-            <h5>هل لديك المزيد من الأسئلة؟ <a href="{{ route('contact.index') }}"> تواصل معنا</a></h5>
-        </div>
     </div>
     <br>
 </div>
 
 @endsection
 <style>
-    .all{
-        text-align:center;
+    .hidden {
+        display: none !important;
     }
+
+    .all {
+        text-align: center;
+    }
+
     .Favorite {
         font-size: 12px;
         border: none;
@@ -139,7 +144,7 @@
 
         justify-content: space-between;
         align-items: center;
-        padding: 30px 150px 10px 150px;
+        padding: 80px 150px 10px 150px;
     }
 
     .hh {
@@ -205,6 +210,11 @@
         background-color: white;
     }
 
+    .dis {
+        height:100px;
+
+    }
+
     .getit a {
         background-color: #eeeeee;
         text-decoration: none;
@@ -231,6 +241,8 @@
         padding: 6px;
         border-radius: 5px;
         background-color: #eeeeee;
+        text-align: bottom;
+        align-items: bottom;
     }
 
     span {
@@ -240,12 +252,13 @@
     .comment {
         background: none;
         display: flex;
-        align-items: center;
+        text-align: bottom !important;
+        align-items: bottom !;
     }
 
     .question {
         display: grid;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 1fr 2fr;
 
 
         justify-content: space-between;
@@ -359,5 +372,23 @@
         font-size: 1rem;
         font-weight: 300;
         margin: 2em 0;
+    }
+
+    @media screen and (max-width: 500px) {
+        h1 {
+            font-size: 20px;
+        }
+
+        .background {
+            padding: 0px;
+        }
+
+        .question {
+            display: block;
+        }
+
+        iframe {
+            height: 300px;
+        }
     }
 </style>

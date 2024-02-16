@@ -1,9 +1,9 @@
 <html>
 
 <head>
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
 
     <link href="https://db.onlinewebfonts.com/c/dee436f274c410c23fc3de43367ef1ae?family=Janna+LT" rel="stylesheet" />
@@ -25,61 +25,80 @@
     <header>
         <div class="youtube"><a href="{{ DB::table('webs')->where('id', 1)->value('youtube') }}">الق نظرة على قناة
                 اليوتيوب</a></div>
-        <div class="Header">
-            <div class="HeaderPage">
-                <h3>
-                    <ul>
-                        <li class="navbar"><img src="{{ asset('logo.jpg') }}" alt="" width="40px" /></li>
-                        <li class="navbar"><a href="{{ route('home') }}"> الرئيسية</a></li>
-                        <li class="navbar"><a href="{{ route('courses') }}">الدورات</a></li>
-                        <li class="navbar"><a href="{{ route('about.index') }}">عن المنصة</a></li>
-                        <li class="navbar"><a href="{{ route('profile.index') }}">الصفحة الشخصية </a></li>
-                        <li class="navbar"><a href="{{ route('contact.index') }}">تواصل معنا</a></li>
+        <nav class="asasasas navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><img src="{{ asset('logo.jpg') }}" alt="" width="40px" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class=" asqwqw nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}"> الرئيسية</a>
+                        </li>
+                        <li class="asqwqw nav-item">
+                            <a class="  nav-link active" aria-current="page" href="{{ route('courses') }}"> الدورات</a>
+                        </li>
+                        <li class=" asqwqw nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('about.index') }}"> عن
+                                المنصة</a>
+                        </li>
+                        <li class="asqwqw nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('profile.index') }}"> الصفحة
+                                الشخصية </a>
+                        </li>
+                        <li class=" asqwqw nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ route('contact.index') }}"> تواصل
+                                معنا</a>
+                        </li>
                     </ul>
-                </h3>
-            </div>
-            <ul>
-                <!-- Authentication Links -->
-                @guest
-                @if (Route::has('login'))
-                <li class="navbar">
-                    <a class="Login" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-                @endif
+                    <div class="d-flex">
+                        @guest
+                        @if (Route::has('login'))
+                        <li class="asqwqw navbar">
+                            <a class=" Login" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @endif
 
-                @if (Route::has('register'))
-                <li class="navbar">
-                    <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                </li>
-                @endif
-                @else
-                <li class="navbar">
-                    <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                        v-pre>
-                        {{ Auth::user()->name }}
-                    </a>
+                        @if (Route::has('register'))
+                        <li class=" asqwqw navbar">
+                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                        @endif
+                        @else
+                        <li class="navbar">
+                            <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
 
-                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
+                                    {{ __('Logout') }}
+                                </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest
+
                     </div>
-                </li>
-                @endguest
-            </ul>
-        </div>
+                </div>
+            </div>
+        </nav>
     </header>
+
     <script>
         function showcontents(num) {
             var conta1 = document.getElementById("conta");
 
             if (num === 1) {
-                conta.style.display = "none";
+                conta.style.display =
             }
         }
     </script>
@@ -141,14 +160,14 @@
                             <p>Our Goals</p>
                         </a>
                     </div>
-                    <div>
-                        <a href="{{ DB::table('webs')->where('id', 1)->value('facebook') }}"> <img class="facebook"
-                                src="../../facebook.png" alt=""></a>
-
-                        <a href="{{ DB::table('webs')->where('id', 1)->value('linkedin') }}"> <img class="facebook"
-                                src="../../linkedin.png" alt=""></a>
-                    </div>
                 </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-start h-l-100">
+                <a href="{{ DB::table('webs')->where('id', 1)->value('facebook') }}"> <img class="facebook"
+                        src="../../facebook.png" alt=""></a>
+
+                <a href="{{ DB::table('webs')->where('id', 1)->value('linkedin') }}"> <img class="facebook"
+                        src="../../linkedin.png" alt=""></a>
             </div>
         </div>
     </footer>
@@ -187,10 +206,19 @@
         font-family: Janna LT;
     }
 
+    header {
+        background-color: #eeeeee !important;
+    }
+
     .facebook {
         width: 30px;
         border-radius: 10px;
         margin: 10px;
+    }
+
+    .asasasas {
+        padding: 0 80px;
+        background-color: #eeeeee !important;
     }
 
     /*header*/
@@ -202,10 +230,6 @@
         border-radius: 10px;
     }
 
-    .conta {
-        background-color: #eeeeee;
-        padding: 30px;
-    }
 
     .youtube a {
         text-decoration: none;
@@ -217,21 +241,8 @@
         border-radius: 10px;
     }
 
-    header {
-        background-color: #eeeeee;
-    }
-
-    .Header {
-        background-color: #eeeeee;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 80px;
-    }
-
-
-    .Header .navbar a,
-    .Header .LoginOrRegester a {
+    .navbar a,
+    .LoginOrRegester a {
         flex-direction: row;
         text-decoration: none;
         color: black;
@@ -239,13 +250,8 @@
         font-size: 15px;
     }
 
-    .Header .navbar {
-        list-style-type: none;
-        text-align: left;
-        display: inline-block;
-    }
 
-    .Header .navbar a:hover {
+    .asqwqw a:hover {
         list-style-type: none;
         display: inline-block;
         background-color: rgb(176, 168, 168);
@@ -268,7 +274,7 @@
         align-items: center;
         padding: 0 160px;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 5fr 5fr 2fr;
         padding-top: 80px;
         font-size: 15px;
     }
@@ -281,6 +287,15 @@
     a {
         text-decoration: none;
         color: black;
+    }
+
+    @media screen and (max-width: 500px) {
+        .footer {
+            display: block;
+            padding: 0px;
+            margin: 20px 0px 0px 40px;
+        }
+
     }
 </style>
 
