@@ -74,8 +74,7 @@
     <div class="contactus">
         <a href="{{ route('register') }}">Join Now</a>
     </div>
-    <br>
-    <br>
+
 
 </div>
 @endsection
@@ -93,7 +92,7 @@
     }
 
     .contactus {
-        font-size:15px;
+        font-size: 15px;
 
     }
 
