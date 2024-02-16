@@ -95,8 +95,7 @@ class OrderController extends Controller
         ]);
         $order->save();
         Cache::forget('order');
-        return redirect()->back()->with('success','your order has placed');
-    }
+        return redirect()->route('courses')->with('success','Your order has been placed.');    }
 
 
 }
