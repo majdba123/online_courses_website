@@ -37,7 +37,23 @@
         padding: 20px;
         background-color: #00aeef;
       }
-    </style>
+      @media screen and (max-width: 500px) {
+        h1 {
+            font-size: 20px;
+        }
+
+        .background {
+            padding: 0px;
+        }
+
+        .question {
+            display: block;
+        }
+
+        video {
+            height: 300px;
+        }
+    }
 
 </style>
 

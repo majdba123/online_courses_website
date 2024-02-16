@@ -68,6 +68,9 @@
     </div>
 </div>
 
-
+<style>
+    .hidden {
+        display: none !important;
+    }</style>
 
 @endsection

@@ -137,5 +137,9 @@
       </div>
     </div>
     <!-- Edit Modal HTML -->
+    <style>
+    .hidden {
+        display: none !important;
+    }</style>
 
 @endsection

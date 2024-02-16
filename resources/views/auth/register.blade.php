@@ -59,8 +59,8 @@
                     {{ __('Register') }}
                 </button>
                 <p class="Or">أو</p>
-                <p class="Or"> <a class="gmail" href="{{ route('google.redirect') }}">  <img src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy"
-                            alt="google logo">
+                <p class="Or"> <a class="gmail" href="{{ route('google.redirect') }}"> <img
+                            src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
                         <span>Login with Google</span>
                     </a></p>
                 <p class="Or">هل تملك حساب؟<a href="{{ route('login') }}">قم بتسجيل الدخول</a></p </form>
@@ -70,7 +70,7 @@
 
 @endsection
 <style>
-.gmail {
+    .gmail {
         padding: 0.5rem 1rem;
         border: 1px solid #718096;
         display: flex;
@@ -91,6 +91,7 @@
         width: 1.5rem;
         height: 1.5rem;
     }
+
     .bodypage {
         display: flex;
         justify-content: space-between;
@@ -191,5 +192,27 @@
     .comment {
         padding-top: 50px;
         padding-left: 50px;
+    }
+
+    @media screen and (max-width: 500px) {
+        h1 {
+            font-size: 20px;
+        }
+
+        .bodypage {
+            padding: 0px;
+            display: block;
+
+        }
+
+        .descreption,
+        .comment {
+            padding: 0px;
+            margin: 0px;
+        }
+
+
+
+
     }
 </style>

@@ -20,7 +20,9 @@
                     <div class="hyhy">
                         <div class="tablex">
                             <div class="imagew">
-                                <a href={{ asset('imageprfile/'.$user->image) }}><img id="image-preview" class="imgprofile" src="{{ asset('imageprfile/'.$user->image) }}" alt="not found"></a>
+                                <a href={{ asset('imageprfile/'.$user->image) }}><img id="image-preview"
+                                        class="imgprofile" src="{{ asset('imageprfile/'.$user->image) }}"
+                                        alt="not found"></a>
                             </div>
                         </div>
 
@@ -62,6 +64,16 @@
                                 </div>
                                 <div class="row">
                                     <input type="file" id="file-input" name="image">
+                                    <script>
+                                        document.getElementById('file-input').onchange = function (e) {
+                                            var reader = new FileReader();
+                                            reader.onload = function () {
+                                                var preview = document.getElementById('image-preview');
+                                                preview.src = reader.result;
+                                            }
+                                            reader.readAsDataURL(e.target.files[0]);
+                                        }
+                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -525,5 +537,29 @@
     .text-black-50 {
         color: #808080;
         /* رمز لون النص الرمادي */
+    }
+
+    @media screen and (max-width: 500px) {
+        h1 {
+            font-size: 20px;
+        }
+
+        .backgroundq,.containerq {
+            width: auto;
+
+            padding: 0px;
+        }
+        .containeq{width: auto;}
+
+        .contact {
+            display: block;
+            padding: 20px;
+        }
+
+        .card-container, .hyhy ,.headerr {
+            display: block;
+            padding:0px;
+        }
+
     }
 </style>
