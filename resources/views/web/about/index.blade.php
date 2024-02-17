@@ -90,7 +90,12 @@
 
     }
 
+    img {
+        border-radius: 10px;
+    }
+
     .background {
+
         background-color: #eeeeee;
         justify-content: space-between;
         align-items: center;
@@ -113,6 +118,8 @@
         font-size: 16px;
         padding-top: 40px;
         height: 14vw;
+        border-radius: 10px;
+
     }
 
     .Achievements {
@@ -148,22 +155,26 @@
         margin-left: 100px;
     }
 
-    @media screen and (max-width: 1000px ) {
+    @media screen and (max-width: 1000px) {
 
         h1,
         h3 {
             font-size: 20px;
         }
 
-       .background, .contact ,.contactus,.contactdescription{
+        .background,
+        .contact,
+        .contactus,
+        .contactdescription {
             padding: 0px;
-            margin:0px;
+            margin: 0px;
             height: auto;
 
-     }
+        }
 
         .Achievements,
-        .contact,.Together {
+        .contact,
+        .Together {
             display: block;
             padding: 0px;
         }
