@@ -28,8 +28,10 @@
             </h3>
             <h2></h2>
             @if ($courses->discount->discount_percentage != 0)
-            <h4>Price after discount: {{ $courses->price - ($courses->price * $courses->discount->discount_percentage /
-                100) }} </h4>
+            <h3>Price after discount: <h4>{{ $courses->price - ($courses->price *
+                    $courses->discount->discount_percentage /
+                    100) }} <h4>
+            </h3>
             @else
             <h4> No discount available </h4>
             @endif
@@ -59,11 +61,11 @@
     .advantages {
         text-align: left;
         padding-top: 10px;
-        margin: 30px;
         background-color: white;
         border-radius: 5px;
         padding: 20px;
     }
+    h4{color:#808080 !important; }
 
     @media screen and (max-width: 500px) {
         h1 {
