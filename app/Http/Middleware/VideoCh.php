@@ -21,10 +21,10 @@ class VideoCh
      */
     public function handle($request, Closure $next)
     {
-        $videoName = $request->segment(2);
-        $video = video::where('name', $videoName)->first();
+        $videoName = $request->route()->parameter('videoName');
+        $video = video::where('video_url', $videoName)->first();
         $courseId = $video->courses_id;
-        if (auth()->check()) {
+        if (auth()->check()&& $video) {
             $order = Order::where('courses_id', $courseId)->where('user_id', auth()->id())->first();
             if ($order && $order->status != 0) {
                 // Redirect the user to an error page or show a message
