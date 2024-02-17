@@ -174,7 +174,7 @@ Route::get('/generate_url/{id}',[UrlGeneratorController::class, 'generateUrl'])-
 Route::get('/expired_url',[UrlGeneratorController::class, 'checkUrlExpiration'])->middleware(['auth']);
 
 
-Route::get('videos/{videoName}', [VideoController::class,'show2'])->name('videos.show2')->middleware(['auth']);
+Route::get('videos/{videoName}', [VideoController::class,'show2'])->name('videos.show2')->middleware(['auth','video']);
 
 /**GMAIL SIGN_IN */
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
