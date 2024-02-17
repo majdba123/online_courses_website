@@ -560,6 +560,7 @@
             display: block;
             padding:0px;
         }
+        #file-input {margin-left:0px;}
 
     }
 </style>

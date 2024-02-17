@@ -1,8 +1,7 @@
 @extends('web.weblayout')
 
 @section('content')
-
-<div class="mainDiv">
+<div class="background" <div class="mainDiv">
     <div class="cardStyle">
         <form method="post" action="{{ route('password.update') }}">
             @csrf
@@ -42,16 +41,26 @@
 
             <div class="inputDiv">
                 <div class="buttonWrapper">
-                <button type="submit" class="btn btn-primary">
-                    {{ __('Reset Password') }}
-                </button></div>
+                    <button type="submit" class="btn btn-primary">
+                        {{ __('Reset Password') }}
+                    </button>
+                </div>
             </div>
         </form>
     </div>
 </div>
-
+</div>
 @endsection
 <style>
+    .background {
+        background-color: #eeeeee;
+
+
+        justify-content: space-between;
+        align-items: center;
+        padding: 80px 150px 10px 600px;
+    }
+
     .mainDiv {
         display: flex;
         min-height: 100%;
@@ -157,6 +166,14 @@
             transform: rotate(360deg);
         }
     }
+    @media screen and (max-width: 500px) {
+
+
+.background {
+    padding: 0px;
+
+}
+}
 </style>
 <script>
     var password = document.getElementById("password"),
