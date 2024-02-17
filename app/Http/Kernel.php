@@ -71,5 +71,6 @@ class Kernel extends HttpKernel
         'preventDownload' => Middleware\PreventDownload::class,
         'CheckCoursePayment' => \App\Http\Middleware\CheckCoursePayment::class,
         'CheckVideoPayment' => \App\Http\Middleware\CheckVideoPayment::class,
+        'video' => \App\Http\Middleware\VideoCh::class,
     ];
 }
