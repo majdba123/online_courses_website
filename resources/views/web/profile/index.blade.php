@@ -544,23 +544,32 @@
             font-size: 20px;
         }
 
-        .backgroundq,.containerq {
+        .backgroundq,
+        .containerq {
             width: auto;
 
             padding: 0px;
         }
-        .containeq{width: auto;}
+
+        .containeq {
+            width: auto;
+        }
 
         .contact {
             display: block;
             padding: 20px;
         }
 
-        .card-container, .hyhy ,.headerr {
+        .card-container,
+        .hyhy,
+        .headerr {
             display: block;
-            padding:0px;
+            padding: 0px;
         }
-        #file-input {margin-left:0px;}
+
+        #file-input {
+            margin-left: 0px;
+        }
 
     }
 </style>

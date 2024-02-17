@@ -107,8 +107,8 @@
                         <input id=" #file-input" type="file" name="video_url" required>
                     </div>
                     <div class="col-sm-10">
-                        <select id="category_id" type="text"
-                            class="form-control @error('category_id') is-invalid @enderror" name="courses_id" autofocus>
+                        <select id="category_id" type="text" class="form-control" @error('category_id') is-invalid
+                            @enderror name="courses_id" autofocus>
                             @foreach($courses as $coursess)
                             <option value="{{ $coursess->id }}">{{ $coursess->name }}</option>
                             @endforeach
