@@ -154,8 +154,15 @@
     }
 
     .hh {
-        background-color: white;
-        border-radius: 10px;
+        background: linear-gradient(to right, #0000ff, #ffcc00);
+        /* تعيين لون خلفية الحروف */
+        -webkit-background-clip: text;
+        /* تطبيق الخلفية على النص فقط */
+        background-clip: text;
+        /* تطبيق الخلفية على النص فقط */
+        color: transparent;
+        /* جعل لون النص شفاف */
+
     }
 
     .wehelp {
@@ -400,8 +407,9 @@
         iframe {
             height: 300px;
         }
+
         .card-containe {
-        grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-    }
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+        }
     }
 </style>
