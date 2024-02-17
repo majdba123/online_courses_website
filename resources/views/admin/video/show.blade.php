@@ -132,8 +132,10 @@
                             }
                         </script>
                     </div>
-                    <video id="image-preview" class="imgprofile" name="video_url" alt="not found">
+                    <video id="image-preview" class="imgprofile" name="video_url" alt="not found"></video>
                         <div class="col-sm-10">
+                        <label>Courses</label>
+
                             <select id="category_id" type="text" class="form-control" @error('category_id') is-invalid
                                 @enderror name="courses_id" autofocus>
                                 @foreach($courses as $coursess)
@@ -165,6 +167,7 @@
         width: 420px;
         height: 300px;
     }
+
 </style>
 
 @endsection

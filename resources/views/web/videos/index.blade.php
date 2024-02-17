@@ -214,7 +214,7 @@
 
     .courses {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(355px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
         grid-gap: 20px;
     }
 

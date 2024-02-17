@@ -113,6 +113,8 @@
 
     .contactdescription {
         background-color: white;
+        padding-right: 40px;
+
         padding-left: 40px;
         gap: 20px;
         font-size: 16px;
