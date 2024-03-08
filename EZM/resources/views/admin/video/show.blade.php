@@ -4,6 +4,22 @@
 @section('content')
 
 <div class="container-xl">
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+    @if(session('success'))
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+        {{ session('success') }}
+    </div>
+    @endif
+
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
@@ -104,16 +120,29 @@
                     </div>
                     <div class="form-group">
                         <label>video_Path</label>
-                        <input id=" #file-input" type="file" name="video_url" required>
+                        <input id="file-input" type="file" name="video_url" required>
+                        <script>
+                            document.getElementById('file-input').onchange = function (e) {
+                                var reader = new FileReader();
+                                reader.onload = function () {
+                                    var preview = document.getElementById('image-preview');
+                                    preview.src = reader.result;
+                                }
+                                reader.readAsDataURL(e.target.files[0]);
+                            }
+                        </script>
                     </div>
-                    <div class="col-sm-10">
-                        <select id="category_id" type="text" class="form-control" @error('category_id') is-invalid
-                            @enderror name="courses_id" autofocus>
-                            @foreach($courses as $coursess)
-                            <option value="{{ $coursess->id }}">{{ $coursess->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    <video id="image-preview" class="imgprofile" name="video_url" alt="not found"></video>
+                        <div class="col-sm-10">
+                        <label>Courses</label>
+
+                            <select id="category_id" type="text" class="form-control" @error('category_id') is-invalid
+                                @enderror name="courses_id" autofocus>
+                                @foreach($courses as $coursess)
+                                <option value="{{ $coursess->id }}">{{ $coursess->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" />
@@ -133,6 +162,12 @@
     #file-input {
         color: transparent;
     }
+
+    video {
+        width: 420px;
+        height: 300px;
+    }
+
 </style>
 
 @endsection

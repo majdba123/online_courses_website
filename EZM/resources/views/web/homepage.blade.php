@@ -131,11 +131,13 @@
         border-radius: 5px;
         background-color: #00aeef;
         color: white;
+        white-space: nowrap;
     }
 
     .truew {
         display: flex;
         justify-content: space-between;
+        height: 100px;
     }
 
     .background {
@@ -147,9 +149,20 @@
         padding: 80px 150px 10px 150px;
     }
 
+    .accordion-button-1 {
+        text-align: center !important;
+    }
+
     .hh {
-        background-color: white;
-        border-radius: 10px;
+        background: linear-gradient(to right, #0000ff, #ffcc00);
+        /* تعيين لون خلفية الحروف */
+        -webkit-background-clip: text;
+        /* تطبيق الخلفية على النص فقط */
+        background-clip: text;
+        /* تطبيق الخلفية على النص فقط */
+        color: transparent;
+        /* جعل لون النص شفاف */
+
     }
 
     .wehelp {
@@ -201,7 +214,7 @@
 
     .card-containe {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(355px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(394px, 1fr));
         grid-gap: 20px;
         padding-bottom: 50px;
     }
@@ -211,7 +224,7 @@
     }
 
     .dis {
-        height:120px;
+        height: 100px;
 
     }
 
@@ -299,6 +312,8 @@
         margin: 0 auto;
         padding: 4rem;
         width: 48rem;
+        text-align: center !important;
+        align-items: center !important;
     }
 
     .accordion .accordion-item {
@@ -322,6 +337,8 @@
         border: none;
         background: none;
         outline: none;
+        text-align: center;
+
     }
 
     .accordion button:hover,
@@ -389,6 +406,10 @@
 
         iframe {
             height: 300px;
+        }
+
+        .card-containe {
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
         }
     }
 </style>
