@@ -1,0 +1,371 @@
+// =============================================================================
+// صفحة تواصل معنا – تنسيقات احترافية متقدمة
+// =============================================================================
+
+.contact-page {
+    padding-bottom: var(--ezm-space-16);
+    min-height: 60vh;
+}
+
+// —— Hero ——
+.contact-hero {
+    background: linear-gradient(160deg, var(--ezm-gray-100) 0%, var(--ezm-white) 100%);
+    padding: var(--ezm-space-12) var(--ezm-space-4);
+    text-align: center;
+    margin-bottom: var(--ezm-space-8);
+}
+
+.contact-hero__inner {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+.contact-hero__badge {
+    display: inline-block;
+    background: rgba(0, 174, 239, 0.12);
+    color: var(--ezm-accent);
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 600;
+    padding: var(--ezm-space-2) var(--ezm-space-4);
+    border-radius: var(--ezm-radius-pill);
+    margin-bottom: var(--ezm-space-4);
+}
+
+.contact-hero__title {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-3);
+}
+
+.contact-hero__lead {
+    font-size: var(--ezm-font-size-lg);
+    color: var(--ezm-gray-600);
+    margin: 0;
+    line-height: var(--ezm-line-height-relaxed);
+}
+
+// —— Layout ——
+.contact-page__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 var(--ezm-space-4);
+}
+
+.contact-page__grid {
+    display: grid;
+    gap: var(--ezm-space-8);
+    grid-template-columns: 1fr 340px;
+    align-items: start;
+}
+
+// —— قسم النموذج ——
+.contact-form-section {
+    position: relative;
+}
+
+.contact-form-wrap {
+    background: var(--ezm-white);
+    border: 1px solid var(--ezm-gray-200);
+    border-radius: var(--ezm-radius-xl);
+    padding: var(--ezm-space-8);
+    box-shadow: var(--ezm-shadow);
+    position: relative;
+    overflow: hidden;
+}
+.contact-form-wrap::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--ezm-accent), var(--ezm-accent-hover));
+}
+
+.contact-form-wrap__header {
+    margin-bottom: var(--ezm-space-6);
+}
+
+.contact-form-wrap__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: rgba(0, 174, 239, 0.1);
+    color: var(--ezm-accent);
+    border-radius: var(--ezm-radius-lg);
+    margin-bottom: var(--ezm-space-3);
+}
+.contact-form-wrap__icon i {
+    font-size: 1.25rem;
+}
+
+.contact-form-wrap__title {
+    font-size: var(--ezm-font-size-xl);
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-1);
+}
+
+.contact-form-wrap__subtitle {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-500);
+    margin: 0;
+}
+
+// بطاقة الزائر (غير مسجّل)
+.contact-form__guest-card {
+    text-align: center;
+    padding: var(--ezm-space-8);
+    background: var(--ezm-gray-100);
+    border-radius: var(--ezm-radius-lg);
+    border: 1px dashed var(--ezm-gray-300);
+}
+.contact-form__guest-card i {
+    font-size: 2rem;
+    color: var(--ezm-gray-400);
+    margin-bottom: var(--ezm-space-3);
+    display: block;
+}
+.contact-form__guest-card p {
+    font-size: var(--ezm-font-size-base);
+    color: var(--ezm-gray-600);
+    margin: 0 0 var(--ezm-space-4);
+}
+.contact-form__guest-btn {
+    display: inline-block;
+    padding: var(--ezm-space-2) var(--ezm-space-6);
+    background: var(--ezm-accent);
+    color: var(--ezm-white);
+    font-weight: 600;
+    font-size: var(--ezm-font-size-sm);
+    border-radius: var(--ezm-radius);
+    text-decoration: none;
+    transition: background var(--ezm-transition), transform var(--ezm-transition);
+}
+.contact-form__guest-btn:hover {
+    background: var(--ezm-accent-hover);
+    color: var(--ezm-white);
+    transform: translateY(-1px);
+}
+
+// حقول النموذج
+.contact-form__group {
+    margin-bottom: var(--ezm-space-4);
+}
+
+.contact-form__label {
+    display: block;
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 600;
+    color: var(--ezm-gray-700);
+    margin-bottom: var(--ezm-space-2);
+}
+
+.contact-form__input,
+.contact-form__textarea {
+    width: 100%;
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    font-size: var(--ezm-font-size-base);
+    border: 1px solid var(--ezm-gray-300);
+    border-radius: var(--ezm-radius);
+    background: var(--ezm-white);
+    color: var(--ezm-gray-900);
+    transition: border-color var(--ezm-transition), box-shadow var(--ezm-transition);
+}
+.contact-form__input::placeholder,
+.contact-form__textarea::placeholder {
+    color: var(--ezm-gray-400);
+}
+.contact-form__input:focus,
+.contact-form__textarea:focus {
+    outline: none;
+    border-color: var(--ezm-accent);
+    box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.15);
+}
+.contact-form__input--error,
+.contact-form__textarea.contact-form__input--error {
+    border-color: var(--ezm-danger);
+}
+
+.contact-form__textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.contact-form__error {
+    display: block;
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-danger);
+    margin-top: var(--ezm-space-1);
+}
+
+.contact-form__submit {
+    width: 100%;
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    font-size: var(--ezm-font-size-base);
+    font-weight: 600;
+    color: var(--ezm-white);
+    background: linear-gradient(135deg, var(--ezm-accent) 0%, var(--ezm-accent-hover) 100%);
+    border: none;
+    border-radius: var(--ezm-radius);
+    cursor: pointer;
+    transition: transform var(--ezm-transition), box-shadow var(--ezm-transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ezm-space-2);
+    margin-top: var(--ezm-space-2);
+    box-shadow: var(--ezm-shadow-sm);
+}
+.contact-form__submit:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--ezm-shadow-md);
+}
+.contact-form__submit i {
+    font-size: 1rem;
+}
+
+.contact-form__hint {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-500);
+    margin: var(--ezm-space-3) 0 0;
+    text-align: center;
+}
+
+// —— الشريط الجانبي (معلومات التواصل) ——
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ezm-space-4);
+    position: sticky;
+    top: var(--ezm-space-4);
+}
+
+.contact-info__intro {
+    margin-bottom: var(--ezm-space-2);
+}
+
+.contact-info__heading {
+    font-size: var(--ezm-font-size-xl);
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-1);
+}
+
+.contact-info__intro-text {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-500);
+    margin: 0;
+}
+
+.contact-info__card {
+    background: var(--ezm-white);
+    border: 1px solid var(--ezm-gray-200);
+    border-radius: var(--ezm-radius-lg);
+    padding: var(--ezm-space-5);
+    box-shadow: var(--ezm-shadow-sm);
+    transition: box-shadow var(--ezm-transition), border-color var(--ezm-transition);
+}
+.contact-info__card:hover {
+    box-shadow: var(--ezm-shadow-md);
+    border-color: var(--ezm-gray-300);
+}
+
+.contact-info__icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 174, 239, 0.1);
+    color: var(--ezm-accent);
+    border-radius: var(--ezm-radius);
+    margin-bottom: var(--ezm-space-3);
+}
+.contact-info__icon i {
+    font-size: 1.125rem;
+}
+
+.contact-info__title {
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 700;
+    color: var(--ezm-gray-800);
+    margin: 0 0 var(--ezm-space-2);
+}
+
+.contact-info__text {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-600);
+    margin: 0 0 var(--ezm-space-3);
+    line-height: 1.5;
+}
+
+.contact-info__action {
+    display: inline-block;
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 600;
+    color: var(--ezm-accent);
+    text-decoration: none;
+    transition: color var(--ezm-transition);
+}
+.contact-info__action:hover {
+    color: var(--ezm-accent-hover);
+    text-decoration: underline;
+}
+
+.contact-info__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ezm-space-2);
+}
+
+.contact-info__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ezm-space-2);
+    padding: var(--ezm-space-2) var(--ezm-space-4);
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 500;
+    color: var(--ezm-accent);
+    background: rgba(0, 174, 239, 0.08);
+    border: 1px solid rgba(0, 174, 239, 0.2);
+    border-radius: var(--ezm-radius);
+    text-decoration: none;
+    transition: background var(--ezm-transition), border-color var(--ezm-transition), color var(--ezm-transition);
+}
+.contact-info__link:hover {
+    background: rgba(0, 174, 239, 0.15);
+    border-color: var(--ezm-accent);
+    color: var(--ezm-accent-hover);
+}
+.contact-info__link i {
+    font-size: 0.9rem;
+}
+
+// —— متجاوب ——
+@media (max-width: 900px) {
+    .contact-page__grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-info {
+        position: static;
+        order: -1;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    .contact-info__intro {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-form-wrap {
+        padding: var(--ezm-space-6);
+    }
+    .contact-hero {
+        padding: var(--ezm-space-8) var(--ezm-space-4);
+    }
+}

@@ -1,0 +1,122 @@
+// =============================================================================
+// Web pages – هيرو، أقسام، كروت، أزرار
+// =============================================================================
+
+.web-layout {
+    // Hero (wehelp)
+    .wehelp, .ezm-hero {
+        text-align: center;
+        padding: var(--ezm-space-16) var(--ezm-space-6);
+        background: linear-gradient(135deg, var(--ezm-gray-100) 0%, var(--ezm-white) 100%);
+        border-radius: var(--ezm-radius-lg);
+        margin-bottom: var(--ezm-space-10);
+    }
+    .wehelp h1, .ezm-hero h1 {
+        font-size: var(--ezm-font-size-3xl);
+        font-weight: 700;
+        color: var(--ezm-gray-900);
+        margin-bottom: var(--ezm-space-3);
+    }
+    .wehelp h1 .we { color: var(--ezm-accent); }
+    .wehelp h2, .wehelp h6, .ezm-hero h2, .ezm-hero h6 {
+        color: var(--ezm-gray-600);
+        margin-bottom: var(--ezm-space-2);
+    }
+    .browserr .browser, .ezm-btn-hero {
+        display: inline-block;
+        padding: var(--ezm-space-3) var(--ezm-space-8);
+        background: var(--ezm-accent);
+        color: var(--ezm-white);
+        border-radius: var(--ezm-radius-pill);
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: var(--ezm-space-4);
+        transition: background var(--ezm-transition), transform var(--ezm-transition);
+    }
+    .browserr .browser:hover, .ezm-btn-hero:hover {
+        background: var(--ezm-accent-hover);
+        color: var(--ezm-white);
+        transform: translateY(-2px);
+    }
+
+    // Section titles (advantages)
+    .advantages h1 {
+        font-size: var(--ezm-font-size-2xl);
+        font-weight: 700;
+        color: var(--ezm-gray-900);
+        margin-bottom: var(--ezm-space-2);
+        text-align: center;
+    }
+    .advantages h6 {
+        color: var(--ezm-gray-600);
+        margin-bottom: var(--ezm-space-6);
+        text-align: center;
+    }
+
+    // Card grids
+    .card-container, .card-containe {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: var(--ezm-space-6);
+        margin-bottom: var(--ezm-space-8);
+    }
+    .card-container .card, .card-containe .card {
+        background: var(--ezm-white);
+        border-radius: var(--ezm-radius-lg);
+        box-shadow: var(--ezm-shadow);
+        padding: var(--ezm-space-6);
+        border: 1px solid var(--ezm-gray-200);
+        transition: box-shadow var(--ezm-transition), transform var(--ezm-transition);
+    }
+    .card-container .card:hover, .card-containe .card:hover {
+        box-shadow: var(--ezm-shadow-md);
+        transform: translateY(-2px);
+    }
+    .card-container .card .number, .card-containe .card .number,
+    .card-container .card h1, .card-containe .card h1,
+    .card-container .card h2, .card-containe .card h2,
+    .card-container .card h3, .card-containe .card h3 {
+        margin-bottom: var(--ezm-space-2);
+        font-size: var(--ezm-font-size-lg);
+        color: var(--ezm-gray-900);
+    }
+    .card-container .card p, .card-containe .card p {
+        color: var(--ezm-gray-600);
+        font-size: var(--ezm-font-size-sm);
+        line-height: var(--ezm-line-height-relaxed);
+    }
+    .getit a {
+        display: inline-block;
+        padding: var(--ezm-space-2) var(--ezm-space-5);
+        background: var(--ezm-primary);
+        color: var(--ezm-white);
+        border-radius: var(--ezm-radius);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: var(--ezm-font-size-sm);
+        transition: background var(--ezm-transition);
+    }
+    .getit a:hover { color: var(--ezm-white); background: var(--ezm-primary-dark); }
+    .Favorite {
+        padding: var(--ezm-space-1) var(--ezm-space-3);
+        font-size: var(--ezm-font-size-sm);
+        border-radius: var(--ezm-radius);
+        background: var(--ezm-gray-200);
+        border: 1px solid var(--ezm-gray-300);
+        cursor: pointer;
+        transition: background var(--ezm-transition);
+    }
+    .Favorite:hover { background: var(--ezm-gray-300); }
+
+    // Video embed
+    .video iframe, .ezm-video-wrap iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: var(--ezm-radius-lg);
+        box-shadow: var(--ezm-shadow-md);
+    }
+
+    // Pagination
+    .ezm-main .pagination { margin-top: var(--ezm-space-6); }
+    .ezm-main .pagination .page-link { border-radius: var(--ezm-radius) !important; margin: 0 var(--ezm-space-1); }
+}

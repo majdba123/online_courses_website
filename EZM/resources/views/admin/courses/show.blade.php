@@ -1,167 +1,115 @@
 @extends('admin.admin_layout')
-
+@section('title', 'الدورات')
 
 @section('content')
-
 <div class="container-xl">
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-    @if(session('success'))
-    <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-        {{ session('success') }}
-    </div>
-    @endif
-
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
-                                class="material-icons">&#xE147;</i>
-                            <span>ADD Courses</span></a>
-                    </div>
-                    <div class="col-sm-4">
-                        <form action="{{ route('search.courses') }}" method="get">
-
-                            <div class="search-box">
-                                <i class="material-icons">&#xE8B6;</i>
-                                @csrf
-                                <input type="text" name="quiry" class="form-control" placeholder="Search&hellip;" />
-                                <br>
-
-                            </div>
-                            <button type="submit" class="btn btn-primary">Search</button>
-                        </form>
-                    </div>
-                </div>
+    <div class="admin-card">
+        <div class="admin-card__header">
+            <h2 class="admin-card__title">الدورات</h2>
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+                <form action="{{ route('search.courses') }}" method="get" class="d-flex gap-2">
+                    @csrf
+                    <input type="text" name="query" class="form-control" placeholder="بحث..." style="width: 180px;" />
+                    <button type="submit" class="admin-btn admin-btn--primary"><i class="fa-solid fa-search"></i> بحث</button>
+                </form>
+                <button type="button" class="admin-btn admin-btn--success" data-bs-toggle="modal" data-bs-target="#addCourseModal">
+                    <i class="fa-solid fa-plus"></i> إضافة دورة
+                </button>
             </div>
+        </div>
+        <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>name <i class="fa fa-sort"></i></th>
-                        <th>price</th>
-                        <th>discription <i class="fa fa-sort"></i></th>
-                        <th>time_of_course</th>
-                        <th>doctor</th>
-                        <th>discount_percentage</th>
-                        <th>Actions</th>
+                        <th>الاسم</th>
+                        <th>السعر</th>
+                        <th>الوصف</th>
+                        <th>مدة الدورة</th>
+                        <th>الدكتور</th>
+                        <th>نسبة الخصم</th>
+                        <th>إجراءات</th>
                     </tr>
                 </thead>
                 <tbody>
-
-                    @foreach ( $courses as $coursess)
+                    @foreach ($courses as $coursess)
                     <tr>
                         <td>{{ ($courses->currentPage() - 1) * $courses->perPage() + $loop->iteration }}</td>
                         <td>{{ $coursess->name }}</td>
                         <td>{{ $coursess->price }}</td>
-                        <td>
-                            {!! preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank">$1</a>',
-                            $coursess->discription) !!}
-                        </td>
+                        <td>{!! Str::limit(strip_tags(preg_replace('/(https?:\/\/[^\s]+)/', '<a href="$1" target="_blank">$1</a>', $coursess->discription)), 60) !!}</td>
                         <td>{{ $coursess->time_of_course }}</td>
-                        <td>{{ $coursess->doctor->name }}</td>
-                        <td>{{ $coursess->discount->discount_percentage }}</td>
+                        <td>{{ $coursess->doctor->name ?? '—' }}</td>
+                        <td>{{ $coursess->discount->discount_percentage ?? '—' }}</td>
                         <td>
-                            <a href="{{ route('courses.edit' , $coursess->id) }}" class="edit">
-                                <i class="material-icons" data-toggle="tooltip" title="Edit"> &#xE254; </i>
-                            </a>
-
-                            <form action="{{ route('coursesr.delete',$coursess->id)}}" method="post">
+                            <a href="{{ route('courses.edit', $coursess->id) }}" class="admin-btn admin-btn--outline btn-sm" title="تعديل"><i class="fa-solid fa-pen"></i></a>
+                            <form action="{{ route('courses.delete', $coursess->id) }}" method="post" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"><i class="material-icons"
-                                        data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                                <button type="submit" class="admin-btn admin-btn--danger btn-sm" title="حذف" onclick="return confirm('هل تريد الحذف؟');"><i class="fa-solid fa-trash"></i></button>
                             </form>
-
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            <div>
-                <div class="d-flex justify-content-center">
-                    {!! $courses->links() !!}
-                </div>
-            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            {!! $courses->links() !!}
         </div>
     </div>
 </div>
 
-
-<!-- ADD Modal HTML -->
-<div id="addEmployeeModal" class="modal fade">
+{{-- مودال إضافة دورة --}}
+<div class="modal fade" id="addCourseModal" tabindex="-1" aria-labelledby="addCourseModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('courses.store')}}" method="POST">
+            <form action="{{ route('courses.store') }}" method="POST">
                 @csrf
-                @method('POST')
                 <div class="modal-header">
-                    <h4 class="modal-title">Courses</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
+                    <h5 class="modal-title" id="addCourseModalLabel">إضافة دورة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" name='name' class="form-control" required />
+                    <div class="admin-form__group">
+                        <label class="admin-form__label">الاسم</label>
+                        <input type="text" name="name" class="admin-form__control form-control" required />
                     </div>
-                    <div class="form-group">
-                        <label>price</label>
-                        <input type="text" name="price" class="form-control" required />
+                    <div class="admin-form__group">
+                        <label class="admin-form__label">السعر</label>
+                        <input type="text" name="price" class="admin-form__control form-control" required />
                     </div>
-                    <div class="form-group">
-                        <label>discription</label>
-                        <textarea name="discription" class="form-control" maxlength="65535" required></textarea>
+                    <div class="admin-form__group">
+                        <label class="admin-form__label">الوصف</label>
+                        <textarea name="discription" class="admin-form__control form-control" maxlength="65535" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label>Hour 0f course</label>
-                        <input type="number" name="time_of_course" class="form-control" required />
+                    <div class="admin-form__group">
+                        <label class="admin-form__label">مدة الدورة (ساعات)</label>
+                        <input type="number" name="time_of_course" class="admin-form__control form-control" required />
                     </div>
-                    <div class="form-group">
-                        <label>Doctor</label>
-                        <div class="col-sm-10">
-                            <select id="category_id" type="text"
-                                class="form-control @error('category_id') is-invalid @enderror" name="doctor_id"
-                                autofocus>
-                                @foreach($doctor as $doctors)
+                    <div class="admin-form__group">
+                        <label class="admin-form__label">الدكتور</label>
+                        <select name="doctor_id" class="admin-form__control form-select" required>
+                            @foreach($doctor as $doctors)
                                 <option value="{{ $doctors->id }}">{{ $doctors->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <label>Discount</label>
-                        <div class="col-sm-10">
-                            <select id="category_id" type="text"
-                                class="form-control @error('category_id') is-invalid @enderror" name="discount_id"
-                                autofocus>
-                                @foreach($discount as $discounts)
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="admin-form__group">
+                        <label class="admin-form__label">الخصم</label>
+                        <select name="discount_id" class="admin-form__control form-select" required>
+                            @foreach($discount as $discounts)
                                 <option value="{{ $discounts->id }}">{{ $discounts->discount_percentage }}</option>
-                                @endforeach
-                            </select>
-                        </div>
+                            @endforeach
+                        </select>
                     </div>
-                    <div class="modal-footer">
-                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" />
-                        <input type="submit" class="btn btn-success" value="Add" />
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="admin-btn admin-btn--outline" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="submit" class="admin-btn admin-btn--success">إضافة</button>
+                </div>
             </form>
         </div>
     </div>
 </div>
-<!-- Edit Modal HTML -->
-<style>
-    .hidden {
-        display: none !important;
-    }</style>
-
 @endsection

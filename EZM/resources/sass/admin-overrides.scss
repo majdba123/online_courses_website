@@ -1,0 +1,60 @@
+// =============================================================================
+// Admin – تنسيقات إضافية للوحة التحكم (جداول، أزرار، كروت)
+// =============================================================================
+
+// استخدام متغيرات التصميم في لوحة التحكم عند تحميل app.scss
+:root {
+    --ezm-admin-card-radius: 0.5rem;
+    --ezm-admin-table-header: #f8f9fa;
+}
+
+// تحسين الجداول في صفحات الأدمن
+.container-xl .table {
+    border-radius: var(--ezm-admin-card-radius);
+    overflow: hidden;
+}
+.container-xl .table thead th {
+    background: var(--ezm-admin-table-header);
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
+    padding: 0.75rem 1rem;
+}
+.container-xl .table tbody td {
+    padding: 0.75rem 1rem;
+    vertical-align: middle;
+}
+.container-xl .table-hover tbody tr:hover {
+    background-color: rgba(0, 174, 239, 0.06);
+}
+
+// أزرار إجراءات
+.container-xl .btn {
+    border-radius: 0.375rem;
+    font-weight: 500;
+}
+.container-xl .btn-success {
+    background: #198754;
+    border-color: #198754;
+}
+.container-xl .btn-primary {
+    background: #0d6efd;
+    border-color: #0d6efd;
+}
+.container-xl .btn-danger {
+    background: #dc3545;
+    border-color: #dc3545;
+}
+
+// تنبيهات
+.container-xl .alert {
+    border-radius: var(--ezm-admin-card-radius);
+    border: 1px solid transparent;
+}
+
+// نمط موحد لعناوين الصفحات
+.container-xl .table-title {
+    margin-bottom: 1.5rem;
+}
+.container-xl .table-title .btn {
+    padding: 0.5rem 1rem;
+}

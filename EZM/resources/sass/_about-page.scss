@@ -1,0 +1,181 @@
+// =============================================================================
+// صفحة عن المنصة – تنسيقات احترافية
+// =============================================================================
+
+.about-page {
+    padding-bottom: var(--ezm-space-12);
+}
+
+// Hero
+.about-hero {
+    background: linear-gradient(160deg, var(--ezm-gray-100) 0%, var(--ezm-white) 100%);
+    padding: var(--ezm-space-12) var(--ezm-space-4);
+    text-align: center;
+}
+
+.about-hero__inner {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.about-hero__title {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-4);
+}
+
+.about-hero__lead {
+    font-size: var(--ezm-font-size-lg);
+    color: var(--ezm-gray-600);
+    line-height: var(--ezm-line-height-relaxed);
+    margin: 0;
+}
+
+// Sections
+.about-section {
+    padding: var(--ezm-space-12) 0;
+}
+.about-section:nth-child(even) {
+    background: var(--ezm-gray-100);
+}
+
+.about-section__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--ezm-space-4);
+}
+
+.about-section__title {
+    font-size: clamp(1.35rem, 3.5vw, 1.875rem);
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+    text-align: center;
+    margin: 0 0 var(--ezm-space-2);
+}
+
+.about-section__lead {
+    text-align: center;
+    color: var(--ezm-gray-600);
+    font-size: var(--ezm-font-size-base);
+    max-width: 560px;
+    margin: 0 auto var(--ezm-space-8);
+    line-height: var(--ezm-line-height-relaxed);
+}
+
+.about-section__empty {
+    text-align: center;
+    color: var(--ezm-gray-500);
+    padding: var(--ezm-space-8);
+}
+
+// Cards grid
+.about-cards {
+    display: grid;
+    gap: var(--ezm-space-6);
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.about-card {
+    background: var(--ezm-white);
+    border: 1px solid var(--ezm-gray-200);
+    border-radius: var(--ezm-radius-lg);
+    padding: var(--ezm-space-6);
+    box-shadow: var(--ezm-shadow-sm);
+    transition: box-shadow var(--ezm-transition), transform var(--ezm-transition);
+}
+
+.about-card:hover {
+    box-shadow: var(--ezm-shadow-md);
+    transform: translateY(-2px);
+}
+
+.about-card__icon {
+    margin-bottom: var(--ezm-space-3);
+}
+.about-card__icon img {
+    border-radius: var(--ezm-radius);
+    display: block;
+}
+
+.about-card__title {
+    font-size: var(--ezm-font-size-xl);
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-2);
+}
+
+.about-card__text {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-600);
+    line-height: var(--ezm-line-height-relaxed);
+    margin: 0;
+}
+
+.about-pagination {
+    margin-top: var(--ezm-space-8);
+    display: flex;
+    justify-content: center;
+}
+.about-pagination .pagination {
+    margin: 0;
+}
+.about-pagination .page-link {
+    border-radius: var(--ezm-radius) !important;
+}
+
+// CTA
+.about-cta {
+    background: linear-gradient(135deg, var(--ezm-accent) 0%, var(--ezm-accent-hover) 100%);
+    padding: var(--ezm-space-12) var(--ezm-space-4);
+    text-align: center;
+    color: var(--ezm-white);
+}
+
+.about-cta__inner {
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.about-cta__title {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 700;
+    margin: 0 0 var(--ezm-space-3);
+    color: var(--ezm-white);
+}
+
+.about-cta__highlight {
+    font-weight: 800;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.about-cta__lead {
+    font-size: var(--ezm-font-size-base);
+    margin: 0 0 var(--ezm-space-6);
+    opacity: 0.95;
+    line-height: var(--ezm-line-height-relaxed);
+}
+
+.about-cta__btn {
+    display: inline-block;
+    padding: var(--ezm-space-3) var(--ezm-space-10);
+    background: var(--ezm-white);
+    color: var(--ezm-accent);
+    font-weight: 600;
+    font-size: var(--ezm-font-size-base);
+    border-radius: var(--ezm-radius-pill);
+    text-decoration: none;
+    transition: transform var(--ezm-transition), box-shadow var(--ezm-transition);
+    box-shadow: var(--ezm-shadow);
+}
+.about-cta__btn:hover {
+    color: var(--ezm-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--ezm-shadow-md);
+}
+
+@media (max-width: 768px) {
+    .about-cards {
+        grid-template-columns: 1fr;
+    }
+}

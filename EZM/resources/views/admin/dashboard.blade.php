@@ -1,99 +1,85 @@
 @extends('admin.admin_layout')
+@section('title', 'لوحة التحكم')
+
 @section('content')
-    <div class="container-xl">
-      <div class="table-responsive">
-        <div class="table-wrapper">
-          <div class="table-title">
-            <div class="row">
+<div class="admin-dashboard">
+    <h1 class="admin-page-title">لوحة التحكم</h1>
 
-            </div>
-          </div>
-          <table class="table table-striped table-hover table-bordered">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>introduction</th>
-                <th>youtube</th>
-                <th>facebook </th>
-                <th>linkedin</th>
-                <th>phone</th>
-                <th>gmail</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>YOUR URL</td>
-                <td>{{ $webs->introduction }}</td>
-                <td>{{ $webs->youtube }}</td>
-                <td>{{ $webs->facebook }}</td>
-                <td>{{ $webs->linkedin }}</td>
-                <td>{{ $webs->phone }}</td>
-                <td>{{ $webs->gmail }}</td>
-                <td>
-                    <a href="{{ route('edit.Admin', $webs->id) }}"  class="edit">
-                        <i class="material-icons" data-toggle="tooltip" title="Edit"> &#xE254; </i>
-                    </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">Total Users</div>
-                        <div class="card-body">
-                            {{ $userCount }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">Registered Users</div>
-                        <div class="card-body">
-                            {{ $userRegister }}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">Course Options</div>
-                        <div class="card-body">
-                            <form action="{{ route('search.Admin') }}">
-                                <select id="category_id" type="text" class="form-control @error('category_id') is-invalid @enderror" name="courses_id" autofocus>
-                                    @foreach($courses as $coursess)
-                                        <option value="{{ $coursess->id }}">{{ $coursess->name }}</option>
-                                    @endforeach
-                                </select>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @if (session('course'))
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">Search Quiry</div>
-                    <div class="card-body">
-                        {{ session('course') }}
-                    </div>
-                </div>
-            </div>
-            @endif
+    <div class="admin-stats">
+        <div class="admin-stat">
+            <div class="admin-stat__value">{{ $userCount }}</div>
+            <div class="admin-stat__label">إجمالي المستخدمين</div>
         </div>
+        <div class="admin-stat">
+            <div class="admin-stat__value">{{ $userRegister }}</div>
+            <div class="admin-stat__label">المستخدمون المسجلون</div>
         </div>
-      </div>
     </div>
-    <style>
-    .hidden {
-        display: none !important;
-    }</style>
 
+    <div class="admin-card">
+        <div class="admin-card__header">
+            <h2 class="admin-card__title">إعدادات الموقع (روابط)</h2>
+            <a href="{{ route('edit.Admin', $webs->id) }}" class="admin-btn admin-btn--primary">
+                <i class="fa-solid fa-pen"></i> تعديل
+            </a>
+        </div>
+        <div class="admin-table-wrap">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>الحقل</th>
+                        <th>القيمة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>فيديو التعريف</strong></td>
+                        <td><a href="{{ $webs->introduction }}" target="_blank" rel="noopener">{{ Str::limit($webs->introduction, 50) }}</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>يوتيوب</strong></td>
+                        <td><a href="{{ $webs->youtube }}" target="_blank" rel="noopener">{{ $webs->youtube }}</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>فيسبوك</strong></td>
+                        <td><a href="{{ $webs->facebook }}" target="_blank" rel="noopener">{{ $webs->facebook }}</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>لينكدإن</strong></td>
+                        <td><a href="{{ $webs->linkedin }}" target="_blank" rel="noopener">{{ $webs->linkedin }}</a></td>
+                    </tr>
+                    <tr>
+                        <td><strong>الهاتف</strong></td>
+                        <td>{{ $webs->phone }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>البريد</strong></td>
+                        <td>{{ $webs->gmail }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-
-
-
+    <div class="admin-card">
+        <h2 class="admin-card__title" style="margin-bottom: 1rem;">عدد الطلبات حسب الدورة</h2>
+        <form action="{{ route('search.Admin') }}" method="get" class="d-flex flex-wrap gap-3 align-items-end">
+            <div class="admin-form__group mb-0" style="min-width: 220px;">
+                <label class="admin-form__label" for="courses_id">اختر الدورة</label>
+                <select id="courses_id" name="courses_id" class="admin-form__control form-select">
+                    @foreach($courses as $coursess)
+                        <option value="{{ $coursess->id }}">{{ $coursess->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <button type="submit" class="admin-btn admin-btn--primary">عرض العدد</button>
+        </form>
+        @if (session('course'))
+        <p class="mt-4 mb-0">
+            <strong>عدد الطلبات المكتملة لهذه الدورة:</strong>
+            <span class="admin-stat__value" style="font-size: 1.5rem;">{{ session('course') }}</span>
+        </p>
+        @endif
+    </div>
+</div>
 @endsection
-

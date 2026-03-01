@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Http\Request;
+
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Courses;
-use App\Models\Doctor;
 use App\Models\Discount;
-use Validator;
+use App\Models\Doctor;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
 
 
 
@@ -30,9 +33,9 @@ class CoursesController extends Controller
     {
         Cache::forget('courses');
         $validator = Validator::make($request->all(), [
-            'quiry' => 'required',
-         ]);
-         $search = $request->input('quiry');
+            'query' => 'required|string|min:1|max:255',
+        ]);
+        $search = $request->input('query');
          $courses = Courses::where('name', 'like', "%$search%")->paginate(4);
          $i=0 ;
          $doctor=Doctor::paginate(4);
@@ -46,67 +49,21 @@ class CoursesController extends Controller
         $discount=Discount::paginate(4);
         return view('admin.courses.edit',compact('doctor','discount','courses'));
     }
-    public function store(Request $request)
+    public function store(StoreCourseRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'discription' => 'required|string|max:65535',
-            'time_of_course' => 'required|string|max:255',
-            'doctor_id' => 'sometimes|required|exists:doctors,id',
-            'discount_id' => 'sometimes|required|exists:discounts,id',
-         ]);
-         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-        $courses = new Courses([
-            'name' => $request->input('name'),
-            'price' =>$request->input('price'),
-            'discription'=> $request->input('discription'),
-            'time_of_course'=> $request->input('time_of_course'),
-            'doctor_id'=>$request->input('doctor_id'),
-            'discount_id'=> $request->input('discount_id')
-        ]);
-        $courses->save();
+        Courses::create($request->validated());
         Cache::forget('courses');
-         return redirect()->back()->with(['success'=>'add COURSES done']);
+
+        return redirect()->back()->with('success', 'تم إضافة الدورة بنجاح');
     }
 
-    public function update(Request $request,$id)
+    public function update(UpdateCourseRequest $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'discription' => 'required|string|max:65535',
-            'time_of_course' => 'required|string|max:255',
-            'doctor_id' => 'sometimes|required|integer|exists:doctors,id',
-            'discount_id' => 'sometimes|required|integer|exists:discounts,id',
-         ]);
-         if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-        $courses=Courses::findorfail($id);
-        if ($request->input('name')) {
-            $courses->name = $request->input('name');
-        }
-        if ($request->input('price')) {
-            $courses->price = $request->input('price');
-        }
-        if ($request->input('discription')) {
-            $courses->discription = $request->input('discription');
-        }
-        if ($request->input('time_of_course')) {
-            $courses->time_of_course = $request->input('time_of_course');
-        }
-        if ($request->input('doctor_id')) {
-            $courses->doctor_id = $request->input('doctor_id');
-        }
-        if ($request->input('discount_id')) {
-            $courses->discount_id = $request->input('discount_id');
-        }
-         $courses->save();
-         Cache::forget('courses');
-         return redirect()->back()->with(['success'=>'updtae  COURSES or done']);
+        $course = Courses::findOrFail($id);
+        $course->update($request->validated());
+        Cache::forget('courses');
+
+        return redirect()->back()->with('success', 'تم تحديث الدورة بنجاح');
     }
 
     public function delete($id)

@@ -1,157 +1,80 @@
 @extends('web.weblayout')
+@section('title', 'الدورات | EZM - منصة الدورات الطبية')
 @section('content')
-<div class="background">
-    <div class="contact">
-        <div class="contactus">
-            <h1>Online Medical Courses</h1>
-        </div>
-        <div class="contactdescription">
-            <p>
-                Welcome to our platform, where we are passionate about empowering
-                individuals to master the world of design and development. We offer
-                a wide range of online courses designed to equip learners with the
-                skills and knowledge needed to succeed in the ever-evolving digital
-                landscape.
+
+<section class="courses-page">
+    <div class="courses-page__inner">
+        <header class="courses-page__header">
+            <h1 class="courses-page__title">الدورات الطبية</h1>
+            <p class="courses-page__lead">
+                اختر من بين مجموعة دوراتنا المصممة لمساعدتك على تطوير مهاراتك الطبية مع أفضل الخبراء.
             </p>
-        </div>
-    </div>
+        </header>
 
-    <div class="courses">
-        @foreach ($courses as $coursess )
-        <div class="advantages">
-            <div class="truew">
-                <form method="post" action="{{ route('store.fff' , $coursess->id )}}">
-                    @csrf
-                    @method('POST')
-                    <button type="submit" class="Favorite">Add To Favorite</button>
-                </form>
-                <a href="{{ route('video', $coursess->id ) }}" class="url">
-                    <h1>{{$coursess->name }}</h1>
-                </a>
+        @if($courses->isEmpty())
+            <div class="courses-page__empty">
+                <p>لا توجد دورات متاحة حالياً.</p>
             </div>
-            <h3> {{$coursess->time_of_course }} : الوقت </h3>
-            <br>
-            <h3> : الوصف </h3>
-            <h5>
-                {{ $coursess -> discription }}
-            </h5>
-            <h3>{{ $coursess->doctor->name }} : الدكتور</h3>
-            <br>
-            <h3>: المحتويات</h3>
-            <div class="card-container">
-                @foreach ( $coursess->video as $videoas )
-                <div class="card">
-                    <h1 class="number">{{ $loop->iteration }}</h1>
-                    <a href="{{ route('generate_url' , $videoas->id ) }}" class="url">
-                        <h3 class="number">{{ $videoas->name }}</h3>
-                    </a>
-                </div>
+        @else
+            <div class="courses-page__grid">
+                @foreach($courses as $c)
+                <article class="course-card">
+                    <div class="course-card__head">
+                        @auth
+                        <form method="post" action="{{ route('store.fff', $c->id) }}" class="course-card__fav-form">
+                            @csrf
+                            <button type="submit" class="course-card__fav-btn" title="إضافة للمفضلة">
+                                <i class="fa-regular fa-heart"></i>
+                            </button>
+                        </form>
+                        @endauth
+                        <h2 class="course-card__title">
+                            <a href="{{ route('video', $c->id) }}">{{ $c->name }}</a>
+                        </h2>
+                    </div>
 
+                    <div class="course-card__meta">
+                        @if($c->doctor)
+                        <span class="course-card__meta-item"><i class="fa-solid fa-user-doctor"></i> {{ $c->doctor->name }}</span>
+                        @endif
+                        @if($c->time_of_course)
+                        <span class="course-card__meta-item"><i class="fa-regular fa-clock"></i> {{ $c->time_of_course }}</span>
+                        @endif
+                        <span class="course-card__meta-item course-card__price"><i class="fa-solid fa-tag"></i> {{ $c->price }} ر.س</span>
+                    </div>
+
+                    <div class="course-card__desc">
+                        <p>{{ Str::limit($c->discription, 160) }}</p>
+                    </div>
+
+                    @if($c->video && $c->video->isNotEmpty())
+                    <div class="course-card__videos">
+                        <span class="course-card__videos-label">المحتويات:</span>
+                        <ul class="course-card__videos-list">
+                            @foreach($c->video->take(5) as $v)
+                            <li>
+                                <a href="{{ route('generate_url', $v->id) }}">{{ $loop->iteration }}. {{ $v->name }}</a>
+                            </li>
+                            @endforeach
+                            @if($c->video->count() > 5)
+                            <li class="course-card__videos-more">+ {{ $c->video->count() - 5 }} محاضرة أخرى</li>
+                            @endif
+                        </ul>
+                    </div>
+                    @endif
+
+                    <a href="{{ route('video', $c->id) }}" class="course-card__cta">عرض الدورة والمحتوى</a>
+                </article>
                 @endforeach
-                @php
-                $i=0;
-                @endphp
             </div>
-        </div>
-        @endforeach
+
+            @if($courses->hasPages())
+            <div class="courses-page__pagination">
+                {!! $courses->links() !!}
+            </div>
+            @endif
+        @endif
     </div>
-    <div class="d-flex justify-content-center">
-        {!! $courses->links() !!}
-    </div>
-</div>
+</section>
+
 @endsection
-<style>
-    .hidden {
-        display: none !important;
-    }
-
-    .Favorite {
-        font-size: 12px;
-        border: none;
-        border-radius: 5px;
-        background-color: #00aeef;
-        color: white;
-    }
-
-    .truew {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .background {
-        background-color: #eeeeee;
-        justify-content: space-between;
-        align-items: center;
-        padding: 50px 150px 40px 150px;
-    }
-
-    .contactdescription p {
-        font-size: 14px
-    }
-
-    .contact {
-        background-color: #eeeeee;
-        align-items: center;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .contactus {
-        padding-left: 40px;
-        padding-top: 40px;
-    }
-
-    .contactdescription {
-        font-size: 16px;
-        padding-top: 40px;
-    }
-
-    .advantages {
-        text-align: end;
-        padding-top: 10px;
-        margin: 30px;
-        background-color: white;
-        border-radius: 5px;
-        padding: 20px;
-    }
-
-    .advantages h4 {
-        text-align: left !important;
-    }
-
-    .card-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(184px, 1fr));
-        grid-gap: 20px;
-        background-color: white !important;
-    }
-
-    .card {
-        background-color: white !important;
-        padding-right: 10px;
-        text-align: right;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .number {
-        background-color: white;
-    }
-
-    @media screen and (max-width: 500px) {
-        h1 {
-            font-size: 20px;
-        }
-
-        .background {
-            padding: 0px;
-        }
-
-        .contact {
-            display: block;
-            padding: 20px;
-        }
-
-
-    }
-</style>

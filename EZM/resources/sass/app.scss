@@ -1,8 +1,47 @@
+// Design system (colors, spacing, shadows)
+@import 'design-system';
+
 // Fonts
 @import url('https://fonts.bunny.net/css?family=Nunito');
 
-// Variables
+// Variables (Bootstrap overrides)
 @import 'variables';
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+// Web layout (public site) – header, footer, nav
+@import 'weblayout';
+
+// Web pages – hero, sections, cards
+@import 'web-pages';
+
+// الصفحة الرئيسية
+@import 'homepage';
+
+// صفحة الدورات
+@import 'courses-page';
+
+// صفحة عن المنصة
+@import 'about-page';
+
+// صفحات المصادقة (تسجيل الدخول / التسجيل)
+@import 'auth-pages';
+
+// صفحة تواصل معنا
+@import 'contact-page';
+
+// صفحة الصفحة الشخصية
+@import 'profile-page';
+
+// صفحة إتمام الطلب
+@import 'order-page';
+
+// صفحات الفيديو (قائمة المحاضرات + مشغل الفيديو)
+@import 'videos-pages';
+
+// Admin overrides – tables, buttons
+@import 'admin-overrides';
+
+// لوحة تحكم الأدمن – هيكل وشريط جانبي
+@import 'admin-dashboard';

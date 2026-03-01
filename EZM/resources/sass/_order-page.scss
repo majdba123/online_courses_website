@@ -1,0 +1,267 @@
+// =============================================================================
+// صفحة إتمام الطلب (Order)
+// =============================================================================
+
+.order-page {
+    padding: var(--ezm-space-8) var(--ezm-space-4) var(--ezm-space-12);
+    background: var(--ezm-gray-100);
+    min-height: 60vh;
+}
+
+.order-page__inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.order-page__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ezm-space-2);
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-600);
+    text-decoration: none;
+    margin-bottom: var(--ezm-space-6);
+    transition: color var(--ezm-transition);
+}
+
+.order-page__back:hover {
+    color: var(--ezm-accent);
+}
+
+.order-page__title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 800;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-2);
+}
+
+.order-page__subtitle {
+    font-size: var(--ezm-font-size-lg);
+    color: var(--ezm-gray-600);
+    margin: 0 0 var(--ezm-space-8);
+}
+
+.order-page__alert {
+    padding: var(--ezm-space-4);
+    border-radius: var(--ezm-radius);
+    margin-bottom: var(--ezm-space-6);
+}
+
+.order-page__alert--danger {
+    background: var(--ezm-danger-bg);
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}
+
+// —— النموذج والكروت ——
+.order-form__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--ezm-space-8);
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .order-form__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.order-form__card {
+    background: var(--ezm-white);
+    border-radius: var(--ezm-radius-xl);
+    padding: var(--ezm-space-6);
+    box-shadow: var(--ezm-shadow);
+    border: 1px solid var(--ezm-gray-200);
+}
+
+.order-form__card-title {
+    display: flex;
+    align-items: center;
+    gap: var(--ezm-space-3);
+    font-size: var(--ezm-font-size-xl);
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-5);
+    padding-bottom: var(--ezm-space-4);
+    border-bottom: 2px solid var(--ezm-gray-200);
+}
+
+.order-form__card-title i {
+    color: var(--ezm-accent);
+}
+
+.order-form__lead {
+    font-size: var(--ezm-font-size-base);
+    color: var(--ezm-gray-600);
+    margin: 0 0 var(--ezm-space-5);
+    line-height: var(--ezm-line-height-relaxed);
+}
+
+// —— ملخص الدورة ——
+.order-summary__name {
+    font-size: var(--ezm-font-size-xl);
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-3);
+}
+
+.order-summary__meta {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-600);
+    margin: 0 0 var(--ezm-space-3);
+}
+
+.order-summary__desc {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-700);
+    line-height: var(--ezm-line-height-relaxed);
+    margin: 0 0 var(--ezm-space-5);
+}
+
+.order-summary__prices {
+    padding-top: var(--ezm-space-4);
+    border-top: 1px solid var(--ezm-gray-200);
+}
+
+.order-summary__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--ezm-font-size-base);
+    color: var(--ezm-gray-700);
+    margin-bottom: var(--ezm-space-2);
+}
+
+.order-summary__row--discount {
+    color: var(--ezm-success);
+}
+
+.order-summary__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: var(--ezm-space-4);
+    padding-top: var(--ezm-space-4);
+    border-top: 2px solid var(--ezm-gray-200);
+    font-size: var(--ezm-font-size-lg);
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+}
+
+.order-summary__total-value {
+    color: var(--ezm-accent);
+    font-size: var(--ezm-font-size-xl);
+}
+
+// —— حقول النموذج ——
+.order-form__group {
+    margin-bottom: var(--ezm-space-5);
+}
+
+.order-form__label {
+    display: block;
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 600;
+    color: var(--ezm-gray-700);
+    margin-bottom: var(--ezm-space-2);
+}
+
+.order-form__file-wrap {
+    position: relative;
+}
+
+.order-form__file {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.order-form__file-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ezm-space-3);
+    padding: var(--ezm-space-8);
+    border: 2px dashed var(--ezm-gray-300);
+    border-radius: var(--ezm-radius-lg);
+    background: var(--ezm-gray-100);
+    cursor: pointer;
+    transition: border-color var(--ezm-transition), background var(--ezm-transition);
+}
+
+.order-form__file-box:hover {
+    border-color: var(--ezm-accent);
+    background: rgba(0, 174, 239, 0.06);
+}
+
+.order-form__file:focus + .order-form__file-box,
+.order-form__file-wrap:has(.order-form__file:focus) .order-form__file-box {
+    border-color: var(--ezm-accent);
+    box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.2);
+}
+
+.order-form__file-icon {
+    font-size: 2rem;
+    color: var(--ezm-gray-400);
+}
+
+.order-form__file-box:hover .order-form__file-icon {
+    color: var(--ezm-accent);
+}
+
+.order-form__file-text {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-600);
+    text-align: center;
+}
+
+// —— أزرار ——
+.order-form__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ezm-space-4);
+    margin-top: var(--ezm-space-6);
+}
+
+.order-form__submit {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ezm-space-2);
+    padding: var(--ezm-space-3) var(--ezm-space-8);
+    font-size: var(--ezm-font-size-base);
+    font-weight: 600;
+    color: var(--ezm-white);
+    background: var(--ezm-accent);
+    border: none;
+    border-radius: var(--ezm-radius);
+    cursor: pointer;
+    transition: background var(--ezm-transition);
+}
+
+.order-form__submit:hover {
+    background: var(--ezm-accent-hover);
+    color: var(--ezm-white);
+}
+
+.order-form__cancel {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--ezm-space-3) var(--ezm-space-6);
+    font-size: var(--ezm-font-size-base);
+    font-weight: 500;
+    color: var(--ezm-gray-600);
+    text-decoration: none;
+    border-radius: var(--ezm-radius);
+    border: 1px solid var(--ezm-gray-300);
+    transition: background var(--ezm-transition), color var(--ezm-transition);
+}
+
+.order-form__cancel:hover {
+    background: var(--ezm-gray-100);
+    color: var(--ezm-gray-900);
+}

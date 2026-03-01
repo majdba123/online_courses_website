@@ -24,12 +24,11 @@ class VideoController extends Controller
     }
     public function index2($id)
     {
-        $rating=Rating::where('courses_id', $id)->paginate(4);
-        $video = Video::where('courses_id', $id)->paginate(4);
-        $i=0;
-        $id_course=$id;
-        return view('web.videos.index',compact('video','rating','i','id_course'));
-
+        $course = Courses::findOrFail($id);
+        $rating = Rating::where('courses_id', $id)->paginate(4);
+        $video = Video::where('courses_id', $id)->paginate(8);
+        $id_course = $id;
+        return view('web.videos.index', compact('video', 'rating', 'id_course', 'course'));
     }
     public function edit($id)
     {
@@ -40,9 +39,9 @@ class VideoController extends Controller
     public function search(Request $request )
     {
         $validator = Validator::make($request->all(), [
-            'quiry' => 'required',
-         ]);
-         $search = $request->input('quiry');
+            'query' => 'required|string|min:1|max:255',
+        ]);
+        $search = $request->input('query');
          $video=Video::where('name', 'like', "%$search%")->paginate(4);
          $courses=Courses::all();
          $i=0 ;
@@ -103,7 +102,7 @@ class VideoController extends Controller
             $video->courses_id = $request->input('courses_id');
         }
          $video->save();
-         return redirect()->back()->with(['success'=>'updtae Video done']);
+         return redirect()->back()->with(['success' => 'تم تحديث الفيديو بنجاح']);
     }
     public function delete($id)
     {

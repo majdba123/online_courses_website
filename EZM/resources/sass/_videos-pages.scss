@@ -1,0 +1,316 @@
+// =============================================================================
+// صفحات الفيديو – قائمة محاضرات الدورة + صفحة التشغيل
+// =============================================================================
+
+// —— صفحة قائمة فيديوهات الدورة ——
+.videos-page {
+    padding: var(--ezm-space-8) var(--ezm-space-4) var(--ezm-space-12);
+    background: var(--ezm-gray-100);
+    min-height: 60vh;
+}
+
+.videos-page__inner {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.videos-page__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ezm-space-2);
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-600);
+    text-decoration: none;
+    margin-bottom: var(--ezm-space-6);
+    transition: color var(--ezm-transition);
+}
+
+.videos-page__back:hover {
+    color: var(--ezm-accent);
+}
+
+.videos-page__header {
+    margin-bottom: var(--ezm-space-8);
+}
+
+.videos-page__title {
+    font-size: clamp(1.35rem, 3.5vw, 1.75rem);
+    font-weight: 800;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-2);
+}
+
+.videos-page__meta {
+    font-size: var(--ezm-font-size-base);
+    color: var(--ezm-gray-600);
+    margin: 0;
+}
+
+.videos-page__section {
+    background: var(--ezm-white);
+    border-radius: var(--ezm-radius-xl);
+    padding: var(--ezm-space-6);
+    margin-bottom: var(--ezm-space-6);
+    box-shadow: var(--ezm-shadow);
+    border: 1px solid var(--ezm-gray-200);
+}
+
+.videos-page__section-title {
+    display: flex;
+    align-items: center;
+    gap: var(--ezm-space-3);
+    font-size: var(--ezm-font-size-xl);
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-5);
+    padding-bottom: var(--ezm-space-4);
+    border-bottom: 2px solid var(--ezm-gray-200);
+}
+
+.videos-page__section-title i {
+    color: var(--ezm-accent);
+}
+
+.videos-page__empty {
+    color: var(--ezm-gray-600);
+    margin: 0;
+    padding: var(--ezm-space-4);
+}
+
+.videos-page__pagination {
+    margin-top: var(--ezm-space-5);
+    display: flex;
+    justify-content: center;
+}
+
+// —— قائمة المحاضرات ——
+.videos-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.videos-list__item {
+    padding: var(--ezm-space-4);
+    border-radius: var(--ezm-radius);
+    margin-bottom: var(--ezm-space-2);
+    background: var(--ezm-gray-100);
+    border: 1px solid transparent;
+    transition: background var(--ezm-transition), border-color var(--ezm-transition);
+}
+
+.videos-list__item:hover {
+    background: rgba(0, 174, 239, 0.08);
+    border-color: var(--ezm-gray-200);
+}
+
+.videos-list__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 700;
+    color: var(--ezm-white);
+    background: var(--ezm-accent);
+    border-radius: var(--ezm-radius-sm);
+    margin-left: var(--ezm-space-3);
+    flex-shrink: 0;
+}
+
+.videos-list__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ezm-space-2);
+    font-size: var(--ezm-font-size-lg);
+    font-weight: 600;
+    color: var(--ezm-gray-900);
+    text-decoration: none;
+    margin-bottom: var(--ezm-space-1);
+}
+
+.videos-list__link:hover {
+    color: var(--ezm-accent);
+}
+
+.videos-list__link i {
+    color: var(--ezm-accent);
+    font-size: var(--ezm-font-size-base);
+}
+
+.videos-list__desc {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-600);
+    margin: var(--ezm-space-2) 0 0 calc(28px + var(--ezm-space-5));
+    line-height: var(--ezm-line-height-relaxed);
+}
+
+.videos-list__desc a {
+    color: var(--ezm-accent);
+    text-decoration: none;
+}
+
+.videos-list__desc a:hover {
+    text-decoration: underline;
+}
+
+// —— التقييمات ——
+.videos-rate-form {
+    margin-bottom: var(--ezm-space-5);
+}
+
+.videos-rate-form__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ezm-space-3);
+    align-items: center;
+}
+
+.videos-rate-form__input {
+    flex: 1;
+    min-width: 200px;
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    font-size: var(--ezm-font-size-base);
+    border: 1px solid var(--ezm-gray-300);
+    border-radius: var(--ezm-radius);
+    background: var(--ezm-white);
+}
+
+.videos-rate-form__input:focus {
+    outline: none;
+    border-color: var(--ezm-accent);
+    box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.15);
+}
+
+.videos-rate-form__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ezm-space-2);
+    padding: var(--ezm-space-3) var(--ezm-space-5);
+    font-size: var(--ezm-font-size-base);
+    font-weight: 600;
+    color: var(--ezm-white);
+    background: var(--ezm-accent);
+    border: none;
+    border-radius: var(--ezm-radius);
+    cursor: pointer;
+    transition: background var(--ezm-transition);
+}
+
+.videos-rate-form__btn:hover {
+    background: var(--ezm-accent-hover);
+    color: var(--ezm-white);
+}
+
+.videos-ratings-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ezm-space-4);
+}
+
+.videos-rating-card {
+    display: flex;
+    gap: var(--ezm-space-4);
+    padding: var(--ezm-space-4);
+    background: var(--ezm-gray-100);
+    border-radius: var(--ezm-radius-lg);
+}
+
+.videos-rating-card__avatar {
+    flex-shrink: 0;
+}
+
+.videos-rating-card__avatar img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.videos-rating-card__body {
+    flex: 1;
+    min-width: 0;
+}
+
+.videos-rating-card__name {
+    display: block;
+    font-size: var(--ezm-font-size-base);
+    color: var(--ezm-gray-900);
+    margin-bottom: var(--ezm-space-1);
+}
+
+.videos-rating-card__text {
+    font-size: var(--ezm-font-size-base);
+    color: var(--ezm-gray-700);
+    margin: 0;
+    line-height: var(--ezm-line-height-relaxed);
+}
+
+// —— صفحة تشغيل الفيديو ——
+.video-player-page {
+    padding: var(--ezm-space-6) var(--ezm-space-4) var(--ezm-space-12);
+    background: var(--ezm-gray-900);
+    min-height: 70vh;
+}
+
+.video-player-page__inner {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.video-player-page__notice {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--ezm-space-3);
+    padding: var(--ezm-space-4);
+    background: rgba(255, 193, 7, 0.15);
+    border: 1px solid rgba(255, 193, 7, 0.4);
+    border-radius: var(--ezm-radius);
+    margin-bottom: var(--ezm-space-4);
+}
+
+.video-player-page__notice i {
+    font-size: var(--ezm-font-size-xl);
+    color: var(--ezm-warning);
+    flex-shrink: 0;
+}
+
+.video-player-page__notice-text {
+    margin: 0;
+    font-size: var(--ezm-font-size-base);
+    color: var(--ezm-gray-200);
+    line-height: var(--ezm-line-height-relaxed);
+}
+
+.video-player-page__notice-text strong {
+    color: #f8d7da;
+}
+
+.video-player-page__hint {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-500);
+    margin: 0 0 var(--ezm-space-5);
+}
+
+.video-player-page__wrap {
+    position: relative;
+    width: 100%;
+    border-radius: var(--ezm-radius-lg);
+    overflow: hidden;
+    background: #000;
+    box-shadow: var(--ezm-shadow-lg);
+}
+
+.video-player-page__video {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 75vh;
+}
+
+@media (max-width: 768px) {
+    .video-player-page__video {
+        max-height: 50vh;
+    }
+}

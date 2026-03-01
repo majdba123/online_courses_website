@@ -17,7 +17,7 @@
                             <div class="search-box">
                                 <i class="material-icons">&#xE8B6;</i>
                                 @csrf
-                                <input type="text" name="quiry" class="form-control" placeholder="Search&hellip;" />
+                                <input type="text" name="query" class="form-control" placeholder="Search&hellip;" />
                                 <br>
 
                             </div>

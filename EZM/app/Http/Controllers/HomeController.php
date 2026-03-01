@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
-use App\Models\Benefits;
-use App\Models\Rating;
+
 use App\Models\Courses;
+use App\Models\Benefits;
 use App\Models\QFA;
+use App\Models\Rating;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -59,14 +61,20 @@ class HomeController extends Controller
         }
         return redirect()->back();
     }
-    public function search(Request $request )
+    public function search(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'quiry' => 'required',
-         ]);
-         $search = $request->input('quiry');
-         $user=User::where('name', 'like', "%$search%")->paginate(4);
-         $i=0 ;
-         return view('admin.user.index',compact('user','i'));
+            'query' => 'required|string|min:1',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('search.user')->withErrors($validator)->withInput();
+        }
+
+        $search = $request->input('query');
+        $user = User::where('name', 'like', "%{$search}%")->paginate(4);
+        $i = 0;
+
+        return view('admin.user.index', compact('user', 'i'));
     }
 }

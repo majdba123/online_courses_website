@@ -27,9 +27,9 @@ class RatingController extends Controller
     {
         Cache::forget('rating');
         $validator = Validator::make($request->all(), [
-            'quiry' => 'required',
-         ]);
-         $search = $request->input('quiry');
+            'query' => 'required|string|min:1|max:255',
+        ]);
+        $search = $request->input('query');
          $userr=User::where('name', 'like', "%$search%")->first();
          if($userr)
          {

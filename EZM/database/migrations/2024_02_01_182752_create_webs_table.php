@@ -24,7 +24,7 @@ return new class extends Migration
         });
         DB::table('webs')->insert([
             [
-                'introduction' => 'https://www.youtube.com/embed/5Xog8d_2um4?si=0VbO5AewN7kZ3EAU',
+                'introduction' => 'https://www.youtube.com/embed/5aww-Bpgkf4',
                 'youtube' => 'https://www.youtube.com/',
                 'facebook' => 'https://www.facebook.com/',
                 'linkedin' => 'https://www.linkedin.com/',

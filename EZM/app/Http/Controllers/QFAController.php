@@ -26,9 +26,9 @@ class QFAController extends Controller
     {
         Cache::forget('qfa');
         $validator = Validator::make($request->all(), [
-            'quiry' => 'required',
-         ]);
-         $search = $request->input('quiry');
+            'query' => 'required|string|min:1|max:255',
+        ]);
+        $search = $request->input('query');
          $qfa=QFA::where('quastion', 'like', "%$search%")->paginate(4);
          $i=0 ;
          return view('admin.qfa.show',compact('qfa','i'));
@@ -97,7 +97,7 @@ class QFAController extends Controller
          $qfa->save();
          Cache::forget('qfa');
 
-         return redirect()->back()->with(['success'=>'updtae QFA done']);
+         return redirect()->back()->with(['success' => 'تم تحديث السؤال الشائع بنجاح']);
     }
 
     /**

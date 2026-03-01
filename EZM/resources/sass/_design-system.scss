@@ -1,0 +1,73 @@
+// =============================================================================
+// EZM Design System – ألوان، تباعد، ظلال، حدود
+// =============================================================================
+
+:root {
+    // Primary & accent
+    --ezm-primary: #0d6efd;
+    --ezm-primary-dark: #0a58ca;
+    --ezm-accent: #00aeef;
+    --ezm-accent-hover: #0099d4;
+
+    // Neutrals
+    --ezm-white: #ffffff;
+    --ezm-gray-100: #f8f9fa;
+    --ezm-gray-200: #e9ecef;
+    --ezm-gray-300: #dee2e6;
+    --ezm-gray-400: #ced4da;
+    --ezm-gray-500: #adb5bd;
+    --ezm-gray-600: #6c757d;
+    --ezm-gray-700: #495057;
+    --ezm-gray-800: #343a40;
+    --ezm-gray-900: #212529;
+    --ezm-black: #000000;
+
+    // Semantic
+    --ezm-success: #198754;
+    --ezm-success-bg: #d1e7dd;
+    --ezm-danger: #dc3545;
+    --ezm-danger-bg: #f8d7da;
+    --ezm-warning: #ffc107;
+    --ezm-info: #0dcaf0;
+
+    // Spacing scale (px)
+    --ezm-space-1: 0.25rem;
+    --ezm-space-2: 0.5rem;
+    --ezm-space-3: 0.75rem;
+    --ezm-space-4: 1rem;
+    --ezm-space-5: 1.25rem;
+    --ezm-space-6: 1.5rem;
+    --ezm-space-8: 2rem;
+    --ezm-space-10: 2.5rem;
+    --ezm-space-12: 3rem;
+    --ezm-space-16: 4rem;
+    --ezm-space-20: 5rem;
+
+    // Border radius
+    --ezm-radius-sm: 0.25rem;
+    --ezm-radius: 0.5rem;
+    --ezm-radius-lg: 0.75rem;
+    --ezm-radius-xl: 1rem;
+    --ezm-radius-pill: 50px;
+
+    // Shadows
+    --ezm-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --ezm-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --ezm-shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    --ezm-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.125);
+
+    // Typography
+    --ezm-font-sans: "Janna LT", "Segoe UI", Tahoma, sans-serif;
+    --ezm-font-size-sm: 0.875rem;
+    --ezm-font-size-base: 1rem;
+    --ezm-font-size-lg: 1.125rem;
+    --ezm-font-size-xl: 1.25rem;
+    --ezm-font-size-2xl: 1.5rem;
+    --ezm-font-size-3xl: 1.875rem;
+    --ezm-line-height-tight: 1.25;
+    --ezm-line-height-normal: 1.5;
+    --ezm-line-height-relaxed: 1.75;
+
+    // Transitions
+    --ezm-transition: 0.2s ease;
+}

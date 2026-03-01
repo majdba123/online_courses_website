@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Http\View\Composers\WebLayoutComposer;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::composer(['web.weblayout', 'web.homepage', 'web.contact.index'], WebLayoutComposer::class);
     }
 }

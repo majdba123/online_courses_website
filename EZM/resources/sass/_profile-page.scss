@@ -1,0 +1,429 @@
+// =============================================================================
+// صفحة الصفحة الشخصية (Profile)
+// =============================================================================
+
+.profile-page {
+    padding: var(--ezm-space-8) var(--ezm-space-4) var(--ezm-space-12);
+    background: var(--ezm-gray-100);
+    min-height: 60vh;
+}
+
+.profile-page__inner {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.profile-page__header {
+    text-align: center;
+    margin-bottom: var(--ezm-space-8);
+}
+
+.profile-page__title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 800;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-2);
+}
+
+.profile-page__subtitle {
+    font-size: var(--ezm-font-size-base);
+    color: var(--ezm-gray-600);
+    margin: 0;
+}
+
+// تبويبات
+.profile-page__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ezm-space-2);
+    margin-bottom: var(--ezm-space-6);
+    background: var(--ezm-white);
+    padding: var(--ezm-space-2);
+    border-radius: var(--ezm-radius-lg);
+    box-shadow: var(--ezm-shadow-sm);
+}
+
+.profile-page__tab {
+    flex: 1;
+    min-width: 120px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--ezm-space-2);
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    font-size: var(--ezm-font-size-base);
+    font-weight: 600;
+    color: var(--ezm-gray-600);
+    background: transparent;
+    border: none;
+    border-radius: var(--ezm-radius);
+    cursor: pointer;
+    transition: color var(--ezm-transition), background-color var(--ezm-transition);
+}
+
+.profile-page__tab:hover {
+    color: var(--ezm-accent);
+    background: var(--ezm-gray-100);
+}
+
+.profile-page__tab--active {
+    color: var(--ezm-white);
+    background: var(--ezm-accent);
+}
+
+.profile-page__tab--active:hover {
+    color: var(--ezm-white);
+    background: var(--ezm-accent-hover);
+}
+
+.profile-page__tab i {
+    font-size: var(--ezm-font-size-lg);
+}
+
+// لوحات المحتوى
+.profile-page__panel {
+    display: none;
+}
+
+.profile-page__panel--active {
+    display: block;
+}
+
+// بطاقات
+.profile-page__card {
+    background: var(--ezm-white);
+    border-radius: var(--ezm-radius-xl);
+    padding: var(--ezm-space-8);
+    margin-bottom: var(--ezm-space-6);
+    box-shadow: var(--ezm-shadow);
+    border: 1px solid var(--ezm-gray-200);
+}
+
+.profile-page__card-title {
+    font-size: var(--ezm-font-size-xl);
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-6);
+    padding-bottom: var(--ezm-space-4);
+    border-bottom: 2px solid var(--ezm-gray-200);
+}
+
+.profile-page__empty {
+    text-align: center;
+    color: var(--ezm-gray-600);
+    padding: var(--ezm-space-8);
+    margin: 0;
+}
+
+.profile-page__empty a {
+    color: var(--ezm-accent);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.profile-page__empty a:hover {
+    text-decoration: underline;
+}
+
+// نموذج المعلومات الشخصية
+.profile-form__layout {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--ezm-space-10);
+    align-items: start;
+}
+
+@media (max-width: 640px) {
+    .profile-form__layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.profile-form__avatar-wrap {
+    text-align: center;
+}
+
+.profile-form__avatar-box {
+    margin-bottom: var(--ezm-space-4);
+}
+
+.profile-form__avatar {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--ezm-gray-200);
+}
+
+.profile-form__file-label {
+    display: inline-block;
+    cursor: pointer;
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-accent);
+    font-weight: 600;
+}
+
+.profile-form__file-input {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.profile-form__file-text:hover {
+    text-decoration: underline;
+}
+
+.profile-form__fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ezm-space-4);
+}
+
+.profile-form__row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ezm-space-2);
+}
+
+.profile-form__label {
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 600;
+    color: var(--ezm-gray-700);
+}
+
+.profile-form__input {
+    width: 100%;
+    max-width: 360px;
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    font-size: var(--ezm-font-size-base);
+    border: 1px solid var(--ezm-gray-300);
+    border-radius: var(--ezm-radius);
+    background: var(--ezm-white);
+    color: var(--ezm-gray-900);
+    transition: border-color var(--ezm-transition), box-shadow var(--ezm-transition);
+}
+
+.profile-form__input:focus {
+    outline: none;
+    border-color: var(--ezm-accent);
+    box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.15);
+}
+
+.profile-form__input::placeholder {
+    color: var(--ezm-gray-400);
+}
+
+.profile-form__input--error {
+    border-color: var(--ezm-danger);
+}
+
+.profile-form__error {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-danger);
+}
+
+.profile-form--narrow .profile-form__input {
+    max-width: 100%;
+}
+
+.profile-form__actions {
+    margin-top: var(--ezm-space-4);
+}
+
+.profile-form__btn {
+    padding: var(--ezm-space-3) var(--ezm-space-8);
+    font-size: var(--ezm-font-size-base);
+    font-weight: 600;
+    color: var(--ezm-white);
+    background: var(--ezm-accent);
+    border: none;
+    border-radius: var(--ezm-radius);
+    cursor: pointer;
+    transition: background-color var(--ezm-transition);
+}
+
+.profile-form__btn:hover {
+    background: var(--ezm-accent-hover);
+}
+
+// بطاقة كلمة المرور
+.profile-page__card--password .profile-form--narrow {
+    max-width: 400px;
+}
+
+// دورات البروفايل (قائمة الدورات / المفضلة)
+.profile-courses {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ezm-space-6);
+}
+
+.profile-course {
+    padding: var(--ezm-space-5);
+    background: var(--ezm-gray-100);
+    border-radius: var(--ezm-radius-lg);
+    border: 1px solid var(--ezm-gray-200);
+}
+
+.profile-course__head {
+    margin-bottom: var(--ezm-space-2);
+}
+
+.profile-course__name {
+    font-size: var(--ezm-font-size-xl);
+    font-weight: 700;
+    margin: 0 0 var(--ezm-space-1);
+}
+
+.profile-course__name a {
+    color: var(--ezm-gray-900);
+    text-decoration: none;
+}
+
+.profile-course__name a:hover {
+    color: var(--ezm-accent);
+    text-decoration: underline;
+}
+
+.profile-course__doctor {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-600);
+}
+
+.profile-course__doctor i {
+    margin-left: var(--ezm-space-1);
+}
+
+.profile-course__desc {
+    font-size: var(--ezm-font-size-base);
+    color: var(--ezm-gray-700);
+    margin: 0 0 var(--ezm-space-4);
+    line-height: var(--ezm-line-height-relaxed);
+}
+
+.profile-course__label {
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 600;
+    color: var(--ezm-gray-700);
+    margin: 0 0 var(--ezm-space-2);
+}
+
+.profile-course__videos {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--ezm-space-4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ezm-space-2);
+}
+
+.profile-course__video-link {
+    display: inline-block;
+    padding: var(--ezm-space-2) var(--ezm-space-3);
+    background: var(--ezm-white);
+    border-radius: var(--ezm-radius);
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-800);
+    text-decoration: none;
+    border: 1px solid var(--ezm-gray-300);
+    transition: border-color var(--ezm-transition), color var(--ezm-transition);
+}
+
+.profile-course__video-link:hover {
+    border-color: var(--ezm-accent);
+    color: var(--ezm-accent);
+}
+
+.profile-course__cta {
+    display: inline-block;
+    padding: var(--ezm-space-2) var(--ezm-space-5);
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 600;
+    color: var(--ezm-white);
+    background: var(--ezm-accent);
+    border-radius: var(--ezm-radius);
+    text-decoration: none;
+    transition: background-color var(--ezm-transition);
+}
+
+.profile-course__cta:hover {
+    background: var(--ezm-accent-hover);
+    color: var(--ezm-white);
+}
+
+// جدول الطلبات
+.profile-orders-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.profile-orders {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--ezm-font-size-base);
+}
+
+.profile-orders thead {
+    background: var(--ezm-gray-100);
+    border-bottom: 2px solid var(--ezm-gray-300);
+}
+
+.profile-orders th {
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    text-align: right;
+    font-weight: 700;
+    color: var(--ezm-gray-800);
+}
+
+.profile-orders td {
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    border-bottom: 1px solid var(--ezm-gray-200);
+}
+
+.profile-orders tbody tr:hover {
+    background: var(--ezm-gray-100);
+}
+
+.profile-orders td a {
+    color: var(--ezm-accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.profile-orders td a:hover {
+    text-decoration: underline;
+}
+
+.profile-orders__price {
+    font-weight: 600;
+    color: var(--ezm-gray-800);
+}
+
+.profile-orders__receipt {
+    display: inline-block;
+    padding: var(--ezm-space-1) var(--ezm-space-3);
+    font-size: var(--ezm-font-size-sm);
+    background: var(--ezm-gray-200);
+    border-radius: var(--ezm-radius-sm);
+}
+
+.profile-orders__status {
+    display: inline-block;
+    padding: var(--ezm-space-1) var(--ezm-space-3);
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 600;
+    border-radius: var(--ezm-radius-pill);
+}
+
+.profile-orders__status--done {
+    background: var(--ezm-success-bg);
+    color: var(--ezm-success);
+}
+
+.profile-orders__status--pending {
+    background: rgba(255, 193, 7, 0.2);
+    color: #856404;
+}

@@ -24,9 +24,9 @@ class DiscountController extends Controller
     {
         Cache::forget('discount');
         $validator = Validator::make($request->all(), [
-            'quiry' => 'required',
-         ]);
-         $search = $request->input('quiry');
+            'query' => 'required|string|min:1|max:255',
+        ]);
+        $search = $request->input('query');
          $discount = Discount::where('discount_percentage', 'like', "%$search%")->paginate(4);
          $i=0 ;
          return view('admin.discount.show',compact('discount','i'));
@@ -63,7 +63,7 @@ class DiscountController extends Controller
         }
          $discount->save();
          Cache::forget('discount');
-         return redirect()->back()->with(['success'=>'Updtae Discount done']);
+         return redirect()->back()->with(['success' => 'تم تحديث الخصم بنجاح']);
     }
 
     public function delete($id)

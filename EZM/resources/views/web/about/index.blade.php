@@ -1,190 +1,86 @@
 @extends('web.weblayout')
+@section('title', 'عن المنصة | EZM - منصة الدورات الطبية')
 @section('content')
-<div class="background">
-    <div class="contact">
-        <div class="contactus">
-            <h1>About EZM</h1>
-        </div>
-        <div class="contactus">
-            <p>
-                Welcome to our platform, where we are passionate about empowering
-                individuals to master the world of design and development. We offer a
-                wide range of online courses designed to equip learners with the
-                skills and knowledge needed to succeed in the ever-evolving digital
-                landscape.
-            </p>
-        </div>
-    </div>
-    <div class="Achievements">
-        <div class="contactus">
-            <h1>Achievements</h1>
-            <p>
-                Our commitment to excellence has led us to achieve significant
-                milestones along our journey. Here are some of our notable
-                achievements
-            </p>
-        </div>
-    </div>
-    <div class="contact">
-        @foreach ($achievement as $achievements)
-        <div class="contactdescription">
-            <logo><img src="{{ asset('logo.jpg') }}" alt="" width="40px" /></logo>
-            <h3>{{ $achievements->title }}</h3>
-            <p>
-                {{ $achievements->achievement }}
-            </p>
-        </div>
-        @endforeach
 
-    </div>
-
-    <div class="Achievements">
-        <div class="contactus">
-            <h1>Our Goals</h1>
-            <p>
-                At SkillBridge, our goal is to empower individuals from all
-                backgrounds to thrive in the world of design and development. We
-                believe that education should be accessible and transformative,
-                enabling learners to pursue their passions and make a meaningful
-                impact. Through our carefully crafted courses, we aim to
+<section class="about-page">
+    {{-- Intro --}}
+    <header class="about-hero">
+        <div class="about-hero__inner">
+            <h1 class="about-hero__title">عن EZM</h1>
+            <p class="about-hero__lead">
+                منصة متخصصة في تمكين المتعلمين من إتقان المعرفة الطبية. نقدم مجموعة واسعة من الدورات المصممة لتزويدكم بالمهارات والمعرفة اللازمة في المشهد الطبي المتطور.
             </p>
         </div>
-    </div>
-    <div class="contact">
-        @foreach ($goal as $goals)
-        <div class="contactdescription">
-            <logo><img src="{{ asset('logo.jpg') }}" alt="" width="40px" /></logo>
-            <h3>{{ $goals->title }}</h3>
-            <p>
-                {{ $goals->golas }}
-            </p>
-        </div>
-        @endforeach
-    </div>
+    </header>
 
-    <div class="Together">
-        <div class="contactus">
-            <h1>
-                <span>Together</span>, let s shape the future of digital innovation
-            </h1>
-            <p>
-                Join us on this exciting learning journey and unlock your potential in
-                design and development.
+    {{-- Achievements --}}
+    <section class="about-section about-achievements">
+        <div class="about-section__inner">
+            <h2 class="about-section__title">إنجازاتنا</h2>
+            <p class="about-section__lead">
+                التزامنا بالتميز قادنا إلى تحقيق milestones مهمة. إليك أبرز إنجازاتنا.
             </p>
+            @if($achievement->isEmpty())
+                <p class="about-section__empty">لا توجد إنجازات معروضة حالياً.</p>
+            @else
+                <div class="about-cards">
+                    @foreach($achievement as $item)
+                    <article class="about-card">
+                        <div class="about-card__icon">
+                            <img src="{{ asset('logo.jpg') }}" alt="" width="48" height="48" />
+                        </div>
+                        <h3 class="about-card__title">{{ $item->title }}</h3>
+                        <p class="about-card__text">{{ $item->achievement }}</p>
+                    </article>
+                    @endforeach
+                </div>
+                @if($achievement->hasPages())
+                <div class="about-pagination">
+                    {!! $achievement->links() !!}
+                </div>
+                @endif
+            @endif
         </div>
-        <div class="contactus">
-            <a href="{{ route('register') }}">Join Now</a>
-        </div>
+    </section>
 
-    </div>
-</div>
+    {{-- Goals --}}
+    <section class="about-section about-goals">
+        <div class="about-section__inner">
+            <h2 class="about-section__title">أهدافنا</h2>
+            <p class="about-section__lead">
+                نهدف إلى تمكين الأفراد من مختلف الخلفيات من النجاح في المجال الطبي. نؤمن بأن التعليم يجب أن يكون متاحاً ومُغيّراً للحياة.
+            </p>
+            @if($goal->isEmpty())
+                <p class="about-section__empty">لا توجد أهداف معروضة حالياً.</p>
+            @else
+                <div class="about-cards">
+                    @foreach($goal as $item)
+                    <article class="about-card">
+                        <div class="about-card__icon">
+                            <img src="{{ asset('logo.jpg') }}" alt="" width="48" height="48" />
+                        </div>
+                        <h3 class="about-card__title">{{ $item->title }}</h3>
+                        <p class="about-card__text">{{ $item->golas }}</p>
+                    </article>
+                    @endforeach
+                </div>
+                @if($goal->hasPages())
+                <div class="about-pagination">
+                    {!! $goal->links() !!}
+                </div>
+                @endif
+            @endif
+        </div>
+    </section>
+
+    {{-- CTA --}}
+    <section class="about-cta">
+        <div class="about-cta__inner">
+            <h2 class="about-cta__title"><span class="about-cta__highlight">معاً</span>، نُشكّل مستقبل التعلّم الطبي</h2>
+            <p class="about-cta__lead">انضم إلينا في رحلة التعلّم واطلق إمكاناتك في الطب والتطوير المهني.</p>
+            <a href="{{ route('register') }}" class="about-cta__btn">انضم الآن</a>
+        </div>
+    </section>
+</section>
+
 @endsection
-<style>
-    .contact {
-        background-color: #eeeeee;
-        justify-content: space-between;
-        align-items: center;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 25px;
-
-    }
-
-    img {
-        border-radius: 10px;
-    }
-
-    .background {
-
-        background-color: #eeeeee;
-        justify-content: space-between;
-        align-items: center;
-        padding: 50px 150px 40px 150px;
-    }
-
-    .contactus {
-        font-size: 15px;
-
-    }
-
-    .contactdescription p {
-        font-size: 12px;
-    }
-
-    .contactdescription {
-        background-color: white;
-        padding-right: 40px;
-
-        padding-left: 40px;
-        gap: 20px;
-        font-size: 16px;
-        padding-top: 40px;
-        height: 14vw;
-        border-radius: 10px;
-
-    }
-
-    .Achievements {
-        background-color: #eeeeee;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 40px;
-        padding-bottom: 40px;
-
-    }
-
-    .Together {
-        background-color: #eeeeee;
-        justify-content: space-between;
-        align-items: center;
-        display: grid;
-        grid-template-columns: 1.9fr 1fr;
-        padding-top: 40px;
-    }
-
-    h1 span {
-        color: #00aeef;
-    }
-
-    .contactus a {
-        text-decoration: none;
-        background-color: #00aeef;
-        color: white;
-        border-radius: 5px;
-        font-size: 15px;
-        padding: 10px;
-        margin-left: 100px;
-    }
-
-    @media screen and (max-width: 1000px) {
-
-        h1,
-        h3 {
-            font-size: 20px;
-        }
-
-        .background,
-        .contact,
-        .contactus,
-        .contactdescription {
-            padding: 0px;
-            margin: 0px;
-            height: auto;
-
-        }
-
-        .Achievements,
-        .contact,
-        .Together {
-            display: block;
-            padding: 0px;
-        }
-
-        .contactdescription {
-            padding: 0px;
-        }
-
-
-    }
-</style>

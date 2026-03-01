@@ -23,12 +23,12 @@ class AchievementsController extends Controller
     {
         Cache::forget('achievements');
         $validator = Validator::make($request->all(), [
-            'quiry' => 'required|string|max:255',
+            'query' => 'required|string|min:1|max:255',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $search = $request->input('quiry');
+        $search = $request->input('query');
         $achievement = Cache::remember("achievements_search_{$search}", 60, function () use ($search) {
             return Achievements::where('achievement', 'like', "%$search%")->get();
         });

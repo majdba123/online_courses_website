@@ -1,308 +1,143 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-
-    <link href="https://db.onlinewebfonts.com/c/dee436f274c410c23fc3de43367ef1ae?family=Janna+LT" rel="stylesheet" />
-    <link href="https://db.onlinewebfonts.com/c/dee436f274c410c23fc3de43367ef1ae?family=Janna+LT" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EZM</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>@yield('title', 'EZM - منصة الدورات الطبية')</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://vjs.zencdn.net/7.10.2/video-js.css" rel="stylesheet" />
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+<body class="web-layout">
+    {{-- شريط العلوي (قناة يوتيوب) --}}
+    <div class="ezm-topbar">
+        <a href="{{ $site?->youtube ?? '#' }}">الق نظرة على قناة اليوتيوب</a>
+    </div>
 
-<body>
     <header>
-        <div class="youtube"><a href="{{ DB::table('webs')->where('id', 1)->value('youtube') }}">الق نظرة على قناة
-                اليوتيوب</a></div>
-        <nav class="asasasas navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light ezm-nav">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#"><img src="{{ asset('logo.jpg') }}" alt="" width="40px" /></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    <img src="{{ asset('logo.jpg') }}" alt="EZM" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class=" asqwqw nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}"> الرئيسية</a>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">الرئيسية</a>
                         </li>
-                        <li class="asqwqw nav-item">
-                            <a class="  nav-link active" aria-current="page" href="{{ route('courses') }}"> الدورات</a>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('courses') ? 'active' : '' }}" href="{{ route('courses') }}">الدورات</a>
                         </li>
-                        <li class=" asqwqw nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('about.index') }}"> عن
-                                المنصة</a>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('about.index') ? 'active' : '' }}" href="{{ route('about.index') }}">عن المنصة</a>
                         </li>
-                        <li class="asqwqw nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('profile.index') }}"> الصفحة
-                                الشخصية </a>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('profile.*') ? 'active' : '' }}" href="{{ route('profile.index') }}">الصفحة الشخصية</a>
                         </li>
-                        <li class=" asqwqw nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{ route('contact.index') }}"> تواصل
-                                معنا</a>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('contact.index') ? 'active' : '' }}" href="{{ route('contact.index') }}">تواصل معنا</a>
                         </li>
                     </ul>
-                    <div class="d-flex">
+                    <div class="d-flex align-items-center gap-2">
                         @guest
-                        @if (Route::has('login'))
-                        <li class="asqwqw navbar">
-                            <a class=" Login" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @endif
-
-                        @if (Route::has('register'))
-                        <li class=" asqwqw navbar">
-                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
+                            @if (Route::has('login'))
+                                <a class="btn ezm-btn-login" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            @endif
+                            @if (Route::has('register'))
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            @endif
                         @else
-                        <li class="navbar">
-                            <a href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-link nav-link dropdown-toggle p-0 border-0 text-dark text-decoration-none" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ Auth::user()->name }}
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li><a class="dropdown-item" href="{{ route('profile.index') }}"><i class="fa-solid fa-user me-2"></i>الصفحة الشخصية</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="fa-solid fa-right-from-bracket me-2"></i>{{ __('Logout') }}
+                                        </a>
+                                    </li>
+                                </ul>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>
-                        </li>
                         @endguest
-
                     </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <script>
-        function showcontents(num) {
-            var conta1 = document.getElementById("conta");
-
-            if (num === 1) {
-                conta.style.display = "none"
-            }
-        }
-    </script>
-    <div class="conta" id="conta">
+    <div class="ezm-alerts-wrap">
         @if (session('success'))
-        <div class="alert alert-success">
-            <button type="button" onclick="showcontents(1)" class="close" data-dismiss="alert"
-                aria-hidden="true">x</button>
-            {{ session('success') }}
-        </div>
+            <div class="ezm-alert ezm-alert-success" id="ezm-alert-success" role="alert">
+                <span>{{ session('success') }}</span>
+                <button type="button" class="ezm-alert-close" onclick="this.closest('.ezm-alert').remove()" aria-label="إغلاق">&times;</button>
+            </div>
         @endif
-
-    </div>
-
-    <div class="conta">
-
         @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="ezm-alert ezm-alert-danger" role="alert">
+                <div>
+                    <strong>يرجى تصحيح الأخطاء التالية:</strong>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                <button type="button" class="ezm-alert-close" onclick="this.closest('.ezm-alert').remove()" aria-label="إغلاق">&times;</button>
+            </div>
         @endif
-        @yield('content')
     </div>
+
+    <main class="ezm-main">
+        @yield('content')
+    </main>
 
     <footer>
-        <div class="footer">
-            <div class="footerdes">
-                <p><img src="{{ asset('logo.jpg') }}" alt="" width="40px" /></p>
-                <p>{{ DB::table('webs')->where('id', 1)->value('gmail') }} </p>
-                <p>{{ DB::table('webs')->where('id', 1)->value('phone') }}</p>
-                <p>Some Where in the World</p>
+        <div class="ezm-footer">
+            <div class="ezm-footer-brand">
+                <p><img src="{{ asset('logo.jpg') }}" alt="EZM" width="40" height="40" /></p>
+                <p>{{ $site?->gmail ?? '' }}</p>
+                <p>{{ $site?->phone ?? '' }}</p>
+                <p>منصة EZM للتعلم الطبي</p>
             </div>
-            <div>
-                <div class="footerdesc">
-                    <div>
-                        <a href="{{ route('home') }}" class="url">
-                            <p>Home</p>
-                        </a>
-                        <p><a href="{{ url('/') }}">Benefits</a></p>
-                        <p><a href="{{ url('/courses_section') }}">Our Courses </a></p>
-                        <p><a href="{{ url('/') }}">Our Testimonials </a></p>
-                        <p><a href="{{ url('/') }}">Our FAQ </a></p>
-                    </div>
-                    <div>
-                        <a href="{{ route('about.index') }}">
-                            <p>About Us</p>
-                        </a>
-                        <a href="{{ route('contact.index') }}">
-                            <p>Contact us </p>
-                        </a>
-                        <a href="{{ route('about.index') }}">
-                            <p>Achievements</p>
-                        </a>
-                        <a href="{{ route('about.index') }}">
-                            <p>Our Goals</p>
-                        </a>
-                    </div>
+            <div class="ezm-footer-links">
+                <div>
+                    <p><a href="{{ route('home') }}">الرئيسية</a></p>
+                    <p><a href="{{ route('courses') }}">الدورات</a></p>
+                    <p><a href="{{ route('about.index') }}">عن المنصة</a></p>
+                </div>
+                <div>
+                    <p><a href="{{ route('contact.index') }}">تواصل معنا</a></p>
+                    <p><a href="{{ route('about.index') }}">المزايا</a></p>
+                    <p><a href="{{ route('about.index') }}">الأسئلة الشائعة</a></p>
                 </div>
             </div>
-            <div class="d-flex justify-content-center align-items-start h-l-100">
-                <a href="{{ DB::table('webs')->where('id', 1)->value('facebook') }}"> <img class="facebook"
-                        src="../../facebook.png" alt=""></a>
-
-                <a href="{{ DB::table('webs')->where('id', 1)->value('linkedin') }}"> <img class="facebook"
-                        src="../../linkedin.png" alt=""></a>
+            <div class="ezm-footer-social">
+                <a href="{{ $site?->facebook ?? '#' }}" title="Facebook"><img src="{{ asset('facebook.png') }}" alt="Facebook" /></a>
+                <a href="{{ $site?->linkedin ?? '#' }}" title="LinkedIn"><img src="{{ asset('linkedin.png') }}" alt="LinkedIn" /></a>
             </div>
         </div>
     </footer>
+
+    <script>
+        document.querySelectorAll('.accordion button').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var expanded = this.getAttribute('aria-expanded') === 'true';
+                document.querySelectorAll('.accordion button').forEach(function(b) { b.setAttribute('aria-expanded', 'false'); });
+                this.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            });
+        });
+    </script>
+    {{-- Bootstrap JS يُحمّل عبر Vite (resources/js/app.js -> import 'bootstrap') --}}
 </body>
-
 </html>
-
-<script>
-    const items = document.querySelectorAll(".accordion button");
-
-    function toggleAccordion() {
-        const itemToggle = this.getAttribute("aria-expanded");
-
-        for (i = 0; i < items.length; i++) {
-            items[i].setAttribute("aria-expanded", "false");
-        }
-
-        if (itemToggle == "false") {
-            this.setAttribute("aria-expanded", "true");
-        }
-    }
-    items.forEach((item) => item.addEventListener("click", toggleAccordion));
-</script>
-<style lang="">
-    @font-face {
-        font-family: "Janna LT";
-        src: url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.eot");
-        src: url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.eot?#iefix") format("embedded-opentype"),
-            url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.woff2") format("woff2"),
-            url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.woff") format("woff"),
-            url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.ttf") format("truetype"),
-            url("https://db.onlinewebfonts.com/t/dee436f274c410c23fc3de43367ef1ae.svg#Janna LT") format("svg");
-    }
-
-    * {
-        font-family: Janna LT;
-    }
-
-    header {
-        background-color: #eeeeee !important;
-    }
-
-    .facebook {
-        width: 30px;
-        border-radius: 10px;
-        margin: 10px;
-    }
-
-    .asasasas {
-        padding: 0 80px;
-        background-color: #eeeeee !important;
-    }
-
-    /*header*/
-    .youtube {
-        text-align: center;
-        background-color: #00aeef;
-        padding: 10px 0px 11px 0px;
-        margin: 10px 30px 10px 30px;
-        border-radius: 10px;
-    }
-
-
-    .youtube a {
-        text-decoration: none;
-        background-color: #00aeef;
-        color: white;
-    }
-
-    .navbar img {
-        border-radius: 10px;
-    }
-
-    .navbar a,
-    .LoginOrRegester a {
-        flex-direction: row;
-        text-decoration: none;
-        color: black;
-        padding: 10 15px;
-        font-size: 15px;
-    }
-
-
-    .asqwqw a:hover {
-        list-style-type: none;
-        display: inline-block;
-        background-color: rgb(176, 168, 168);
-        border-radius: 10px;
-        padding: 10 15px;
-
-
-    }
-
-    .Login {
-        background-color: #00aeef;
-        border-radius: 10px;
-        color: white !important;
-    }
-
-    /*footer*/
-    .footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 160px;
-        display: grid;
-        grid-template-columns: 5fr 5fr 2fr;
-        padding-top: 80px;
-        font-size: 15px;
-    }
-
-    .footerdesc {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    a {
-        text-decoration: none;
-        color: black;
-    }
-
-    @media screen and (max-width: 500px) {
-        .footer {
-            display: block;
-            padding: 0px;
-            margin: 20px 0px 0px 40px;
-        }
-
-    }
-</style>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
-    crossorigin="anonymous"></script>

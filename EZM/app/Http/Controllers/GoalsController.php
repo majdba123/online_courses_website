@@ -88,16 +88,16 @@ class GoalsController extends Controller
          $goal->save();
          Cache::forget('goal');
 
-         return redirect()->back()->with(['success'=>'updtae Goals done']);
+         return redirect()->back()->with(['success' => 'تم تحديث الهدف بنجاح']);
     }
 
     public function search(Request $request )
     {
         Cache::forget('goal');
         $validator = Validator::make($request->all(), [
-            'quiry' => 'required',
-         ]);
-         $search = $request->input('quiry');
+            'query' => 'required|string|min:1|max:255',
+        ]);
+        $search = $request->input('query');
          $goal=Goals::where('title', 'like', "%$search%")->paginate(4);
          $i=0 ;
          return view('admin.goal.show',compact('goal','i'));

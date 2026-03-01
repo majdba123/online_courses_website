@@ -23,12 +23,12 @@ class BenefitsController extends Controller
     {
         Cache::forget('benefits');
         $validator = Validator::make($request->all(), [
-            'quiry' => 'required|string',
+            'query' => 'required|string|min:1|max:255',
         ]);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        $search = $request->input('quiry');
+        $search = $request->input('query');
         $benefits = Benefits::where('benefits', 'like', "%$search%")->get();
         return view('admin.benefit.show', compact('benefits'));
     }

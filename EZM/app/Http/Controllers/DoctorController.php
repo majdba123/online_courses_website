@@ -19,9 +19,9 @@ class DoctorController extends Controller
     {
         Cache::forget('doctor');
         $validator = Validator::make($request->all(), [
-            'quiry' => 'required',
-         ]);
-         $search = $request->input('quiry');
+            'query' => 'required|string|min:1|max:255',
+        ]);
+        $search = $request->input('query');
          $doctor = Doctor::where('name', 'like', "%$search%")->paginate(4);
          $i=0 ;
          return view('admin.doctor.show',compact('doctor','i'));
@@ -77,7 +77,7 @@ class DoctorController extends Controller
         }
          $doctor->save();
          Cache::forget('doctor');
-         return redirect()->back()->with(['success'=>'updtae doctor done']);
+         return redirect()->back()->with(['success' => 'تم تحديث الدكتور بنجاح']);
     }
 
     public function delete($id)

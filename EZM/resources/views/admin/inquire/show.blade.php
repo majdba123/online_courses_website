@@ -31,7 +31,7 @@
                       @csrf
                     <input
                       type="text"
-                      name="quiry"
+                      name="query"
                       class="form-control"
                       placeholder="Search&hellip;"
                     />

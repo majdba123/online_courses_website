@@ -1,0 +1,616 @@
+// =============================================================================
+// لوحة تحكم الأدمن – هيكل وتنسيقات (متوافقة مع تصميم الموقع)
+// =============================================================================
+
+.admin-body {
+    background: var(--ezm-gray-100);
+    font-family: var(--ezm-font-sans);
+    min-height: 100vh;
+}
+
+.admin-wrap {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+// —— الشريط العلوي ——
+.admin-navbar {
+    display: flex;
+    align-items: center;
+    gap: var(--ezm-space-4);
+    padding: var(--ezm-space-3) var(--ezm-space-5);
+    background: var(--ezm-white);
+    border-bottom: 1px solid var(--ezm-gray-200);
+    box-shadow: var(--ezm-shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+.admin-navbar__toggler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--ezm-gray-300);
+    border-radius: var(--ezm-radius);
+    background: var(--ezm-white);
+    color: var(--ezm-gray-700);
+}
+
+.admin-navbar__toggler:hover {
+    background: var(--ezm-gray-100);
+    color: var(--ezm-accent);
+}
+
+.admin-navbar__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ezm-space-3);
+    text-decoration: none;
+    color: var(--ezm-gray-900);
+    font-weight: 700;
+    font-size: var(--ezm-font-size-lg);
+}
+
+.admin-navbar__brand img {
+    border-radius: var(--ezm-radius);
+}
+
+.admin-navbar__title {
+    color: var(--ezm-accent);
+}
+
+.admin-navbar__end {
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--ezm-space-4);
+    flex-wrap: wrap;
+}
+
+.admin-navbar__link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ezm-space-2);
+    padding: var(--ezm-space-2) var(--ezm-space-3);
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-700);
+    text-decoration: none;
+    border-radius: var(--ezm-radius);
+    transition: background var(--ezm-transition), color var(--ezm-transition);
+}
+
+.admin-navbar__link:hover {
+    background: var(--ezm-gray-100);
+    color: var(--ezm-accent);
+}
+
+.admin-navbar__user {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-700);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ezm-space-2);
+}
+
+.admin-navbar__logout {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ezm-space-2);
+    padding: var(--ezm-space-2) var(--ezm-space-3);
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-danger);
+    background: transparent;
+    border: 1px solid var(--ezm-danger);
+    border-radius: var(--ezm-radius);
+    cursor: pointer;
+    transition: background var(--ezm-transition), color var(--ezm-transition);
+}
+
+.admin-navbar__logout:hover {
+    background: var(--ezm-danger);
+    color: var(--ezm-white);
+}
+
+// —— منطقة الشريط الجانبي + المحتوى ——
+.admin-main-wrap {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+// —— القائمة الجانبية ——
+.admin-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: var(--ezm-white);
+    border-left: 1px solid var(--ezm-gray-200);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+}
+
+// على الشاشات الصغيرة: السايدبار مخفي ويُفتح بالزر
+@media (max-width: 991.98px) {
+    .admin-sidebar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1050;
+        box-shadow: var(--ezm-shadow-lg);
+        transform: translateX(100%);
+    }
+    .admin-sidebar.admin-sidebar--open {
+        transform: translateX(0);
+    }
+}
+
+.admin-sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1045;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.admin-sidebar-backdrop.show {
+    display: block;
+    opacity: 1;
+}
+
+.admin-sidebar__head {
+    padding: var(--ezm-space-4);
+    border-bottom: 1px solid var(--ezm-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.admin-sidebar__head .admin-sidebar__title {
+    margin: 0;
+    font-size: var(--ezm-font-size-lg);
+    font-weight: 700;
+}
+.admin-sidebar__close {
+    padding: var(--ezm-space-2);
+}
+
+.admin-sidebar__nav {
+    padding: var(--ezm-space-4) var(--ezm-space-3);
+}
+
+.admin-sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: var(--ezm-space-3);
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    color: var(--ezm-gray-700);
+    text-decoration: none;
+    border-radius: var(--ezm-radius);
+    margin-bottom: var(--ezm-space-1);
+    transition: background var(--ezm-transition), color var(--ezm-transition);
+}
+
+.admin-sidebar__link:hover {
+    background: var(--ezm-gray-100);
+    color: var(--ezm-accent);
+}
+
+.admin-sidebar__link--active {
+    background: rgba(0, 174, 239, 0.12);
+    color: var(--ezm-accent);
+    font-weight: 600;
+}
+
+.admin-sidebar__link i {
+    width: 1.25rem;
+    text-align: center;
+}
+
+.admin-sidebar__group {
+    margin-bottom: var(--ezm-space-2);
+}
+
+.admin-sidebar__group-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--ezm-space-3);
+    width: 100%;
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    font-size: var(--ezm-font-size-base);
+    font-weight: 500;
+    color: var(--ezm-gray-700);
+    background: transparent;
+    border: none;
+    border-radius: var(--ezm-radius);
+    cursor: pointer;
+    text-align: right;
+    transition: background var(--ezm-transition), color var(--ezm-transition);
+}
+
+.admin-sidebar__group-btn:hover {
+    background: var(--ezm-gray-100);
+    color: var(--ezm-accent);
+}
+
+.admin-sidebar__group-btn:not(.collapsed) {
+    background: var(--ezm-gray-100);
+    color: var(--ezm-accent);
+}
+
+.admin-sidebar__group-btn i:first-child {
+    width: 1.25rem;
+    text-align: center;
+}
+
+.admin-sidebar__chevron {
+    margin-right: auto;
+    transition: transform var(--ezm-transition);
+}
+
+.admin-sidebar__group-btn:not(.collapsed) .admin-sidebar__chevron {
+    transform: rotate(180deg);
+}
+
+.admin-sidebar__sublink {
+    display: block;
+    padding: var(--ezm-space-2) var(--ezm-space-4) var(--ezm-space-2) var(--ezm-space-10);
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-600);
+    text-decoration: none;
+    border-radius: var(--ezm-radius);
+    transition: background var(--ezm-transition), color var(--ezm-transition);
+}
+
+.admin-sidebar__sublink:hover {
+    background: var(--ezm-gray-100);
+    color: var(--ezm-accent);
+}
+
+// —— المحتوى الرئيسي ——
+.admin-main {
+    flex: 1;
+    overflow: auto;
+    padding: var(--ezm-space-6);
+}
+
+.admin-content {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+// —— تنبيهات موحدة (يمكن إزالة التكرار من الصفحات لصالح الـ layout) ——
+.admin-alert {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--ezm-space-4);
+    padding: var(--ezm-space-4);
+    border-radius: var(--ezm-radius);
+    margin-bottom: var(--ezm-space-6);
+    border: 1px solid transparent;
+}
+
+.admin-alert--success {
+    background: var(--ezm-success-bg);
+    color: #0f5132;
+    border-color: #badbcc;
+}
+
+.admin-alert--danger {
+    background: var(--ezm-danger-bg);
+    color: #842029;
+    border-color: #f5c2c7;
+}
+
+.admin-alert__close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 0 var(--ezm-space-1);
+}
+
+.admin-alert__close:hover {
+    opacity: 1;
+}
+
+// —— عناوين الصفحات ——
+.admin-page-title {
+    font-size: var(--ezm-font-size-2xl);
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+    margin: 0 0 var(--ezm-space-6);
+}
+
+// —— كروت المحتوى ——
+.admin-card {
+    background: var(--ezm-white);
+    border-radius: var(--ezm-radius-xl);
+    padding: var(--ezm-space-6);
+    margin-bottom: var(--ezm-space-6);
+    box-shadow: var(--ezm-shadow);
+    border: 1px solid var(--ezm-gray-200);
+}
+
+.admin-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--ezm-space-4);
+    margin-bottom: var(--ezm-space-5);
+    padding-bottom: var(--ezm-space-4);
+    border-bottom: 2px solid var(--ezm-gray-200);
+}
+
+.admin-card__title {
+    font-size: var(--ezm-font-size-xl);
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+    margin: 0;
+}
+
+// —— جداول ——
+.admin-table-wrap {
+    overflow-x: auto;
+    border-radius: var(--ezm-radius);
+    border: 1px solid var(--ezm-gray-200);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--ezm-font-size-base);
+}
+
+.admin-table thead {
+    background: var(--ezm-gray-100);
+}
+
+.admin-table th {
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    text-align: right;
+    font-weight: 600;
+    color: var(--ezm-gray-800);
+    border-bottom: 2px solid var(--ezm-gray-300);
+}
+
+.admin-table td {
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    border-bottom: 1px solid var(--ezm-gray-200);
+    vertical-align: middle;
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(0, 174, 239, 0.04);
+}
+
+.admin-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+// —— أزرار الأدمن ——
+.admin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ezm-space-2);
+    padding: var(--ezm-space-2) var(--ezm-space-4);
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 600;
+    border-radius: var(--ezm-radius);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background var(--ezm-transition), color var(--ezm-transition);
+}
+
+.admin-btn--primary {
+    background: var(--ezm-accent);
+    color: var(--ezm-white);
+}
+
+.admin-btn--primary:hover {
+    background: var(--ezm-accent-hover);
+    color: var(--ezm-white);
+}
+
+.admin-btn--success {
+    background: var(--ezm-success);
+    color: var(--ezm-white);
+}
+
+.admin-btn--danger {
+    background: var(--ezm-danger);
+    color: var(--ezm-white);
+}
+
+.admin-btn--outline {
+    background: transparent;
+    color: var(--ezm-gray-700);
+    border: 1px solid var(--ezm-gray-300);
+}
+
+.admin-btn--outline:hover {
+    background: var(--ezm-gray-100);
+}
+
+.admin-btn.btn-sm {
+    padding: var(--ezm-space-1) var(--ezm-space-3);
+    font-size: 0.875rem;
+}
+
+// —— نماذج (في الصفحات والمودالات) ——
+.admin-form__group {
+    margin-bottom: var(--ezm-space-4);
+}
+
+.admin-form__label {
+    display: block;
+    font-size: var(--ezm-font-size-sm);
+    font-weight: 600;
+    color: var(--ezm-gray-700);
+    margin-bottom: var(--ezm-space-2);
+}
+
+.admin-form__control {
+    width: 100%;
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    font-size: var(--ezm-font-size-base);
+    border: 1px solid var(--ezm-gray-300);
+    border-radius: var(--ezm-radius);
+    background: var(--ezm-white);
+    color: var(--ezm-gray-900);
+}
+
+.admin-form__control:focus {
+    outline: none;
+    border-color: var(--ezm-accent);
+    box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.15);
+}
+
+// —— إحصائيات (كروت الأرقام) ——
+.admin-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--ezm-space-4);
+    margin-bottom: var(--ezm-space-6);
+}
+
+.admin-stat {
+    background: var(--ezm-white);
+    border-radius: var(--ezm-radius-xl);
+    padding: var(--ezm-space-5);
+    box-shadow: var(--ezm-shadow);
+    border: 1px solid var(--ezm-gray-200);
+}
+
+.admin-stat__value {
+    font-size: var(--ezm-font-size-3xl);
+    font-weight: 800;
+    color: var(--ezm-accent);
+    line-height: 1.2;
+}
+
+.admin-stat__label {
+    font-size: var(--ezm-font-size-sm);
+    color: var(--ezm-gray-600);
+    margin-top: var(--ezm-space-1);
+}
+
+// —— ربط تنسيقات الـ container-xl القديمة ——
+.admin-content .container-xl,
+.admin-main .container-xl {
+    max-width: 100%;
+    padding: 0;
+}
+
+.admin-content .table-title,
+.admin-main .table-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--ezm-space-4);
+    margin-bottom: var(--ezm-space-5);
+}
+
+.admin-content .table,
+.admin-main .table {
+    border-radius: var(--ezm-radius);
+    overflow: hidden;
+}
+
+.admin-content .table thead th,
+.admin-main .table thead th {
+    background: var(--ezm-gray-100);
+    font-weight: 600;
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+}
+
+.admin-content .table tbody td,
+.admin-main .table tbody td {
+    padding: var(--ezm-space-3) var(--ezm-space-4);
+    vertical-align: middle;
+}
+
+.admin-content .table-hover tbody tr:hover,
+.admin-main .table-hover tbody tr:hover {
+    background: rgba(0, 174, 239, 0.06);
+}
+
+.admin-content .btn-success,
+.admin-main .btn-success {
+    background: var(--ezm-success);
+    border-color: var(--ezm-success);
+}
+
+.admin-content .btn-primary,
+.admin-main .btn-primary {
+    background: var(--ezm-accent);
+    border-color: var(--ezm-accent);
+}
+
+.admin-content .btn-primary:hover,
+.admin-main .btn-primary:hover {
+    background: var(--ezm-accent-hover);
+    border-color: var(--ezm-accent-hover);
+}
+
+.admin-content .btn-danger,
+.admin-main .btn-danger {
+    background: var(--ezm-danger);
+    border-color: var(--ezm-danger);
+}
+
+.admin-content .modal-content,
+.admin-main .modal-content {
+    border-radius: var(--ezm-radius-xl);
+    border: 1px solid var(--ezm-gray-200);
+    box-shadow: var(--ezm-shadow-lg);
+}
+
+.admin-content .modal-header,
+.admin-main .modal-header {
+    padding: var(--ezm-space-5);
+    border-bottom: 1px solid var(--ezm-gray-200);
+    background: var(--ezm-gray-100);
+}
+
+.admin-content .modal-title,
+.admin-main .modal-title {
+    font-weight: 700;
+    color: var(--ezm-gray-900);
+}
+
+.admin-content .modal-body,
+.admin-main .modal-body {
+    padding: var(--ezm-space-5);
+}
+
+.admin-content .modal-footer,
+.admin-main .modal-footer {
+    padding: var(--ezm-space-4) var(--ezm-space-5);
+    border-top: 1px solid var(--ezm-gray-200);
+}
+
+.admin-content .form-control,
+.admin-main .form-control {
+    border-radius: var(--ezm-radius);
+    border: 1px solid var(--ezm-gray-300);
+}
+
+.admin-content .form-control:focus,
+.admin-main .form-control:focus {
+    border-color: var(--ezm-accent);
+    box-shadow: 0 0 0 3px rgba(0, 174, 239, 0.15);
+}
+

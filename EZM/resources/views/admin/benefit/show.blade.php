@@ -1,129 +1,82 @@
 @extends('admin.admin_layout')
-
+@section('title', 'المزايا')
 
 @section('content')
-
 <div class="container-xl">
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-    @endif
-    @if(session('success'))
-    <div class="alert alert-success">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-        {{ session('success') }}
-    </div>
-    @endif
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
-                                class="material-icons">&#xE147;</i>
-                            <span>ADD benefit</span></a>
-                    </div>
-                    <div class="col-sm-4">
-                        <form action="{{ route('search.benefit') }}" method="get">
-
-                            <div class="search-box">
-                                <i class="material-icons">&#xE8B6;</i>
-                                @csrf
-                                <input type="text" name="quiry" class="form-control" placeholder="Search&hellip;" />
-
-                            </div>
-                            <button type="submit" class="btn btn-primary">Search</button>
-                        </form>
-                    </div>
-                </div>
+    <div class="admin-card">
+        <div class="admin-card__header">
+            <h2 class="admin-card__title">المزايا</h2>
+            <div class="d-flex flex-wrap gap-2 align-items-center">
+                <form action="{{ route('search.benefit') }}" method="get" class="d-flex gap-2">
+                    @csrf
+                    <input type="text" name="query" class="form-control" placeholder="بحث..." style="width: 180px;" />
+                    <button type="submit" class="admin-btn admin-btn--primary"><i class="fa-solid fa-search"></i> بحث</button>
+                </form>
+                <button type="button" class="admin-btn admin-btn--success" data-bs-toggle="modal" data-bs-target="#addBenefitModal">
+                    <i class="fa-solid fa-plus"></i> إضافة ميزة
+                </button>
             </div>
+        </div>
+        <div class="table-responsive">
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>title <i class="fa fa-sort"></i></th>
-                        <th>benefit</th>
-                        <th>Actions</th>
+                        <th>العنوان</th>
+                        <th>الميزة</th>
+                        <th>إجراءات</th>
                     </tr>
                 </thead>
                 <tbody>
-
-                    @foreach ( $benefits as $benefitss)
+                    @foreach ($benefits as $benefitss)
                     <tr>
-                        <td>
-                            {{ ($benefits->currentPage() - 1) * $benefits->perPage() + $loop->iteration }}
-                        </td>
+                        <td>{{ ($benefits->currentPage() - 1) * $benefits->perPage() + $loop->iteration }}</td>
                         <td>{{ $benefitss->title }}</td>
-                        <td>{{ $benefitss->benefits }}</td>
+                        <td>{{ Str::limit($benefitss->benefits, 80) }}</td>
                         <td>
-                            <a href="{{ route('benefit.edit' , $benefitss->id) }}" class="edit">
-                                <i class="material-icons" data-toggle="tooltip" title="Edit"> &#xE254; </i>
-                            </a>
-
-                            <form action="{{ route('benefit.delete',$benefitss->id)}}" method="post">
+                            <a href="{{ route('benefit.edit', $benefitss->id) }}" class="admin-btn admin-btn--outline btn-sm"><i class="fa-solid fa-pen"></i></a>
+                            <form action="{{ route('benefit.delete', $benefitss->id) }}" method="post" class="d-inline">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger"><i class="material-icons"
-                                        data-toggle="tooltip" title="Delete">&#xE872;</i></button>
+                                <button type="submit" class="admin-btn admin-btn--danger btn-sm" onclick="return confirm('هل تريد الحذف؟');"><i class="fa-solid fa-trash"></i></button>
                             </form>
-
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            <div>
-                <div class="d-flex justify-content-center">
-                    {!! $benefits->links() !!}
-                </div>
-            </div>
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            {!! $benefits->links() !!}
         </div>
     </div>
 </div>
 
-
-<!-- ADD Modal HTML -->
-<div id="addEmployeeModal" class="modal fade">
+<div class="modal fade" id="addBenefitModal" tabindex="-1" aria-labelledby="addBenefitModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('benefit.store')}}" method="POST">
+            <form action="{{ route('benefit.store') }}" method="POST">
                 @csrf
-                @method('POST')
                 <div class="modal-header">
-                    <h4 class="modal-title">benefit</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                        &times;
-                    </button>
+                    <h5 class="modal-title" id="addBenefitModalLabel">إضافة ميزة</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label>title</label>
-                        <input type="text" name="title" class="form-control" required></textarea>
+                    <div class="admin-form__group">
+                        <label class="admin-form__label">العنوان</label>
+                        <input type="text" name="title" class="admin-form__control form-control" required />
+                    </div>
+                    <div class="admin-form__group">
+                        <label class="admin-form__label">الميزة</label>
+                        <textarea name="benefits" class="admin-form__control form-control" required></textarea>
                     </div>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>benefit</label>
-                        <textarea name="benefits" class="form-control" required></textarea>
-                    </div>
-                </div>
-
                 <div class="modal-footer">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel" />
-                    <input type="submit" class="btn btn-success" value="Add" />
+                    <button type="button" class="admin-btn admin-btn--outline" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="submit" class="admin-btn admin-btn--success">إضافة</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<!-- Edit Modal HTML -->
-<style>
-    .hidden {
-        display: none !important;
-    }</style>
 @endsection

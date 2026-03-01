@@ -164,7 +164,7 @@ return [
          * Application Service Providers...
          */
         App\Providers\GoogleDriveServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
+        Spatie\Html\HtmlServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -185,7 +185,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-        'Html' => Collective\Html\HtmlFacade::class,
+        'Html' => Spatie\Html\Facades\Html::class,
     ])->toArray(),
 
 ];

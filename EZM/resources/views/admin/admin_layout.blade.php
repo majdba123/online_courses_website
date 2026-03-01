@@ -1,274 +1,193 @@
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html lang="ar" dir="rtl">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Dashboard</title>
-    <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('Admin/src/assets/vendors/feather/feather.css') }}" />
-    <link rel="stylesheet" href="{{ asset('Admin/src/assets/vendors/mdi/css/materialdesignicons.min.css') }}" />
-    <link rel="stylesheet" href="{{ asset('Admin/src/assets/vendors/ti-icons/css/themify-icons.css') }}" />
-    <link rel="stylesheet" href="{{ asset('Admin/src/assets/vendors/typicons/typicons.css') }}" />
-    <link rel="stylesheet" href="{{ asset('Admin/src/assets/vendors/simple-line-icons/css/simple-line-icons.css') }}" />
-    <link rel="stylesheet" href="{{ asset('Admin/src/assets/vendors/css/vendor.bundle.base.css') }}" />
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet"
-        href="{{ asset('Admin/src/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('Admin/src/assets/js/select.dataTables.min.css') }}" />
-    <!-- End plugin css for this page -->
-    <!-- inject:css -->
-    <link rel="stylesheet" href="{{ asset('Admin/src/assets/css/vertical-layout-light/style.css') }}" />
-    <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('Admin/src/assets/images/favicon.png') }}" />
-    <script>
-        $(document).ready(function () {
-            // Activate tooltip
-            $('[data-toggle="tooltip"]').tooltip();
-
-            // Select/Deselect checkboxes
-            var checkbox = $('table tbody input[type="checkbox"]');
-            $("#selectAll").click(function () {
-                if (this.checked) {
-                    checkbox.each(function () {
-                        this.checked = true;
-                    });
-                } else {
-                    checkbox.each(function () {
-                        this.checked = false;
-                    });
-                }
-            });
-            checkbox.click(function () {
-                if (!this.checked) {
-                    $("#selectAll").prop("checked", false);
-                }
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>@yield('title', 'لوحة التحكم') | EZM</title>
+    <link rel="shortcut icon" href="{{ asset('logo.jpg') }}" type="image/jpeg" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
+<body class="admin-body">
 
-<body class="with-welcome-text">
+<div class="admin-wrap">
+    {{-- شريط علوي --}}
+    <header class="admin-navbar">
+        <button type="button" class="admin-navbar__toggler d-lg-none" id="adminSidebarToggler" aria-controls="adminSidebar" aria-label="القائمة">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <a class="admin-navbar__brand" href="{{ route('index.Admin') }}">
+            <img src="{{ asset('logo.jpg') }}" alt="EZM" width="36" height="36" />
+            <span class="admin-navbar__title">لوحة تحكم EZM</span>
+        </a>
+        <div class="admin-navbar__end">
+            <a href="{{ url('/') }}" class="admin-navbar__link" target="_blank" rel="noopener">
+                <i class="fa-solid fa-external-link-alt"></i> الموقع
+            </a>
+            <span class="admin-navbar__user">
+                <i class="fa-solid fa-user-shield"></i>
+                {{ Auth::user()->name }}
+            </span>
+            <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                @csrf
+                <button type="submit" class="admin-navbar__logout">
+                    <i class="fa-solid fa-right-from-bracket"></i> خروج
+                </button>
+            </form>
+        </div>
+    </header>
 
-    <div class="container-scroller">
+    <div class="admin-main-wrap">
+        {{-- القائمة الجانبية --}}
+        <div class="admin-sidebar-backdrop d-lg-none" id="adminSidebarBackdrop" aria-hidden="true"></div>
+        <aside class="admin-sidebar" id="adminSidebar" aria-labelledby="adminSidebarLabel">
+            <div class="admin-sidebar__head d-lg-none">
+                <h5 id="adminSidebarLabel" class="admin-sidebar__title">القائمة</h5>
+                <button type="button" class="admin-sidebar__close btn-close" id="adminSidebarClose" aria-label="إغلاق"></button>
+            </div>
+            <nav class="admin-sidebar__nav">
+                <a class="admin-sidebar__link {{ request()->routeIs('index.Admin') ? 'admin-sidebar__link--active' : '' }}" href="{{ route('index.Admin') }}">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>لوحة التحكم</span>
+                </a>
 
-        <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex align-items-top flex-row">
-
-            <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
-
-                <div>
-                    <a class="navbar-brand brand-logo" href="../index.html">
-                        <img src="{{ asset('logo.jpg') }}" alt="" width="40px" />
-                    </a>
-                    <a class="navbar-brand brand-logo-mini" href="../index.html">
-                        <img src="../assets/images/logo-mini.svg" alt="logo" />
-                    </a>
+                <div class="admin-sidebar__group">
+                    <button class="admin-sidebar__group-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#menu-courses" aria-expanded="false">
+                        <i class="fa-solid fa-book-medical"></i>
+                        <span>إدارة الدورات</span>
+                        <i class="fa-solid fa-chevron-down admin-sidebar__chevron"></i>
+                    </button>
+                    <div class="collapse" id="menu-courses">
+                        <a class="admin-sidebar__sublink" href="{{ route('index.doctor') }}">الأطباء</a>
+                        <a class="admin-sidebar__sublink" href="{{ route('index.Discount') }}">العروض</a>
+                        <a class="admin-sidebar__sublink" href="{{ route('index.courses') }}">الدورات</a>
+                    </div>
                 </div>
+
+                <div class="admin-sidebar__group">
+                    <button class="admin-sidebar__group-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#menu-video" aria-expanded="false">
+                        <i class="fa-solid fa-video"></i>
+                        <span>إدارة الفيديو</span>
+                        <i class="fa-solid fa-chevron-down admin-sidebar__chevron"></i>
+                    </button>
+                    <div class="collapse" id="menu-video">
+                        <a class="admin-sidebar__sublink" href="{{ route('index.video') }}">الفيديوهات</a>
+                    </div>
+                </div>
+
+                <div class="admin-sidebar__group">
+                    <button class="admin-sidebar__group-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#menu-web" aria-expanded="false">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>إدارة الموقع</span>
+                        <i class="fa-solid fa-chevron-down admin-sidebar__chevron"></i>
+                    </button>
+                    <div class="collapse" id="menu-web">
+                        <a class="admin-sidebar__sublink" href="{{ route('benefit.index') }}">المزايا</a>
+                        <a class="admin-sidebar__sublink" href="{{ route('qfa.index') }}">الأسئلة الشائعة</a>
+                        <a class="admin-sidebar__sublink" href="{{ route('goal.index') }}">الأهداف</a>
+                        <a class="admin-sidebar__sublink" href="{{ route('achievement.index') }}">الإنجازات</a>
+                    </div>
+                </div>
+
+                <div class="admin-sidebar__group">
+                    <button class="admin-sidebar__group-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#menu-rating" aria-expanded="false">
+                        <i class="fa-solid fa-star"></i>
+                        <span>التقييمات</span>
+                        <i class="fa-solid fa-chevron-down admin-sidebar__chevron"></i>
+                    </button>
+                    <div class="collapse" id="menu-rating">
+                        <a class="admin-sidebar__sublink" href="{{ route('index.rate') }}">التقييمات</a>
+                    </div>
+                </div>
+
+                <div class="admin-sidebar__group">
+                    <button class="admin-sidebar__group-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#menu-inquire" aria-expanded="false">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>الاستفسارات</span>
+                        <i class="fa-solid fa-chevron-down admin-sidebar__chevron"></i>
+                    </button>
+                    <div class="collapse" id="menu-inquire">
+                        <a class="admin-sidebar__sublink" href="{{ route('index.inquire') }}">الرسائل</a>
+                    </div>
+                </div>
+
+                <div class="admin-sidebar__group">
+                    <button class="admin-sidebar__group-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#menu-order" aria-expanded="false">
+                        <i class="fa-solid fa-shopping-cart"></i>
+                        <span>الطلبات</span>
+                        <i class="fa-solid fa-chevron-down admin-sidebar__chevron"></i>
+                    </button>
+                    <div class="collapse" id="menu-order">
+                        <a class="admin-sidebar__sublink" href="{{ route('index.orders') }}">الطلبات</a>
+                    </div>
+                </div>
+
+                <div class="admin-sidebar__group">
+                    <button class="admin-sidebar__group-btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#menu-user" aria-expanded="false">
+                        <i class="fa-solid fa-users"></i>
+                        <span>المستخدمون</span>
+                        <i class="fa-solid fa-chevron-down admin-sidebar__chevron"></i>
+                    </button>
+                    <div class="collapse" id="menu-user">
+                        <a class="admin-sidebar__sublink" href="{{ route('user.index') }}">المستخدمون</a>
+                    </div>
+                </div>
+            </nav>
+        </aside>
+
+        {{-- المحتوى الرئيسي --}}
+        <main class="admin-main">
+            <div class="admin-content">
+                @if (session('success'))
+                <div class="admin-alert admin-alert--success" role="alert">
+                    <span>{{ session('success') }}</span>
+                    <button type="button" class="admin-alert__close" data-bs-dismiss="alert" aria-label="إغلاق">&times;</button>
+                </div>
+                @endif
+                @if (session('error'))
+                <div class="admin-alert admin-alert--danger" role="alert">
+                    <span>{{ session('error') }}</span>
+                    <button type="button" class="admin-alert__close" data-bs-dismiss="alert" aria-label="إغلاق">&times;</button>
+                </div>
+                @endif
+                @if ($errors->any())
+                <div class="admin-alert admin-alert--danger" role="alert">
+                    <strong>يرجى تصحيح الأخطاء:</strong>
+                    <ul class="mb-0 mt-2">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                @yield('content')
             </div>
-            <div class="navbar-menu-wrapper d-flex align-items-top">
-                <ul class="navbar-nav">
-                    <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-                        <h1 class="welcome-text">
-                            Good Morning, <span class="text-black fw-bold">{{ Auth::user()->name }}</span>
-                        </h1>
-                        <h3 class="welcome-sub-text">
-                            Your performance summary this week
-                        </h3>
-                    </li>
-                </ul>
-
-            </div>
-            </li>
-            </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-                data-bs-toggle="offcanvas">
-                <span class="mdi mdi-menu"></span>
-            </button>
+        </main>
     </div>
-    </nav>
+</div>
 
-    <div class="container-fluid page-body-wrapper">
-        <nav class="sidebar sidebar-offcanvas" id="sidebar">
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link" href={{ route('index.Admin') }}>
-                        <i class="mdi mdi-grid-large menu-icon"></i>
-                        <span class="menu-title">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                        aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-floor-plan"></i>
-                        <span class="menu-title">Manage Courses</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('index.doctor') }}">Doctor</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('index.Discount') }}">Discount</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('index.courses') }}">Courses</a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                        aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-floor-plan"></i>
-                        <span class="menu-title">Manage Video</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('index.video') }}">videos</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                        aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-floor-plan"></i>
-                        <span class="menu-title">Manage web</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('benfit.index') }}">benefit</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('qfa.index') }}">QFA</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('goal.index') }}">Goals</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('achievement.index') }}">Achievement</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                        aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-floor-plan"></i>
-                        <span class="menu-title">Manage Rating</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('index.rate') }}">Rating</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                        aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-floor-plan"></i>
-                        <span class="menu-title">Manage Quastion</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('index.inquire') }}">Quastion</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                        aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-floor-plan"></i>
-                        <span class="menu-title">Manage Order</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('index.orders') }}">Order</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                        aria-controls="ui-basic">
-                        <i class="menu-icon mdi mdi-floor-plan"></i>
-                        <span class="menu-title">Manage User</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="ui-basic">
-                        <ul id="myDropdown" class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('user.index') }}">User</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        @yield('content')
-
-
-    </div>
-
-
-
-
-
-
-
-
-
-    <!-- plugins:js -->
-    <script src="{{ asset('Admin/src/assets/vendors/js/vendor.bundle.base.js') }}"></script>
-    <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="{{ asset('Admin/src/assets/vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('Admin/src/assets/vendors/progressbar.js/progressbar.min.js') }}"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('Admin/src/assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('Admin/src/assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('Admin/src/assets/js/template.js') }}"></script>
-    <script src="{{ asset('Admin/src/assets/js/settings.js') }}"></script>
-    <script src="{{ asset('Admin/src/assets/js/todolist.js') }}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="{{ asset('Admin/src/assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('Admin/src/assets/js/dashboard.js') }}"></script>
-    <script src="{{ asset('Admin/src/assets/js/proBanner.js') }}"></script>
-    <!-- <script src="../../assets/js/Chart.roundedBarCharts.js"></script> -->
-    <!-- End custom js for this page-->
+<script>
+(function() {
+    var sidebar = document.getElementById('adminSidebar');
+    var toggler = document.getElementById('adminSidebarToggler');
+    var closeBtn = document.getElementById('adminSidebarClose');
+    var backdrop = document.getElementById('adminSidebarBackdrop');
+    if (sidebar && toggler) {
+        toggler.addEventListener('click', function() {
+            sidebar.classList.add('admin-sidebar--open');
+            if (backdrop) backdrop.classList.add('show');
+            document.body.classList.add('admin-sidebar-open');
+        });
+    }
+    function closeSidebar() {
+        if (sidebar) sidebar.classList.remove('admin-sidebar--open');
+        if (backdrop) backdrop.classList.remove('show');
+        document.body.classList.remove('admin-sidebar-open');
+    }
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+    if (backdrop) backdrop.addEventListener('click', closeSidebar);
+})();
+</script>
 </body>
-
 </html>
