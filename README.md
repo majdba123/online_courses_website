@@ -1,66 +1,183 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# EZ Medicine — Medical Courses Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[English](README.md) | [العربية](README_AR.md)
 
-## About Laravel
+> A Laravel-based medical education platform for managing paid courses, doctors, protected video content, student accounts, ratings, favourites, orders, and administrative workflows.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+EZ Medicine is an online medical learning platform built to organize and deliver paid educational courses. The application combines a public-facing course experience with authenticated student features and a protected administration dashboard.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The current repository keeps the Laravel application inside the [`EZM/`](EZM/) directory. That structure is preserved intentionally to avoid breaking existing paths or deployment assumptions.
 
-## Learning Laravel
+The platform supports the full learning journey around medical courses: course discovery, doctor attribution, account registration and verification, course ordering, approval-controlled access, video lessons, favourites, ratings, profile history, and administrative content management.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Core Capabilities
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Student Experience
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The public and authenticated learning experience includes:
 
-## Laravel Sponsors
+- medical course discovery;
+- course pricing and doctor information;
+- user registration and authentication;
+- email verification;
+- Google sign-in through Laravel Socialite;
+- user profiles;
+- favourite courses;
+- course ratings and comments;
+- order history;
+- enrolled / purchased course history;
+- protected course video pages;
+- contact / inquiry submission;
+- informational sections such as benefits, goals, achievements, FAQ, and about content.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+The home page presents EZ Medicine as a specialized medical education platform and exposes medical courses, instructors, pricing, learner feedback, and FAQ content.
 
-### Premium Partners
+## Paid Course Access Workflow
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Course access is not exposed as an unrestricted video library.
 
-## Contributing
+The implemented flow is based on authenticated orders and approval state:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+1. a verified user selects a course;
+2. the user submits an order with payment-proof imagery;
+3. the order is stored with the selected course and user;
+4. an administrator reviews and updates the order status;
+5. course/video access is guarded by payment-related middleware;
+6. authorized learners can access the protected course content.
 
-## Code of Conduct
+This repository should therefore be described as a paid-course platform with approval-controlled content access rather than as a fully automated payment-gateway implementation.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Course Domain Model
 
-## Security Vulnerabilities
+Courses are first-class entities and are linked to:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- doctors / instructors;
+- discounts;
+- orders;
+- videos;
+- favourites;
+- ratings.
 
-## License
+Course and user records use UUID-style identifiers generated at creation time in the current model implementation.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Administration Dashboard
+
+The `/dashboard` area is protected by authentication and an admin middleware layer.
+
+Administrative workflows include management of:
+
+- website content;
+- doctors;
+- discounts / offers;
+- courses;
+- videos;
+- inquiries;
+- ratings;
+- users;
+- benefits;
+- FAQ content;
+- goals;
+- achievements;
+- orders.
+
+The admin interface also includes search and update operations across several of these resources.
+
+## Video & Content Protection
+
+Protected learning routes use middleware to verify authentication, email verification, and course payment/order state before allowing access to video sections.
+
+The application also contains a temporary URL-generation flow around video access. This mechanism is part of the current implementation and should be reviewed separately during a future security/runtime audit before being treated as a hardened DRM solution.
+
+## Authentication
+
+The current authentication stack includes:
+
+- Laravel authentication routes;
+- email verification;
+- Laravel Sanctum support;
+- Google OAuth login through Laravel Socialite;
+- authenticated profile routes;
+- admin-specific authorization middleware.
+
+## Technology Stack
+
+| Area | Technologies |
+| --- | --- |
+| Backend | PHP 8.1+, Laravel 10 |
+| Authentication | Laravel Auth, Sanctum, Socialite |
+| Frontend | Blade templates, Bootstrap 5, Sass |
+| Asset Pipeline | Vite 5 |
+| HTTP / Integrations | Guzzle, Google API client libraries |
+| Content Sanitization | HTML Purifier |
+| Testing | PHPUnit 10 |
+
+## Repository Structure
+
+```text
+.
+├── EZM/                        # Main Laravel application
+│   ├── app/                    # Models, controllers, middleware, application logic
+│   ├── bootstrap/
+│   ├── config/
+│   ├── database/
+│   ├── public/
+│   ├── resources/              # Blade views, Sass and frontend assets
+│   ├── routes/                 # Web/API/channel/console routes
+│   ├── tests/
+│   ├── composer.json
+│   └── package.json
+├── README.md
+├── README_AR.md
+└── تقرير_منصة_كورسات_طبية_مدفوعة_EZM.pdf
+```
+
+The application remains under `EZM/` to preserve the current repository layout and avoid introducing path-related regressions during documentation cleanup.
+
+## Development
+
+From the Laravel application directory:
+
+```bash
+cd EZM
+composer install
+npm install
+npm run dev
+```
+
+Typical Laravel environment setup is also required before running the application locally, including an application environment file, application key, database configuration, and migrations.
+
+For a production build of frontend assets:
+
+```bash
+npm run build
+```
+
+## Testing
+
+The project includes PHPUnit configuration and Laravel test tooling. Runtime, migration, authentication, media-access and order-flow tests should be executed before claiming a verified production baseline.
+
+This README documents the implemented repository structure and behavior; it does not claim that all tests currently pass.
+
+## Security Notes
+
+Several routes are protected through authentication, verification, admin middleware, and payment/order checks. However, course-video protection and temporary URL behavior should be treated as application-level access control, not as a guarantee against content capture or redistribution.
+
+Secrets, OAuth credentials and production configuration must remain outside source control.
+
+## Project Positioning
+
+EZ Medicine is best presented as a **medical e-learning and paid course management platform** with:
+
+- structured course administration;
+- doctor/instructor management;
+- protected educational video access;
+- student account workflows;
+- favourites and ratings;
+- order and approval handling;
+- configurable informational website content.
+
+---
+
+Built as a Laravel-based medical education platform with connected student, content, order and administration workflows.
