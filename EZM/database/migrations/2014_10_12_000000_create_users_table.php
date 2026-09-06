@@ -25,19 +25,11 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-
         });
-        DB::table('users')->insert([
-            [
-                'id' => Str::uuid(),
-                'name' => 'robert',
-                'type_user' => 1,
-                'status' => 1,
-                'email' => 'admin@gmail.com',
-                'password' => bcrypt('12345678'),
-                'email_verified_at'=> now()
-            ]
-        ]);
+
+        // Administrative users must be provisioned explicitly through a
+        // controlled setup/seeding process. Database migrations must never
+        // create a predictable privileged account with public credentials.
     }
 
     /**
